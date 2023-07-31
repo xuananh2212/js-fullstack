@@ -1,5 +1,5 @@
 // bai 1
-var numberKm = 10;
+var numberKm = 5.1;
 var sumTaxi;
 const FROM_1_LESS = 15000;
 const FROM_5_LESS = 13500;

@@ -1,16 +1,13 @@
 // bai 1
-var numberKm = 10;
+var numberKm = 2;
 var sumTaxi;
-const FROM_1_LESS = 15000;
-const FROM_5_LESS = 13500;
-const TO_5_MORE = 11000;
 
 if (!isNaN(numberKm) && numberKm >= 0) {
-  if (numberKm <= 1) sumTaxi = numberKm * FROM_1_LESS;
+  if (numberKm <= 1) sumTaxi = numberKm * 15000;
   else if (numberKm > 1 && numberKm <= 5)
-    sumTaxi = (numberKm - 1) * FROM_5_LESS + FROM_1_LESS;
+    sumTaxi = (numberKm - 1) * 13500 + 15000;
   else if (numberKm > 5) {
-    sumTaxi = (numberKm - 5) * TO_5_MORE + 4 * FROM_5_LESS + FROM_1_LESS;
+    sumTaxi = (numberKm - 5) * 11000 + 4 * 13500 + 15000;
     let discount = 0;
     if (numberKm > 120) {
       discount = 0.1 * sumTaxi;

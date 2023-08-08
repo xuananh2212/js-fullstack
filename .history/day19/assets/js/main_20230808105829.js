@@ -135,7 +135,7 @@ console.log(
 );
 
 var array = [5, 1, 9, 8, 10];
-var element = 11;
+var element = 12;
 if (Array.isArray(array)) {
   if (isArrayInteger(array)) {
     if (array.length > 0) {

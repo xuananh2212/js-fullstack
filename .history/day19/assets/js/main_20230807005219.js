@@ -135,18 +135,12 @@ console.log(
 );
 
 var array = [5, 1, 9, 8, 10];
-var element = 11;
+var element = 4;
 if (Array.isArray(array)) {
   if (isArrayInteger(array)) {
     if (array.length > 0) {
       array.sort((a, b) => a - b);
-      var indexInsert = 0;
-      for (var i in array) {
-        if (element > array[i]) {
-          indexInsert++;
-        }
-      }
-      array.splice(indexInsert, 0, element);
+      array.splice(1, 0, element);
       console.log(array);
     } else {
       console.log("danh sách rỗng");

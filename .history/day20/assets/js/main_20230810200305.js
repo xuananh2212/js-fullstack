@@ -122,7 +122,7 @@ var array = [
 
 for (var index in array) {
   var str;
-  if (index % 2 === 0) {
+  if (index % 2 !== 0) {
     str = `
     <div class="products_items">
              <div class="products__imgs">

@@ -122,30 +122,30 @@ var array = [
 
 for (var index in array) {
   var str;
-  if (index % 2 === 0) {
+  if (index % 2 !== 0) {
     str = `
     <div class="products_items">
              <div class="products__imgs">
-                 <img src="${array[index]["img"]}" alt="">
+                 <img src="${element["img"]}" alt="">
              </div>
              <div class="products__content">
                  <h2 class="heading-lv2">
-                     ${array[index]["heading"]}
+                     ${element["heading"]}
                  </h2>
-                 <p class="desc">${array[index]["desc"]}</p>
+                 <p class="desc">${element["desc"]}</p>
      </div>
     `;
   } else {
     str = `
     <div class="products_items">
              <div class="products__imgs order">
-                 <img src="${array[index]["img"]}" alt="">
+                 <img src="${element["img"]}" alt="">
              </div>
              <div class="products__content">
                  <h2 class="heading-lv2">
-                     ${array[index]["heading"]}
+                     ${element["heading"]}
                  </h2>
-                 <p class="desc">${array[index]["desc"]}</p>
+                 <p class="desc">${element["desc"]}</p>
      </div>
     `;
   }

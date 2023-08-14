@@ -38,7 +38,6 @@ const customers = [
   { name: "Nguyễn Văn C", age: 19, address: "TP.HCM" },
   { name: "Nguyễn Văn D", age: 20, address: "TP.HCM" },
   { name: "Nguyễn Văn M", age: 50, address: "TP.HCM" },
-  { name: "Lê Văn M", age: 50, address: "TP.HCM" },
 ];
 
 const result = createCustomers(customers);
@@ -75,40 +74,25 @@ const User = function (name, password, email) {
   this.role = "user";
 };
 
-var dataRegister = handleRegister(
+const dataRegister = handleRegister(
   "Nguyen Van A",
   "123456",
   "nguyenvana@email.com"
 );
 
-var dataRegister = handleRegister(
+const dataRegister1 = handleRegister(
   "Nguyen Van B",
-  "123456",
-  "nguyenvana@email.com"
-);
-var dataRegister = handleRegister(
-  "Nguyen Van C",
   "1234567",
-  "nguyenvanc@email.com"
+  "nguyenvanb@email.com"
 );
 
 // hàm register
 function handleRegister(name, password, email) {
   if (!name || !password || !email) {
-    console.log("thông tin không đủ !");
-    return null;
+    return "Lỗi.thông tin không đủ";
   }
-  const userCheck = data.find((user) => {
-    return user["email"] === email;
-  });
-  if (!userCheck) {
-    var user = new User(name, password, email);
-    data.push(user);
-    console.log("đăng kí thành công");
-    return user;
-  }
-  console.log("vui lòng nhập lại email trùng!");
-  return null;
+  data.push(new User(name, password, email));
+  return "đăng kí thành công";
 }
 
 // Hàm login
@@ -118,7 +102,7 @@ function handleLogin(email, password) {
       return element;
   }
 
-  return "thông tin đăng nhập không hợp lệ";
+  return "thông tin đang nhập không hợp lệ";
 }
 console.log(data);
 console.log(handleLogin("nguyenvana@email.com", "123456"));

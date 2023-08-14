@@ -95,7 +95,7 @@ var dataRegister = handleRegister(
 // hàm register
 function handleRegister(name, password, email) {
   if (!name || !password || !email) {
-    console.log("thông tin không đủ !");
+    console.log("Lỗi.thông tin không đủ");
     return null;
   }
   const userCheck = data.find((user) => {
@@ -103,12 +103,10 @@ function handleRegister(name, password, email) {
   });
   if (!userCheck) {
     var user = new User(name, password, email);
-    data.push(user);
-    console.log("đăng kí thành công");
+    data.push();
     return user;
   }
-  console.log("vui lòng nhập lại email trùng!");
-  return null;
+  return "email trùng";
 }
 
 // Hàm login

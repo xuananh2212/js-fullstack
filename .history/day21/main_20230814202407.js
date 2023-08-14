@@ -75,40 +75,33 @@ const User = function (name, password, email) {
   this.role = "user";
 };
 
-var dataRegister = handleRegister(
+const dataRegister = handleRegister(
   "Nguyen Van A",
   "123456",
   "nguyenvana@email.com"
 );
 
-var dataRegister = handleRegister(
+const dataRegister1 = handleRegister(
   "Nguyen Van B",
   "123456",
-  "nguyenvana@email.com"
+  "nguyenvanb@email.com"
 );
-var dataRegister = handleRegister(
+const dataRegister2 = handleRegister(
   "Nguyen Van C",
   "1234567",
-  "nguyenvanc@email.com"
+  "nguyenvanb@email.com"
 );
 
 // hàm register
 function handleRegister(name, password, email) {
   if (!name || !password || !email) {
-    console.log("thông tin không đủ !");
+    console.log("Lỗi.thông tin không đủ");
     return null;
   }
-  const userCheck = data.find((user) => {
-    return user["email"] === email;
-  });
-  if (!userCheck) {
-    var user = new User(name, password, email);
-    data.push(user);
-    console.log("đăng kí thành công");
-    return user;
-  }
-  console.log("vui lòng nhập lại email trùng!");
-  return null;
+  const user = new User(name, password, email);
+  data.push(user);
+  console.log("đăng kí thành công");
+  return user;
 }
 
 // Hàm login
@@ -118,7 +111,7 @@ function handleLogin(email, password) {
       return element;
   }
 
-  return "thông tin đăng nhập không hợp lệ";
+  return "thông tin đang nhập không hợp lệ";
 }
 console.log(data);
 console.log(handleLogin("nguyenvana@email.com", "123456"));

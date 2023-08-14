@@ -95,7 +95,7 @@ var dataRegister = handleRegister(
 // hàm register
 function handleRegister(name, password, email) {
   if (!name || !password || !email) {
-    console.log("thông tin không đủ !");
+    console.log("Lỗi.thông tin không đủ");
     return null;
   }
   const userCheck = data.find((user) => {

@@ -121,4 +121,4 @@ function handleLogin(email, password) {
   return "thông tin đăng nhập không hợp lệ";
 }
 console.log(data);
-console.log(handleLogin("nguyenvana@email.com", "123456"));
+console.log(handleLogin("nguyenvana@email.com", "12345"));

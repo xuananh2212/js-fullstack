@@ -95,20 +95,17 @@ var dataRegister = handleRegister(
 // hàm register
 function handleRegister(name, password, email) {
   if (!name || !password || !email) {
-    console.log("thông tin không đủ !");
-    return null;
+    return "Lỗi.thông tin không đủ";
   }
-  const userCheck = data.find((user) => {
-    return user["email"] === email;
+  const user = data.find((user) => {
+    return user[`email`] === email;
   });
-  if (!userCheck) {
-    var user = new User(name, password, email);
-    data.push(user);
-    console.log("đăng kí thành công");
-    return user;
+
+  if (user) {
+    data.push(new User(name, password, email));
+    return "dang ki thanh cong";
   }
-  console.log("vui lòng nhập lại email trùng!");
-  return null;
+  return "email trùng";
 }
 
 // Hàm login

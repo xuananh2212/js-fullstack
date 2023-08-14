@@ -72,12 +72,9 @@ var arr = [
 ];
 if (Array.isArray(arr)) {
   var result = arr.flat(Infinity).reduce((prev, current) => {
-    if (!Object.keys(prev).includes(typeof current)) {
-      prev[typeof current] = [current];
-    } else {
-      prev[typeof current].push(current);
+    if (!Object.keys(result).includes(typeof current)) {
+      result[typeof current] = [...current];
     }
-    return prev;
   }, {});
   console.log(result);
 } else {

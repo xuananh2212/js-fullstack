@@ -75,7 +75,7 @@ if (Array.isArray(arr)) {
     if (!Object.keys(prev).includes(typeof current)) {
       prev[typeof current] = [current];
     } else {
-      prev[typeof current].push(current);
+      prev[typeof current] = prev[typeof current].push(current);
     }
     return prev;
   }, {});

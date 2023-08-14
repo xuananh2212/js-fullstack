@@ -71,14 +71,7 @@ var arr = [
   ],
 ];
 if (Array.isArray(arr)) {
-  var result = arr.flat(Infinity).reduce((prev, current) => {
-    if (!Object.keys(prev).includes(typeof current)) {
-      prev[typeof current] = [current];
-    } else {
-      prev[typeof current].push(current);
-    }
-    return prev;
-  }, {});
+  var result = arr.flat(Infinity);
   console.log(result);
 } else {
   console.log("không phải mảng.");

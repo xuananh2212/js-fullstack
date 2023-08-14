@@ -6,7 +6,7 @@ var arrA = [1, 4, 3, 2, 5, 1];
 var arrB = [5, 2, 6, 7, 1, 3];
 
 if (Array.isArray(arrA) && Array.isArray(arrB)) {
-  const result = Array.from(new Set(arrA)).reduce((prev, current) => {
+  const result = arrA.reduce((prev, current) => {
     return arrB.includes(current) && prev.push(current), prev;
   }, []);
   console.log(result);
@@ -71,14 +71,28 @@ var arr = [
   ],
 ];
 if (Array.isArray(arr)) {
-  var result = arr.flat(Infinity).reduce((prev, current) => {
-    if (!Object.keys(prev).includes(typeof current)) {
-      prev[typeof current] = [current];
-    } else {
-      prev[typeof current].push(current);
+  var result = [];
+  var arrayStr = [];
+  var arrayNumber = [];
+  var arrayBoolean = [];
+  var arrayObject = [];
+  arrayDimesional(arr);
+  result.forEach((element) => {
+    if (typeof element === "string") {
+      arrayStr.push(element);
     }
-    return prev;
-  }, {});
+    if (typeof element === "number") {
+      arrayNumber.push(element);
+    }
+    if (typeof element === "object") {
+      arrayObject.push(element);
+    }
+    if (typeof element === "boolean") {
+      arrayBoolean.push(element);
+    }
+  });
+  var result = [];
+  result.push(arrayObject, arrayBoolean, arrayNumber, arrayStr);
   console.log(result);
 } else {
   console.log("không phải mảng.");

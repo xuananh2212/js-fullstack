@@ -68,6 +68,9 @@ var arr = [
       userName: "hung",
       email: "hung@gmail.com",
     },
+    null,
+    undefined,
+    NaN,
   ],
 ];
 if (Array.isArray(arr)) {

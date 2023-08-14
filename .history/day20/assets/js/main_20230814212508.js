@@ -71,14 +71,28 @@ var arr = [
   ],
 ];
 if (Array.isArray(arr)) {
-  var result = arr.flat(Infinity).reduce((prev, current) => {
-    if (!Object.keys(prev).includes(typeof current)) {
-      prev[typeof current] = [current];
-    } else {
-      prev[typeof current].push(current);
+  var result = [];
+  var arrayStr = [];
+  var arrayNumber = [];
+  var arrayBoolean = [];
+  var arrayObject = [];
+  arrayDimesional(arr);
+  result.forEach((element) => {
+    if (typeof element === "string") {
+      arrayStr.push(element);
     }
-    return prev;
-  }, {});
+    if (typeof element === "number") {
+      arrayNumber.push(element);
+    }
+    if (typeof element === "object") {
+      arrayObject.push(element);
+    }
+    if (typeof element === "boolean") {
+      arrayBoolean.push(element);
+    }
+  });
+  var result = [];
+  result.push(arrayObject, arrayBoolean, arrayNumber, arrayStr);
   console.log(result);
 } else {
   console.log("không phải mảng.");

@@ -257,6 +257,7 @@ form.addEventListener("submit", function (e) {
         alert("Đăng nhập thành công");
         modal.classList.remove("is-show");
       }, 800);
+      console.log("dfadsf");
     } else {
       modalTextLogin.innerHTML = "tài khoản và mật khẩu không chính xác";
       modalTextLogin.classList.add("error");

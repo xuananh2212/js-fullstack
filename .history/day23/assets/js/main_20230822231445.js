@@ -67,7 +67,9 @@ function activeBtnLogin() {
 function handlShowModal() {
   if (modal) {
     modal.classList.toggle("is-show");
-    activeBtnLogin();
+    if (btnRegister.classList.contains("active")) {
+      activeBtnLogin();
+    }
   }
 }
 if (btn) {

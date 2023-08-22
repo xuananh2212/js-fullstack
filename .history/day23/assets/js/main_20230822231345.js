@@ -55,7 +55,6 @@ function activeBtnLogin() {
   modalTextRegister.innerHTML = "";
   inputAll.forEach((input) => {
     input.value = "";
-    console.log(input.value);
     input.classList.remove("error");
     spanPasswd.innerHTML = "";
     spanEmail.innerHTML = "";
@@ -67,7 +66,9 @@ function activeBtnLogin() {
 function handlShowModal() {
   if (modal) {
     modal.classList.toggle("is-show");
-    activeBtnLogin();
+    if (btnRegister.classList.contains("active")) {
+      activeBtnLogin();
+    }
   }
 }
 if (btn) {

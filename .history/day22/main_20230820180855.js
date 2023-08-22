@@ -140,6 +140,7 @@ if (Array.isArray(array)) {
     var result = [];
     array.forEach(function (item) {
       if (item.parent === parentId) {
+        delete item.parent;
         result[result.length] = { ...item };
         if (nestedArray(array, item.id).length !== 0) {
           result[result.length - 1] = {

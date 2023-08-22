@@ -1,0 +1,10 @@
+.nav-bar {
+
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    outline: none;
+    border: none;
+}

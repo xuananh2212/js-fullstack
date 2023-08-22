@@ -187,10 +187,11 @@ var total = numbers.reduce(function (total, currentValue, index, number) {
   console.log(total, currentValue, index, number);
   return total + currentValue;
 }, 0);
-console.log(total);
 
+console.log(total);
 var total = numbers.reduce2(function (total, currentValue, index, number) {
   console.log(total, currentValue, index, number);
   return total + currentValue;
 }, 0);
+
 console.log(total);

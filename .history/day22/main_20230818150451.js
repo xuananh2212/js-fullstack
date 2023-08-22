@@ -154,7 +154,7 @@ if (Array.isArray(array)) {
 
   console.log(nestedArray(array, 0));
 } else {
-  console.log("this is not a array");
+  console.log("this is not array");
 }
 
 console.log(
@@ -187,10 +187,11 @@ var total = numbers.reduce(function (total, currentValue, index, number) {
   console.log(total, currentValue, index, number);
   return total + currentValue;
 }, 0);
-console.log(total);
 
+console.log(total);
 var total = numbers.reduce2(function (total, currentValue, index, number) {
   console.log(total, currentValue, index, number);
   return total + currentValue;
 }, 0);
+
 console.log(total);

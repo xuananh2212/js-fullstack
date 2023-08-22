@@ -1,0 +1,129 @@
+@import "./reset";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav-bar {
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Arial", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+    outline: none;
+    border: none;
+}
+
+.btn {
+    color: gray;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+
+    background-color: transparent;
+
+    i {
+        margin-left: 10px;
+        font-size: 24px;
+    }
+}
+
+html {
+    font-size: 10px;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .6);
+}
+
+.modal-content {
+    position: fixed;
+    background-color: #fff;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    max-width: 460px;
+    border-radius: 3px;
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+.modal {
+    &-group-btn {
+        display: flex;
+
+        button {
+            max-width: 100%;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 56px;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 600;
+            color: #999;
+            background: #eee none;
+            height: 56px;
+        }
+
+        .active {
+            background-color: #fff;
+            color: #333;
+        }
+    }
+
+
+
+    // modal-login-register
+    &-login-register {
+        padding: 0 40px 30px 40px;
+
+        //modal-login
+        .modal-login {
+            .modal-text {
+                display: block;
+                margin: 16px 0 0;
+                color: #1a1a1a;
+                text-align: center;
+                font-size: 1.6rem;
+            }
+
+            // modal-social
+
+            .modal-social {
+                margin: 16px 0 0;
+                display: flex;
+                justify-content: space-between;
+
+                .google,
+                .facebook {
+                    flex: 0 0 auto;
+                    max-width: 100%;
+                    width: calc(50% - 10px);
+                    background: #e2e8f0 none;
+                    border-radius: 5px;
+                    display: flex;
+                    gap: 5px;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 1.4rem;
+                    line-height: 22px;
+                    color: #333;
+                    height: 45px;
+                }
+            }
+        }
+
+
+    }
+}

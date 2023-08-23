@@ -148,7 +148,6 @@ if (Array.isArray(array)) {
             children: nestedArray(array, item.id),
           };
         }
-        delete result[result.length - 1].parent;
       }
     });
     return result;

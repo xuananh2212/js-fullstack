@@ -27,7 +27,7 @@ console.log(
 Object.prototype.getCurrency = function (currency) {
   var value = +this.valueOf();
   if (currency) {
-    return value.toLocaleString() + currency;
+    return value.toLocaleString + currency;
   }
   return value.toLocaleString();
 };
@@ -148,7 +148,6 @@ if (Array.isArray(array)) {
             children: nestedArray(array, item.id),
           };
         }
-        delete result[result.length - 1].parent;
       }
     });
     return result;

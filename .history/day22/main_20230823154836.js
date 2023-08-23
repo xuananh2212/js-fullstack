@@ -25,11 +25,10 @@ console.log(
 );
 
 Object.prototype.getCurrency = function (currency) {
-  var value = +this.valueOf();
   if (currency) {
-    return value.toLocaleString() + currency;
+    return +this.valueOf().toLocaleString + currency;
   }
-  return value.toLocaleString();
+  return +this.valueOf().toLocaleString();
 };
 
 var price = "12000";
@@ -148,7 +147,6 @@ if (Array.isArray(array)) {
             children: nestedArray(array, item.id),
           };
         }
-        delete result[result.length - 1].parent;
       }
     });
     return result;

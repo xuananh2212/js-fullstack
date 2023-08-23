@@ -147,8 +147,8 @@ if (Array.isArray(array)) {
             ...result[result.length - 1],
             children: nestedArray(array, item.id),
           };
+          delete result[result.length - 1].parent;
         }
-        delete result[result.length - 1].parent;
       }
     });
     return result;

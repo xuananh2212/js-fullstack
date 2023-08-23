@@ -222,7 +222,7 @@ form.addEventListener("submit", function (e) {
   console.log(fullName.value);
   if (btnRegister.classList.contains("active")) {
     if (
-      passwd.value.length > 6 &&
+      passwd.value.length >= 6 &&
       fullName.value !== "" &&
       fullName.value !== null
     ) {

@@ -1,12 +1,14 @@
-//modal
+//
 
-const $ = function (tag) {
+var $ = function (tag) {
   return document.querySelector(tag);
 };
 
-const $$ = function (tag) {
+var $$ = function (tag) {
   return document.querySelectorAll(tag);
 };
+
+//modal
 const modal = $(".modal");
 const overlay = $(".modal-overlay");
 const modalText = $(".modal-text");
@@ -27,7 +29,7 @@ var inputPasswd = $(".form-group__wrap  #passwd");
 const eye = $(".form-login-register .fa-regular.fa-eye");
 const formGroupName = $("#full-name").parentElement;
 const formGroupDesc = $(".form-group .desc");
-const inputAll = [...$$(".form-login-register input")];
+const inputAll = [...document.querySelectorAll(".form-login-register input")];
 var spanPasswd = $(".error-passwd");
 var spanEmail = $(".error-email");
 var spanFullName = $(".error-name");
@@ -129,15 +131,15 @@ if (eye) {
 }
 
 function checkErrorAll() {
-  if (email.value === null || email.value === "") {
+  if (email.value) {
     spanEmail.textContent = "vui lòng nhập thông tin";
     email.classList.add("error");
   }
-  if (passwd.value === "" || passwd.value === null) {
+  if (passwd.value) {
     spanPasswd.textContent = "vui lòng nhập thông tin";
     passwd.classList.add("error");
   }
-  if (fullName.value === "" || fullName.value === null) {
+  if (fullName.value) {
     spanFullName.textContent = "vui lòng nhập thông tin";
     fullName.classList.add("error");
   }
@@ -164,7 +166,7 @@ if (email) {
 if (passwd) {
   passwd.addEventListener("blur", checkErrorAll);
   passwd.addEventListener("input", function (e) {
-    if (this.value === null || this.value === "") {
+    if (this.value) {
       spanPasswd.textContent = "vui lòng nhập thông tin";
       passwd.classList.add("error");
     } else if (btnRegister.classList.contains("active")) {
@@ -173,11 +175,11 @@ if (passwd) {
         spanPasswd.textContent = "";
         passwd.classList.remove("error");
 
-        if (fullName.value === "" || fullName.value === null) {
+        if (fullName.value) {
           spanFullName.textContent = "vui lòng nhập thông tin";
           fullName.classList.add("error");
         }
-        if (email.value === "" || email.value === null) {
+        if (email.value) {
           email.classList.add("error");
           spanEmail.textContent = "vui lòng nhập thông tin";
         }
@@ -191,11 +193,11 @@ if (passwd) {
         spanPasswd.textContent = "";
         passwd.classList.remove("error");
 
-        if (fullName.value === "" || fullName.value === null) {
+        if (fullName.value) {
           spanFullName.textContent = "vui lòng nhập thông tin";
           fullName.classList.add("error");
         }
-        if (email.value === "" || email.value === null) {
+        if (email.value) {
           email.classList.add("error");
           spanEmail.textContent = "vui lòng nhập thông tin";
         }
@@ -209,7 +211,7 @@ if (passwd) {
 if (fullName) {
   fullName.addEventListener("blur", checkErrorAll);
   fullName.addEventListener("input", function (e) {
-    if (this.value === null || this.value === "") {
+    if (this.value) {
       spanFullName.textContent = "vui lòng nhập thông tin";
       fullName.classList.add("error");
     } else if (fullName.value.length > 0) {

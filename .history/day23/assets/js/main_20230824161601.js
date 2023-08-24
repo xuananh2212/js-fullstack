@@ -1,40 +1,42 @@
-//modal
+//
 
-const $ = function (tag) {
+var $ = function (tag) {
   return document.querySelector(tag);
 };
 
-const $$ = function (tag) {
+var $$ = function (tag) {
   return document.querySelectorAll(tag);
 };
-const modal = $(".modal");
-const overlay = $(".modal-overlay");
-const modalText = $(".modal-text");
-const modalRegister = $(".modal-register");
-const modalLoginRegister = $(".modal-login-register");
-const modalSocial = $(".modal-social");
-const modalLogin = $(".modal-login");
-const modalTextRegister = $(".modal-text-register");
-const modalTextLogin = $(".modal-text-login");
+
+//modal
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".modal-overlay");
+const modalText = document.querySelector(".modal-text");
+const modalRegister = document.querySelector(".modal-register");
+const modalLoginRegister = document.querySelector(".modal-login-register");
+const modalSocial = document.querySelector(".modal-social");
+const modalLogin = document.querySelector(".modal-login");
+const modalTextRegister = document.querySelector(".modal-text-register");
+const modalTextLogin = document.querySelector(".modal-text-login");
 
 //form
-const form = $(".form-login-register");
-const btn = $(".btn");
-const btnRegister = $(".btn-regsiter");
-const btnForget = $(".btn-forget");
-const btnLogin = $(".btn-login");
-var inputPasswd = $(".form-group__wrap  #passwd");
-const eye = $(".form-login-register .fa-regular.fa-eye");
-const formGroupName = $("#full-name").parentElement;
-const formGroupDesc = $(".form-group .desc");
-const inputAll = [...$$(".form-login-register input")];
-var spanPasswd = $(".error-passwd");
-var spanEmail = $(".error-email");
-var spanFullName = $(".error-name");
-const email = $("input#email");
-const passwd = $("input#passwd");
-const fullName = $("input#full-name");
-const btnCta = $(".btn-cta");
+const form = document.querySelector(".form-login-register");
+const btn = document.querySelector(".btn");
+const btnRegister = document.querySelector(".btn-regsiter");
+const btnForget = document.querySelector(".btn-forget");
+const btnLogin = document.querySelector(".btn-login");
+var inputPasswd = document.querySelector(".form-group__wrap  #passwd");
+const eye = document.querySelector(".form-login-register .fa-regular.fa-eye");
+const formGroupName = document.querySelector("#full-name").parentElement;
+const formGroupDesc = document.querySelector(".form-group .desc");
+const inputAll = [...document.querySelectorAll(".form-login-register input")];
+var spanPasswd = document.querySelector(".error-passwd");
+var spanEmail = document.querySelector(".error-email");
+var spanFullName = document.querySelector(".error-name");
+const email = document.querySelector("input#email");
+const passwd = document.querySelector("input#passwd");
+const fullName = document.querySelector("input#full-name");
+const btnCta = document.querySelector(".btn-cta");
 
 //
 const users = [
@@ -129,15 +131,15 @@ if (eye) {
 }
 
 function checkErrorAll() {
-  if (email.value === null || email.value === "") {
+  if (email.value) {
     spanEmail.textContent = "vui lòng nhập thông tin";
     email.classList.add("error");
   }
-  if (passwd.value === "" || passwd.value === null) {
+  if (passwd.value) {
     spanPasswd.textContent = "vui lòng nhập thông tin";
     passwd.classList.add("error");
   }
-  if (fullName.value === "" || fullName.value === null) {
+  if (fullName.value) {
     spanFullName.textContent = "vui lòng nhập thông tin";
     fullName.classList.add("error");
   }
@@ -164,7 +166,7 @@ if (email) {
 if (passwd) {
   passwd.addEventListener("blur", checkErrorAll);
   passwd.addEventListener("input", function (e) {
-    if (this.value === null || this.value === "") {
+    if (this.value) {
       spanPasswd.textContent = "vui lòng nhập thông tin";
       passwd.classList.add("error");
     } else if (btnRegister.classList.contains("active")) {
@@ -173,11 +175,11 @@ if (passwd) {
         spanPasswd.textContent = "";
         passwd.classList.remove("error");
 
-        if (fullName.value === "" || fullName.value === null) {
+        if (fullName.value) {
           spanFullName.textContent = "vui lòng nhập thông tin";
           fullName.classList.add("error");
         }
-        if (email.value === "" || email.value === null) {
+        if (email.value) {
           email.classList.add("error");
           spanEmail.textContent = "vui lòng nhập thông tin";
         }
@@ -191,11 +193,11 @@ if (passwd) {
         spanPasswd.textContent = "";
         passwd.classList.remove("error");
 
-        if (fullName.value === "" || fullName.value === null) {
+        if (fullName.value) {
           spanFullName.textContent = "vui lòng nhập thông tin";
           fullName.classList.add("error");
         }
-        if (email.value === "" || email.value === null) {
+        if (email.value) {
           email.classList.add("error");
           spanEmail.textContent = "vui lòng nhập thông tin";
         }
@@ -209,7 +211,7 @@ if (passwd) {
 if (fullName) {
   fullName.addEventListener("blur", checkErrorAll);
   fullName.addEventListener("input", function (e) {
-    if (this.value === null || this.value === "") {
+    if (this.value) {
       spanFullName.textContent = "vui lòng nhập thông tin";
       fullName.classList.add("error");
     } else if (fullName.value.length > 0) {

@@ -39,7 +39,8 @@ todoList.addEventListener("click", function (e) {
         `;
     var todoNode = e.target.parentElement.parentElement;
     todoNode.insertAdjacentHTML("beforebegin", html);
-    todoNode.previousElementSibling.querySelector(".todo-input").value = desc;
+    todoNode.previousElementSibling.documentquerySelector(".todo-input").value =
+      desc;
     todoNode.parentElement.removeChild(todoNode);
   } else if (e.target.matches(".remove-todo")) {
     var todoNode = e.target.parentElement.parentElement;

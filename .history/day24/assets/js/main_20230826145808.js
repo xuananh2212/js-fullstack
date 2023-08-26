@@ -1,8 +1,5 @@
-const $ = function (tag) {
-  return document.querySelector(tag);
-};
-const todoForm = $(".todo-form");
-const todoList = $(".todo-list");
+const todoForm = document.querySelector(".todo-form");
+const todoList = document.querySelector(".todo-list");
 
 function returnHtml(valueInput) {
   return `<div class="todo">

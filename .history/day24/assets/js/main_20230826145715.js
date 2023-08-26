@@ -1,8 +1,6 @@
-const $ = function (tag) {
-  return document.querySelector(tag);
-};
-const todoForm = $(".todo-form");
-const todoList = $(".todo-list");
+const todoForm = document.querySelector(".todo-form");
+const todoList = document.querySelector(".todo-list");
+console.log(todoList);
 
 function returnHtml(valueInput) {
   return `<div class="todo">
@@ -20,7 +18,8 @@ function removeTodo(nodeCurrent) {
 }
 
 function editTodo(nodeCurrent) {
-  var desc = nodeCurrent.parentElement.previousElementSibling.textContent;
+  var desc = e.target.parentElement.previousElementSibling.textContent;
+  console.log(desc);
   var html = `
          <form action="" class="todo-form">
             <div class="form-group">
@@ -30,7 +29,7 @@ function editTodo(nodeCurrent) {
             </div>
         </form>
         `;
-  var todoNode = nodeCurrent.parentElement.parentElement;
+  var todoNode = e.target.parentElement.parentElement;
   todoNode.insertAdjacentHTML("beforebegin", html);
   todoNode.previousElementSibling.querySelector(".todo-input").value = desc;
   todoNode.parentElement.removeChild(todoNode);
@@ -49,7 +48,6 @@ todoForm.addEventListener("submit", function (e) {
 todoList.addEventListener("click", function (e) {
   e.preventDefault();
   if (e.target.matches(".edit-todo")) {
-    editTodo(e.target);
   } else if (e.target.matches(".remove-todo")) {
     removeTodo(e.target);
   } else if (e.target.matches(".btn")) {

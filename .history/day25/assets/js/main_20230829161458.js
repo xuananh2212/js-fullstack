@@ -75,6 +75,7 @@ function swiperSlice(btn) {
   carouselInner.style.transition = `translate 0.25s linear`;
   flag = false;
 }
+
 carouselInner.addEventListener("mousemove", function (e) {
   e.preventDefault();
   if (flag) {
@@ -83,12 +84,13 @@ carouselInner.addEventListener("mousemove", function (e) {
     pageXMove = e.pageX;
     distance = pageXStart - e.pageX;
     if (distance > 150) {
-      swiperSlice(1);
     } else if (distance > 0) {
       carouselInner.style.translate = `${position - distance}px`;
     }
     if (distance < -150) {
-      swiperSlice(-1);
+      hanldeBtn(-1);
+      carouselInner.style.transition = `translate 0.25s linear`;
+      flag = false;
     } else if (distance < 0) {
       carouselInner.style.translate = `${position - distance}px`;
     }

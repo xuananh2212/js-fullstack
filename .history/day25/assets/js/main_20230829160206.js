@@ -68,13 +68,9 @@ var distance = 0;
 carouselInner.addEventListener("mousedown", function (e) {
   flag = true;
   pageXStart = e.pageX;
+  console.log("mousedow" + e.pageX);
 });
 
-function swiperSlice(btn) {
-  hanldeBtn(btn);
-  carouselInner.style.transition = `translate 0.25s linear`;
-  flag = false;
-}
 carouselInner.addEventListener("mousemove", function (e) {
   e.preventDefault();
   if (flag) {
@@ -82,21 +78,25 @@ carouselInner.addEventListener("mousemove", function (e) {
     carouselInner.style.transition = `none`;
     pageXMove = e.pageX;
     distance = pageXStart - e.pageX;
+    console.log("distance" + distance);
+    console.log("mousemove" + e.pageX);
     if (distance > 150) {
-      swiperSlice(1);
+      hanldeBtn(1);
+      carouselInner.style.transition = `translate 0.25s linear`;
+      flag = false;
     } else if (distance > 0) {
       carouselInner.style.translate = `${position - distance}px`;
     }
-    if (distance < -150) {
-      swiperSlice(-1);
+    if (distance < -100) {
+      hanldeBtn(-1);
+      carouselInner.style.transition = `translate 0.25s linear`;
+      flag = false;
     } else if (distance < 0) {
       carouselInner.style.translate = `${position - distance}px`;
     }
   }
 });
 carouselInner.addEventListener("mouseup", function (e) {
-  flag = false;
   e.preventDefault();
-  carouselInner.style.transition = `translate 0.25s linear`;
   carouselInner.style.translate = `${position}px`;
 });

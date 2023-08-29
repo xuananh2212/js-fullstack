@@ -75,6 +75,7 @@ function swiperSlice(btn) {
   carouselInner.style.transition = `translate 0.25s linear`;
   flag = false;
 }
+
 carouselInner.addEventListener("mousemove", function (e) {
   e.preventDefault();
   if (flag) {

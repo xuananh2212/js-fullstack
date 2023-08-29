@@ -56,7 +56,7 @@ btnPrev.addEventListener("click", function (e) {
 dotItems.forEach((dot) => {
   dot.addEventListener("click", function (e) {
     index = dot.dataset.index;
-    position = -1 * (index * imgWidth);
+    position = -1 * (index * carouselInner.clientWidth);
     carouselInner.style.translate = `${position}px`;
     dotItems.forEach((dot) => dot.classList.remove("active"));
     dot.classList.add("active");

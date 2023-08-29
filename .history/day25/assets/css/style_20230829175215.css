@@ -76,7 +76,6 @@ img {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    user-select: none;
 }
 
 .next {
@@ -94,7 +93,6 @@ img {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    user-select: none;
 }
 
 .dots {

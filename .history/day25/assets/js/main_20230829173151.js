@@ -97,7 +97,7 @@ carouselInner.addEventListener("mousemove", function (e) {
 carouselInner.addEventListener("mouseup", function (e) {
   flag = false;
   e.preventDefault();
-  carouselInner.style.cursor = `default`;
+  carouselInner.style.cursor = `pointer`;
   carouselInner.style.transition = `translate 0.25s linear`;
   carouselInner.style.translate = `${position}px`;
 });

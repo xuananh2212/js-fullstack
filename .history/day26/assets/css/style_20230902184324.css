@@ -74,11 +74,10 @@ body {
 
 .user,
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .user img,
@@ -88,23 +87,19 @@ body {
 }
 
 .nav-bar-bottom {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     flex-grow: 1;
 }
 
 .nav-bar-bottom li {
-    margin-top: 18px;
+    margin-top: 12px;
 }
 
 .nav-bar-bottom i,
 .nav-bar-top i {
-    margin-top: 18px;
+    margin-top: 12px;
     display: block;
     font-size: 1.5rem;
     color: #fff;
-    cursor: pointer;
 }
 
 .player {

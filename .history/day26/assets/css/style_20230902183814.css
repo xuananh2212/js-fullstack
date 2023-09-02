@@ -57,10 +57,8 @@ body {
 }
 
 .nav-bar {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
 }
 
 .nav-bar-bottom,
@@ -74,11 +72,10 @@ body {
 
 .user,
 .logo {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     overflow: hidden;
-    cursor: pointer;
 }
 
 .user img,
@@ -88,23 +85,15 @@ body {
 }
 
 .nav-bar-bottom {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.nav-bar-bottom li {
-    margin-top: 18px;
+    flex: 1 0;
 }
 
 .nav-bar-bottom i,
 .nav-bar-top i {
-    margin-top: 18px;
+    margin-top: 12px;
     display: block;
     font-size: 1.5rem;
     color: #fff;
-    cursor: pointer;
 }
 
 .player {
@@ -120,7 +109,8 @@ body {
 }
 
 .dashboard {
-    margin-left: 90px;
+    top: 60px;
+    left: 40px;
     width: 500px;
     padding: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

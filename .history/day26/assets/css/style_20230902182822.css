@@ -10,10 +10,6 @@
     font: inherit;
 }
 
-ul {
-    list-style: none;
-}
-
 img,
 picture,
 svg,
@@ -50,61 +46,8 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    bottom: 0;
-    width: 100px;
-    padding: 12px;
-    background-color: black;
-}
-
-.nav-bar {
-    height: 100%;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-}
-
-.nav-bar-bottom,
-.nav-bar-top {
-    padding: 12px 16px;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    background-color: #333;
-    border-radius: 12px;
-    text-align: center;
-}
-
-.user,
-.logo {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.user img,
-.logo img {
-    width: 100%;
-    object-fit: cover;
-}
-
-.nav-bar-bottom {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.nav-bar-bottom li {
-    margin-top: 18px;
-}
-
-.nav-bar-bottom i,
-.nav-bar-top i {
-    margin-top: 18px;
-    display: block;
-    font-size: 1.5rem;
-    color: #fff;
-    cursor: pointer;
 }
 
 .player {
@@ -120,7 +63,8 @@ body {
 }
 
 .dashboard {
-    margin-left: 90px;
+    top: 60px;
+    left: 40px;
     width: 500px;
     padding: 20px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;

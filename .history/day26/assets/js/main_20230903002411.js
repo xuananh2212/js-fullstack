@@ -23,7 +23,6 @@ var index = 0;
 var isRepeat = false;
 var isRandom = false;
 var timerewindSong = 0;
-var totalTime = audio.duration;
 
 // dùng để lưu danh sách các bài hát đã phát.
 var indexSong = [0];
@@ -96,21 +95,28 @@ songs.forEach((song, index) => {
   playListInner.insertAdjacentHTML("beforeend", html);
 });
 const playItems = $$(".play-items");
-audio.addEventListener("loadeddata", function (e) {
-  totalTime = audio.duration;
-  durationTime.innerHTML = getTime(totalTime);
-});
-function handleDrag(e) {
-  var currentWidth =
-    (e.pageX >= progressBar.offsetLeft ? e.pageX : progressBar.offsetLeft) -
-    progressBar.offsetLeft;
-  if (currentWidth >= progressBar.clientWidth) {
-    currentWidth = progressBar.clientWidth;
+
+btnToggle.addEventListener("click", function (e) {
+  if (iconToggle.classList.contains("fa-play")) {
+    audio.play();
+  } else {
+    audio.pause();
   }
-  var progressPercent = (currentWidth / progressBar.clientWidth) * 100;
-  progress.style.width = `${progressPercent}%`;
-  timerewindSong = (progressPercent * totalTime) / 100;
-  currentTime.innerHTML = getTime(timerewindSong);
+});
+
+function handleDrag(e) {
+  console.log(e.pageX - progressBar.offsetLeft, progressBar.clientWidth);
+  if (
+    e.pageX > progressBar.offsetLeft &&
+    e.pageX - progressBar.offsetLeft <= progressBar.clientWidth
+  ) {
+    console.log("true");
+    var progressPercent =
+      ((e.pageX - progressBar.offsetLeft) / progressBar.clientWidth) * 100;
+    progress.style.width = `${progressPercent}%`;
+    timerewindSong = (progressPercent * audio.duration) / 100;
+    currentTime.innerHTML = getTime(timerewindSong);
+  }
 }
 
 function handleHoverProgress(index) {
@@ -125,55 +131,29 @@ function handleHoverProgress(index) {
   }
 }
 
-function handleTextValueTime(e) {
-  var currentWidth =
-    (e.pageX >= progressBar.offsetLeft ? e.pageX : progressBar.offsetLeft) -
-    progressBar.offsetLeft;
-  if (currentWidth >= progressBar.clientWidth) {
-    currentWidth = progressBar.clientWidth;
-  }
-  var time =
-    (((currentWidth * 100) / progressBar.clientWidth) * totalTime) / 100;
-
-  textValue.innerHTML = getTime(time);
-  textValue.style.left = `${e.pageX - progressBar.offsetLeft}px`;
-  textValue.style.display = "block";
-}
-
-// xử lý nút next
-function song(index) {
-  currentName.innerHTML = songs[index].nameSong;
-  currentImg.setAttribute("src", songs[index].img);
-  audio.setAttribute("src", songs[index].path);
-  playItems.forEach((item) => {
-    item.classList.remove("active");
-  });
-  var currentSong = [...playItems].find((item) => {
-    return Number(item.getAttribute("data-index")) === index;
-  });
-  currentSong.classList.add("active");
-  currentSong.scrollIntoView();
-}
-
-btnToggle.addEventListener("click", function (e) {
-  if (iconToggle.classList.contains("fa-play")) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-});
-
 progressBar.addEventListener("click", function (e) {
   handleDrag(e);
-  if (timerewindSong <= totalTime) {
-    audio.currentTime = timerewindSong;
-  }
+  audio.currentTime = timerewindSong;
 });
 
 progressBar.addEventListener("mouseenter", function (e) {
   handleHoverProgress(1);
 });
 
+function handleTextValueTime(e) {
+  var currentWidth =
+    (e.pageX >= progressBar.offsetLeft ? e.pageX : progressBar.offsetLeft) -
+    progressBar.offsetLeft;
+  if (currentWidth >= progressBar.clientWidth) {
+    currentWidth = progressBar.offsetWidth;
+  }
+  var time =
+    (((currentWidth * 100) / progressBar.offsetWidth) * audio.duration) / 100;
+
+  textValue.innerHTML = getTime(time);
+  textValue.style.left = `${e.pageX - progressBar.offsetLeft}px`;
+  textValue.style.display = "block";
+}
 progressBar.addEventListener("mousemove", function (e) {
   handleTextValueTime(e);
 });
@@ -196,9 +176,7 @@ document.addEventListener("mousemove", function (e) {
 document.addEventListener("mouseup", function (e) {
   e.preventDefault();
   if (isDrag) {
-    if (timerewindSong <= audio.currentTime) {
-      audio.currentTime = timerewindSong;
-    }
+    audio.currentTime = timerewindSong;
   }
   isDrag = false;
 });
@@ -209,10 +187,14 @@ var getTime = function (second) {
   return `${min}:${second >= 10 ? second : "0" + second}`;
 };
 
+audio.addEventListener("loadeddata", function (e) {
+  durationTime.innerHTML = getTime(audio.duration);
+});
+
 audio.addEventListener("timeupdate", function (e) {
   if (!isDrag) {
     currentTime.innerHTML = getTime(this.currentTime);
-    progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
+    progress.style.width = `${(this.currentTime / audio.duration) * 100}%`;
   }
 });
 
@@ -239,7 +221,6 @@ audio.addEventListener("ended", function (e) {
   }
   if (!isRandom && !isRepeat) {
     btnNext.click();
-    textValue.innerHTML = songs[index].durationTime;
   }
 });
 
@@ -260,6 +241,21 @@ const cdThumbAnimate = cdThumb.animate([{ transform: "rotate(360deg)" }], {
   iterations: Infinity,
 });
 cdThumbAnimate.pause();
+
+// xử lý nút next
+function song(index) {
+  currentName.innerHTML = songs[index].nameSong;
+  currentImg.setAttribute("src", songs[index].img);
+  audio.setAttribute("src", songs[index].path);
+  playItems.forEach((item) => {
+    item.classList.remove("active");
+  });
+  var currentSong = [...playItems].find((item) => {
+    return Number(item.getAttribute("data-index")) === index;
+  });
+  currentSong.classList.add("active");
+  currentSong.scrollIntoView();
+}
 
 btnNext.addEventListener("click", function (e) {
   if (index >= playItems.length - 1) {
@@ -303,7 +299,7 @@ btnRandom.addEventListener("click", function (e) {
 playItems.forEach((itemSong) => {
   itemSong.addEventListener("click", function (e) {
     song(Number(itemSong.getAttribute("data-index")));
-    index = Number(itemSong.getAttribute("data-index"));
+    index = Number(itemSong.getAttribute("data-index");
     audio.play();
   });
 });

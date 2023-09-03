@@ -23,7 +23,6 @@ var index = 0;
 var isRepeat = false;
 var isRandom = false;
 var timerewindSong = 0;
-var totalTime = audio.duration;
 
 // dùng để lưu danh sách các bài hát đã phát.
 var indexSong = [0];
@@ -96,11 +95,21 @@ songs.forEach((song, index) => {
   playListInner.insertAdjacentHTML("beforeend", html);
 });
 const playItems = $$(".play-items");
-audio.addEventListener("loadeddata", function (e) {
-  totalTime = audio.duration;
-  durationTime.innerHTML = getTime(totalTime);
-});
+
 function handleDrag(e) {
+  console.log(e.pageX - progressBar.offsetLeft, progressBar.clientWidth);
+  // if (
+  //   e.pageX > progressBar.offsetLeft &&
+  //   e.pageX - progressBar.offsetLeft <= progressBar.clientWidth
+  // ) {
+  //   console.log(true);
+  //   var progressPercent =
+  //     ((e.pageX - progressBar.offsetLeft) / progressBar.clientWidth) * 100;
+  //   progress.style.width = `${progressPercent}%`;
+  //   console.log(progressPercent);
+  //   timerewindSong = (progressPercent * audio.duration) / 100;
+  //   currentTime.innerHTML = getTime(timerewindSong);
+  // }
   var currentWidth =
     (e.pageX >= progressBar.offsetLeft ? e.pageX : progressBar.offsetLeft) -
     progressBar.offsetLeft;
@@ -109,7 +118,9 @@ function handleDrag(e) {
   }
   var progressPercent = (currentWidth / progressBar.clientWidth) * 100;
   progress.style.width = `${progressPercent}%`;
-  timerewindSong = (progressPercent * totalTime) / 100;
+  console.log("total" + audio.duration, getTime(audio.duration));
+  console.log(progressPercent);
+  timerewindSong = (progressPercent * audio.duration) / 100;
   currentTime.innerHTML = getTime(timerewindSong);
 }
 
@@ -133,7 +144,7 @@ function handleTextValueTime(e) {
     currentWidth = progressBar.clientWidth;
   }
   var time =
-    (((currentWidth * 100) / progressBar.clientWidth) * totalTime) / 100;
+    (((currentWidth * 100) / progressBar.clientWidth) * audio.duration) / 100;
 
   textValue.innerHTML = getTime(time);
   textValue.style.left = `${e.pageX - progressBar.offsetLeft}px`;
@@ -165,9 +176,10 @@ btnToggle.addEventListener("click", function (e) {
 
 progressBar.addEventListener("click", function (e) {
   handleDrag(e);
-  if (timerewindSong <= totalTime) {
+  if (timerewindSong <= audio.duration) {
     audio.currentTime = timerewindSong;
   }
+  console.log(audio.duration, timerewindSong, getTime(timerewindSong));
 });
 
 progressBar.addEventListener("mouseenter", function (e) {
@@ -209,10 +221,14 @@ var getTime = function (second) {
   return `${min}:${second >= 10 ? second : "0" + second}`;
 };
 
+audio.addEventListener("loadeddata", function (e) {
+  durationTime.innerHTML = getTime(audio.duration);
+});
+
 audio.addEventListener("timeupdate", function (e) {
   if (!isDrag) {
     currentTime.innerHTML = getTime(this.currentTime);
-    progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
+    progress.style.width = `${(this.currentTime / audio.duration) * 100}%`;
   }
 });
 
@@ -239,7 +255,7 @@ audio.addEventListener("ended", function (e) {
   }
   if (!isRandom && !isRepeat) {
     btnNext.click();
-    textValue.innerHTML = songs[index].durationTime;
+    console.log(audio.duration, getTime(audio.duration));
   }
 });
 
@@ -305,5 +321,8 @@ playItems.forEach((itemSong) => {
     song(Number(itemSong.getAttribute("data-index")));
     index = Number(itemSong.getAttribute("data-index"));
     audio.play();
+    audio.addEventListener("load", function (e) {
+      console.log(audio.duration);
+    });
   });
 });

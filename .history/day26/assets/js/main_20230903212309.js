@@ -96,10 +96,7 @@ songs.forEach((song, index) => {
   playListInner.insertAdjacentHTML("beforeend", html);
 });
 const playItems = $$(".play-items");
-audio.addEventListener("loadeddata", function (e) {
-  totalTime = audio.duration;
-  durationTime.innerHTML = getTime(totalTime);
-});
+
 function handleDrag(e) {
   var currentWidth =
     (e.pageX >= progressBar.offsetLeft ? e.pageX : progressBar.offsetLeft) -
@@ -208,6 +205,10 @@ var getTime = function (second) {
   second = Math.floor(second - min * 60);
   return `${min}:${second >= 10 ? second : "0" + second}`;
 };
+audio.addEventListener("loadeddata", function (e) {
+  totalTime = audio.duration;
+  durationTime.innerHTML = getTime(totalTime);
+});
 
 audio.addEventListener("timeupdate", function (e) {
   if (!isDrag) {
@@ -239,7 +240,8 @@ audio.addEventListener("ended", function (e) {
   }
   if (!isRandom && !isRepeat) {
     btnNext.click();
-    textValue.innerHTML = songs[index].durationTime;
+    textValue.innerHTML = getTime(totalTime);
+    console.log(textValue);
   }
 });
 

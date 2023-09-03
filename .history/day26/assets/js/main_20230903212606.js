@@ -239,7 +239,8 @@ audio.addEventListener("ended", function (e) {
   }
   if (!isRandom && !isRepeat) {
     btnNext.click();
-    textValue.innerHTML = songs[index].durationTime;
+    textValue.innerHTML = getTime(totalTime);
+    console.log(textValue);
   }
 });
 

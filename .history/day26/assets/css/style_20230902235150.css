@@ -220,7 +220,6 @@ body {
     height: 6px;
     border-radius: 999px;
     cursor: pointer;
-    border: 1px solid transparent;
 }
 
 .progress {
@@ -232,7 +231,7 @@ body {
     border-radius: 999px;
     cursor: pointer;
     max-width: 100%;
-
+    border: 1px solid transparent;
 
 }
 

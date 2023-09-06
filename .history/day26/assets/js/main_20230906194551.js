@@ -214,7 +214,9 @@ document.addEventListener("mouseup", function (e) {
       audio.currentTime = timerewindSong;
     }
   }
-  isDrag = false;
+  setTimeout(function (e) {
+    isDrag = false;
+  }, 1000);
 });
 
 var getTime = function (second) {

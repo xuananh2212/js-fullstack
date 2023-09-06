@@ -22,6 +22,7 @@ var isDrag = false;
 var index = 0;
 var isRepeat = false;
 var isRandom = false;
+var isFlag = false;
 var timerewindSong = 0;
 var totalTime = audio.duration;
 

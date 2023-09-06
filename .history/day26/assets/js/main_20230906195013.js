@@ -214,7 +214,6 @@ document.addEventListener("mouseup", function (e) {
       audio.currentTime = timerewindSong;
     }
   }
-  isDrag = false;
 });
 
 var getTime = function (second) {
@@ -228,6 +227,7 @@ audio.addEventListener("timeupdate", function (e) {
     currentTime.innerHTML = getTime(this.currentTime);
     progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
   }
+  isDrag = true;
 });
 
 audio.addEventListener("ended", function (e) {

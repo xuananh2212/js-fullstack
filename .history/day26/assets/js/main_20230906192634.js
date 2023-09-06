@@ -155,20 +155,6 @@ function song(index) {
   currentSong.scrollIntoView();
 }
 
-function songRandom() {
-  var newIndex;
-  do {
-    newIndex = Math.floor(Math.random() * playItems.length);
-  } while (indexSong.includes(newIndex));
-  index = newIndex;
-  indexSong.push(index);
-  if (indexSong.length === playItems.length) {
-    indexSong = [];
-  }
-  song(index);
-  audio.play();
-}
-
 btnToggle.addEventListener("click", function (e) {
   if (iconToggle.classList.contains("fa-play")) {
     audio.play();
@@ -239,7 +225,17 @@ audio.addEventListener("ended", function (e) {
     audio.play();
   }
   if (isRandom) {
-    songRandom();
+    var newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * playItems.length);
+    } while (indexSong.includes(newIndex));
+    index = newIndex;
+    indexSong.push(index);
+    if (indexSong.length === playItems.length) {
+      indexSong = [];
+    }
+    song(index);
+    audio.play();
   }
   if (!isRandom && !isRepeat) {
     btnNext.click();
@@ -267,7 +263,6 @@ cdThumbAnimate.pause();
 
 btnNext.addEventListener("click", function (e) {
   if (isRandom) {
-    songRandom();
   } else {
     if (index >= playItems.length - 1) {
       index = 0;
@@ -281,7 +276,17 @@ btnNext.addEventListener("click", function (e) {
 });
 btnPrev.addEventListener("click", function (e) {
   if (isRandom) {
-    songRandom();
+    var newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * playItems.length);
+    } while (indexSong.includes(newIndex));
+    index = newIndex;
+    indexSong.push(index);
+    if (indexSong.length === playItems.length) {
+      indexSong = [];
+    }
+    song(index);
+    audio.play();
   } else {
     if (index === 0) {
       index = playItems.length;

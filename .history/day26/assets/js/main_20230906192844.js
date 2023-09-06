@@ -281,7 +281,17 @@ btnNext.addEventListener("click", function (e) {
 });
 btnPrev.addEventListener("click", function (e) {
   if (isRandom) {
-    songRandom();
+    var newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * playItems.length);
+    } while (indexSong.includes(newIndex));
+    index = newIndex;
+    indexSong.push(index);
+    if (indexSong.length === playItems.length) {
+      indexSong = [];
+    }
+    song(index);
+    audio.play();
   } else {
     if (index === 0) {
       index = playItems.length;

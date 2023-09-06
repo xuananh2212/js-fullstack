@@ -13,12 +13,10 @@ function returnHtml(valueInput) {
   //               </div>
   //           </div>`;
   var div = document.createElement("div");
-  div.className = "todo";
   var desc = document.createElement("p");
   desc.className = "desc";
-
-  var divIconRow = document.createElement("div");
   divIconRow.className = "icon-row";
+  var divIconRow = document.createElement("div");
   var iconTop = document.createElement("i");
   var iconBottom = document.createElement("i");
   div.append(desc);
@@ -79,8 +77,7 @@ todoList.addEventListener("click", function (e) {
       removeTodo(e.target);
     } else {
       var html = returnHtml(valueInput);
-
-      form.insertAdjacentElement("beforebegin", html);
+      form.insertAdjacentHTML("beforebegin", html);
       form.parentElement.removeChild(form);
     }
   }

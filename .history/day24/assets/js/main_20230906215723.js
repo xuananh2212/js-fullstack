@@ -79,8 +79,7 @@ todoList.addEventListener("click", function (e) {
       removeTodo(e.target);
     } else {
       var html = returnHtml(valueInput);
-
-      form.insertAdjacentElement("beforebegin", html);
+      form.insertAdjacentHTML("beforebegin", html);
       form.parentElement.removeChild(form);
     }
   }

@@ -80,7 +80,7 @@ todoList.addEventListener("click", function (e) {
     } else {
       var html = returnHtml(valueInput);
 
-      form.insertAdjacentElement("beforebegin", html);
+      form.insertAdjacentElement()("beforebegin", html);
       form.parentElement.removeChild(form);
     }
   }

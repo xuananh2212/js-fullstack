@@ -22,6 +22,7 @@ var isDrag = false;
 var index = 0;
 var isRepeat = false;
 var isRandom = false;
+var isFlag = false;
 var timerewindSong = 0;
 var totalTime = audio.duration;
 
@@ -215,6 +216,7 @@ document.addEventListener("mouseup", function (e) {
     }
   }
   isDrag = false;
+  isFlag = true;
 });
 
 var getTime = function (second) {
@@ -224,7 +226,7 @@ var getTime = function (second) {
 };
 
 audio.addEventListener("timeupdate", function (e) {
-  if (!isDrag) {
+  if (!isDrag && !isFlag) {
     currentTime.innerHTML = getTime(this.currentTime);
     progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
   }

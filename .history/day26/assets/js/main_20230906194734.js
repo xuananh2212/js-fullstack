@@ -263,7 +263,7 @@ const cdThumbAnimate = cdThumb.animate([{ transform: "rotate(360deg)" }], {
   duration: 10000,
   iterations: Infinity,
 });
-cdThumbAnimate.pause();
+// cdThumbAnimate.pause();
 
 btnNext.addEventListener("click", function (e) {
   if (isRandom) {

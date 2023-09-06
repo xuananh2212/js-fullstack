@@ -13,23 +13,19 @@ function returnHtml(valueInput) {
   //               </div>
   //           </div>`;
   var div = document.createElement("div");
-  div.className = "todo";
   var desc = document.createElement("p");
-  desc.className = "desc";
-
   var divIconRow = document.createElement("div");
-  divIconRow.className = "icon-row";
   var iconTop = document.createElement("i");
   var iconBottom = document.createElement("i");
   div.append(desc);
   div.append(divIconRow);
   divIconRow.append(iconTop);
   divIconRow.append(iconBottom);
-  iconTop.className = "fa-solid fa-pen-to-square edit-todo";
-  iconBottom.className = "fa-solid fa-trash remove-todo";
-  desc.textContent = valueInput;
-  return div;
+  iconTop.classList.add("fa-solid fa-pen-to-square edit-todo");
+  iconBottom.classList.add("fa-solid fa-trash remove-todo");
 }
+
+returnHtml("fdafasd");
 
 function removeTodo(nodeCurrent) {
   var todoNode = nodeCurrent.parentElement.parentElement;
@@ -57,11 +53,11 @@ todoForm.addEventListener("submit", function (e) {
   e.preventDefault();
   var valueInput = this.querySelector(".todo-input").value.trim();
   if (valueInput !== "") {
-    var html = returnHtml(valueInput);
-    todoList.append(html);
-    // var desc = document.querySelector(".todo .desc");
-    // console.log(desc);
-    // desc.textContent = valueInput;
+    var html = returnHtml();
+    todoList.insertAdjacentHTML("beforeend", html);
+    var desc = document.querySelector(".todo .desc");
+    console.log(desc);
+    desc.textContent = valueInput;
   }
   this.querySelector(".todo-input").value = "";
 });
@@ -79,8 +75,7 @@ todoList.addEventListener("click", function (e) {
       removeTodo(e.target);
     } else {
       var html = returnHtml(valueInput);
-
-      form.insertAdjacentElement("beforebegin", html);
+      form.insertAdjacentHTML("beforebegin", html);
       form.parentElement.removeChild(form);
     }
   }

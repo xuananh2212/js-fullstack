@@ -205,14 +205,14 @@ document.addEventListener("mousemove", function (e) {
   if (isDrag) {
     handleDrag(e);
     handleHoverProgress(1);
+    audio.currentTime = timerewindSong;
   }
 });
 
 document.addEventListener("mouseup", function (e) {
   e.preventDefault();
-  console.log(isDrag);
   if (isDrag) {
-    if (timerewindSong <= totalTime) {
+    if (timerewindSong <= audio.currentTime) {
       audio.currentTime = timerewindSong;
     }
   }

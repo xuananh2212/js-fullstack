@@ -210,9 +210,8 @@ document.addEventListener("mousemove", function (e) {
 
 document.addEventListener("mouseup", function (e) {
   e.preventDefault();
-  console.log(isDrag);
   if (isDrag) {
-    if (timerewindSong <= totalTime) {
+    if (timerewindSong <= audio.currentTime) {
       audio.currentTime = timerewindSong;
     }
   }

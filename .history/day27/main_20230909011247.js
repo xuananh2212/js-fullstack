@@ -194,7 +194,7 @@ window.addEventListener("load", function (e) {
         `;
   }
   function checkInt(value) {
-    if (/^[1-9]+$/.test(value)) {
+    if (/^[0-9]+$/.test(value)) {
       return true;
     }
     return false;

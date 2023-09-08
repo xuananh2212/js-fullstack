@@ -100,7 +100,7 @@ button.btn-add-order {
 
 .value-integer {
     visibility: hidden;
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin-top: 10px;
     font-weight: 500;
 
@@ -201,19 +201,12 @@ button.btn-removeAll-order {
 }
 
 .modal-text {
-    display: block;
-    width: 100%;
-    text-align: center;
     font-size: 1.2rem;
     font-weight: 600;
 }
 
-.modal-text.success {
+.modal-text.update {
     color: rgb(57, 114, 57);
-}
-
-.modal-text.error {
-    color: rgb(255, 2, 2);
 }
 
 .agree.hidden {

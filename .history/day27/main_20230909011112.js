@@ -35,7 +35,7 @@ window.addEventListener("load", function (e) {
                product.price.toLocaleString() + "đ"
              }</td>
              <td >
-             <input type="number"  value=1  min="1">
+             <input type="number"  value=1  min=1">
              <span class="value-integer">Vui Lòng nhập giá trị số nguyên</span>
              </td>
              <td style="text-align: center;"> 
@@ -194,7 +194,7 @@ window.addEventListener("load", function (e) {
         `;
   }
   function checkInt(value) {
-    if (/^[1-9]+$/.test(value)) {
+    if (/^[0-9]+$/.test(value)) {
       return true;
     }
     return false;
@@ -250,7 +250,6 @@ window.addEventListener("load", function (e) {
           }
         } else {
           var order = { ...product };
-          console.log(checkInt(quantity.value));
           if (checkInt(Number(quantity.value))) {
             order.quantity = Number(quantity.value);
             orders.push(order);

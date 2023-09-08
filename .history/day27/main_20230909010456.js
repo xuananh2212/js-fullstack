@@ -35,7 +35,7 @@ window.addEventListener("load", function (e) {
                product.price.toLocaleString() + "đ"
              }</td>
              <td >
-             <input type="number"  value=1  min="1">
+             <input type="number" name="" id="" value=1 min=1">
              <span class="value-integer">Vui Lòng nhập giá trị số nguyên</span>
              </td>
              <td style="text-align: center;"> 
@@ -102,7 +102,6 @@ window.addEventListener("load", function (e) {
     btnCancel.classList.remove("hidden");
   }
   function updateOrder() {
-    var flag = false;
     var productsDom = $$(".table-order tbody tr[data-id]");
     console.log(orders);
     console.log(productsDom);
@@ -121,7 +120,6 @@ window.addEventListener("load", function (e) {
         Number(quantityProduct) !== orderCurrent.quantity &&
         checkInt(Number(quantityProduct))
       ) {
-        flag = true;
         orderCurrent.quantity = +quantityProduct;
         var intoMoney = product.querySelector(".into-money");
         intoMoney.textContent =
@@ -131,16 +129,11 @@ window.addEventListener("load", function (e) {
         textModal.classList.add("success");
         textModal.textContent = "Cập nhật thành công";
         textModal.classList.remove("error");
-      } else if (!checkInt(Number(quantityProduct))) {
+      } else {
         textModal.classList.add("error");
         textModal.textContent =
           "Cập nhật thất bại Số lượng phải là số nguyên hoặc số lượng không thay đổi";
         textModal.classList.remove("success");
-      }
-      if (!flag) {
-        textModal.classList.add("success");
-        textModal.textContent = "số lượng các sản phẩm không đổi";
-        textModal.classList.remove("error");
       }
     });
   }
@@ -194,7 +187,7 @@ window.addEventListener("load", function (e) {
         `;
   }
   function checkInt(value) {
-    if (/^[1-9]+$/.test(value)) {
+    if (/^[0-9]+$/.test(value)) {
       return true;
     }
     return false;
@@ -250,7 +243,6 @@ window.addEventListener("load", function (e) {
           }
         } else {
           var order = { ...product };
-          console.log(checkInt(quantity.value));
           if (checkInt(Number(quantity.value))) {
             order.quantity = Number(quantity.value);
             orders.push(order);

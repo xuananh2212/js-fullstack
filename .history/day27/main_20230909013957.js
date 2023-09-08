@@ -97,7 +97,6 @@ window.addEventListener("load", function (e) {
 
   function modalShow() {
     modal.classList.add("is-show");
-    textModal.innerHTML = "Bạn chắc chắn muốn Xoá";
     textModal.classList.remove("update");
     btnAgree.classList.remove("hidden");
     btnCancel.classList.remove("hidden");
@@ -294,7 +293,6 @@ window.addEventListener("load", function (e) {
   // remove product
   orderData.addEventListener("click", function (e) {
     if (e.target.matches(".btn-remove-order")) {
-      isRemoveAll = false;
       btnRemoveCurrent = e.target;
       productId = btnRemoveCurrent.parentElement.parentElement.dataset.id;
       modalShow();

@@ -294,7 +294,6 @@ window.addEventListener("load", function (e) {
   // remove product
   orderData.addEventListener("click", function (e) {
     if (e.target.matches(".btn-remove-order")) {
-      isRemoveAll = false;
       btnRemoveCurrent = e.target;
       productId = btnRemoveCurrent.parentElement.parentElement.dataset.id;
       modalShow();

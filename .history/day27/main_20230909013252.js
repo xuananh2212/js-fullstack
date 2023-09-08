@@ -10,7 +10,7 @@ window.addEventListener("load", function (e) {
   const btnCancel = $(".cancel");
   var btnRemoveCurrent;
   var productId;
-  var sttOrder = 0;
+  var sttOrder = 1;
   var isRemoveAll = false;
 
   // tạo ra danh sách các sản phẩm.
@@ -74,7 +74,7 @@ window.addEventListener("load", function (e) {
     var html = `
          <tbody>
            <tr data-id=${product.id}>
-             <td style="text-align: center;">${++sttOrder}</td>
+             <td style="text-align: center;">${sttOrder++}</td>
              <td>${product.nameproduct}</td>
              <td style="text-align: center;">${
                product.price.toLocaleString() + "đ"
@@ -97,7 +97,6 @@ window.addEventListener("load", function (e) {
 
   function modalShow() {
     modal.classList.add("is-show");
-    textModal.innerHTML = "Bạn chắc chắn muốn Xoá";
     textModal.classList.remove("update");
     btnAgree.classList.remove("hidden");
     btnCancel.classList.remove("hidden");
@@ -155,11 +154,10 @@ window.addEventListener("load", function (e) {
     totalmoney();
     btnRemoveCurrent.parentElement.parentElement.parentElement.remove();
     if (orders.length === 0) {
-      sttOrder = 0;
       orderData.innerHTML = "Giỏ hành không có sản phẩm.";
     } else {
       // update lại stt
-      var sttProducts = $$(".table-order tr[data-id] td:first-child");
+      var sttProducts = $$(".table-order tr[data-id] td:nth-child()");
       sttProducts.forEach((sttProducts, index) => {
         sttProducts.innerHTML = ++index;
       });
@@ -288,13 +286,13 @@ window.addEventListener("load", function (e) {
       e.target.matches(".modal-close") ||
       e.target.matches(".modal-overlay")
     ) {
+      updateOrder();
       modal.classList.remove("is-show");
     }
   });
   // remove product
   orderData.addEventListener("click", function (e) {
     if (e.target.matches(".btn-remove-order")) {
-      isRemoveAll = false;
       btnRemoveCurrent = e.target;
       productId = btnRemoveCurrent.parentElement.parentElement.dataset.id;
       modalShow();

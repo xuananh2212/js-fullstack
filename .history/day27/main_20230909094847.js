@@ -62,6 +62,7 @@ window.addEventListener("load", function (e) {
       totalQuantity += orderItem.quantity;
       totalMoney += orderItem.quantity * orderItem.price;
     });
+    console.log(rowTotal.querySelector(".quantity"));
     rowTotal.querySelector(".quantity").textContent = totalQuantity;
     rowTotal.querySelector(".into-money").textContent =
       totalMoney.toLocaleString() + "đ";
@@ -104,11 +105,15 @@ window.addEventListener("load", function (e) {
   function updateOrder() {
     var flag = false;
     var productsDom = $$(".table-order tbody tr[data-id]");
+    console.log(orders);
+    console.log(productsDom);
     [...productsDom].forEach((product) => {
       var orderCurrent = orders.find(
         (order) => order.id === product.dataset.id
       );
+      console.log(product.querySelector(`input[type="number"]`));
       var quantityProduct = product.querySelector(`input[type="number"]`).value;
+      console.log(quantityProduct);
       if (Number(quantityProduct) === 0) {
         productId = product.dataset.id;
         btnRemoveCurrent = product.querySelector(`.btn-remove-order`);
@@ -117,7 +122,6 @@ window.addEventListener("load", function (e) {
         Number(quantityProduct) !== orderCurrent.quantity &&
         checkInt(Number(quantityProduct))
       ) {
-        console.log(checkInt(Number(quantityProduct)));
         flag = true;
         orderCurrent.quantity = +quantityProduct;
         var intoMoney = product.querySelector(".into-money");
@@ -147,6 +151,7 @@ window.addEventListener("load", function (e) {
     );
     orders.splice(indexProduct, 1);
     localStorage.setItem("orders", JSON.stringify(orders));
+    console.log(orders);
     totalmoney();
     btnRemoveCurrent.parentElement.parentElement.parentElement.remove();
     if (orders.length === 0) {
@@ -197,7 +202,7 @@ window.addEventListener("load", function (e) {
         `;
   }
   function checkInt(value) {
-    if (/^[1-9][0-9]*$/.test(value)) {
+    if (/^[1-9]+$/.test(value)) {
       return true;
     }
     return false;
@@ -253,6 +258,7 @@ window.addEventListener("load", function (e) {
           }
         } else {
           var order = { ...product };
+          console.log(checkInt(quantity.value));
           if (checkInt(Number(quantity.value))) {
             order.quantity = Number(quantity.value);
             orders.push(order);

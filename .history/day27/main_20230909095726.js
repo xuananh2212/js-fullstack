@@ -117,7 +117,6 @@ window.addEventListener("load", function (e) {
         Number(quantityProduct) !== orderCurrent.quantity &&
         checkInt(Number(quantityProduct))
       ) {
-        console.log(checkInt(Number(quantityProduct)));
         flag = true;
         orderCurrent.quantity = +quantityProduct;
         var intoMoney = product.querySelector(".into-money");

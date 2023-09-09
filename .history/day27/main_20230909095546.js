@@ -62,6 +62,7 @@ window.addEventListener("load", function (e) {
       totalQuantity += orderItem.quantity;
       totalMoney += orderItem.quantity * orderItem.price;
     });
+    console.log(rowTotal.querySelector(".quantity"));
     rowTotal.querySelector(".quantity").textContent = totalQuantity;
     rowTotal.querySelector(".into-money").textContent =
       totalMoney.toLocaleString() + "đ";
@@ -117,7 +118,6 @@ window.addEventListener("load", function (e) {
         Number(quantityProduct) !== orderCurrent.quantity &&
         checkInt(Number(quantityProduct))
       ) {
-        console.log(checkInt(Number(quantityProduct)));
         flag = true;
         orderCurrent.quantity = +quantityProduct;
         var intoMoney = product.querySelector(".into-money");
@@ -197,7 +197,7 @@ window.addEventListener("load", function (e) {
         `;
   }
   function checkInt(value) {
-    if (/^[1-9][0-9]*$/.test(value)) {
+    if (/^[1-9][0-9]+$/.test(value)) {
       return true;
     }
     return false;

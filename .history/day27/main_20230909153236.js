@@ -229,7 +229,7 @@ window.addEventListener("load", function (e) {
     setTimeout(function () {
       var toast = document.querySelector(".toast");
       toast.remove();
-    }, 1600);
+    }, 2000);
   }
   const btnAddOrders = $$(".btn-add-order");
   btnAddOrders &&

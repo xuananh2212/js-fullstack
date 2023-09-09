@@ -229,7 +229,7 @@ window.addEventListener("load", function (e) {
     setTimeout(function () {
       var toast = document.querySelector(".toast");
       toast.remove();
-    }, 1600);
+    }, 2000);
   }
   const btnAddOrders = $$(".btn-add-order");
   btnAddOrders &&
@@ -314,12 +314,10 @@ window.addEventListener("load", function (e) {
     ) {
       modal.classList.remove("is-show");
       if (!isUpdate) {
-        console.log("vao khong");
         var toast = $(".toast");
         toast && toast.remove();
         createToast("Xoá Thất Bại", -1);
       }
-      isUpdate = false;
     }
   });
   // remove product

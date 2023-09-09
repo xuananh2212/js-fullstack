@@ -133,7 +133,7 @@ window.addEventListener("load", function (e) {
       } else if (!checkInt(Number(quantityProduct))) {
         flag = true;
         textModal.classList.add("error");
-        textModal.textContent = "Cập nhật thất bại Số lượng phải là số nguyên!";
+        textModal.textContent = "Cập nhật thất bại Số lượng phải là số nguyên";
         textModal.classList.remove("success");
       }
       if (!flag) {

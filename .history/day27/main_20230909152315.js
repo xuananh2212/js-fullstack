@@ -312,8 +312,6 @@ window.addEventListener("load", function (e) {
       e.target.matches(".modal-overlay")
     ) {
       modal.classList.remove("is-show");
-      var toast = $(".toast");
-      toast && toast.remove();
       createToast("Xoá Thất Bại", -1);
     }
   });

@@ -153,8 +153,6 @@ window.addEventListener("load", function (e) {
     totalmoney();
     sttOrder--;
     btnRemoveCurrent.parentElement.parentElement.parentElement.remove();
-    var toast = $(".toast");
-    toast && toast.remove();
     createToast("Xoá thành Công", 1);
     if (orders.length === 0) {
       sttOrder = 0;
@@ -225,7 +223,7 @@ window.addEventListener("load", function (e) {
         </div>
     </div>`;
     container.insertAdjacentHTML("afterend", html);
-    setTimeout(function () {
+    setInterval(function () {
       var toast = document.querySelector(".toast");
       toast.remove();
     }, 2000);
@@ -302,7 +300,6 @@ window.addEventListener("load", function (e) {
         localStorage.setItem("orders", JSON.stringify(orders));
         orderData.innerHTML = "Giỏ hàng không có sản phẩm.";
         modal.classList.remove("is-show");
-        createToast("Xoá Thành Công", 1);
         return;
       }
       reomveProduct();
@@ -312,9 +309,7 @@ window.addEventListener("load", function (e) {
       e.target.matches(".modal-overlay")
     ) {
       modal.classList.remove("is-show");
-      var toast = $(".toast");
-      toast && toast.remove();
-      createToast("Xoá Thất Bại", -1);
+      createToast("Xoá  Thất Bại", -1);
     }
   });
   // remove product

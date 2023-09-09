@@ -138,8 +138,7 @@ button.btn-removeAll-order {
     align-items: center;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.15s linear;
-    transition-property: visibility, opacity;
+    transition: all 0.2s linear;
 }
 
 .modal.is-show {
@@ -235,12 +234,10 @@ button.btn-removeAll-order {
     background-color: #fff;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     border-radius: 12px;
-    translate: 150%;
-    animation: mytoast 2s linear;
 }
 
 .toast-inner {
-    padding: 18px 150px 18px 14px;
+    padding: 25px;
     display: flex;
     align-items: center;
     gap: 20px;
@@ -255,17 +252,8 @@ button.btn-removeAll-order {
     color: #fff;
     width: 25px;
     height: 25px;
-    border-radius: 50%;
-
-}
-
-.fa-solid.fa-check {
     background-color: rgb(50, 161, 50);
-
-}
-
-.fa-solid.fa-xmark {
-    background-color: rgb(240, 9, 9);
+    border-radius: 50%;
 }
 
 .status {
@@ -281,12 +269,4 @@ button.btn-removeAll-order {
 
 .desc {
     margin-top: 10px;
-}
-
-@keyframes mytoast {
-
-    20%,
-    100% {
-        translate: 0;
-    }
 }

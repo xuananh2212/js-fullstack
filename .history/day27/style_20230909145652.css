@@ -138,8 +138,7 @@ button.btn-removeAll-order {
     align-items: center;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.15s linear;
-    transition-property: visibility, opacity;
+    transition: all 0.2s linear;
 }
 
 .modal.is-show {
@@ -255,17 +254,8 @@ button.btn-removeAll-order {
     color: #fff;
     width: 25px;
     height: 25px;
-    border-radius: 50%;
-
-}
-
-.fa-solid.fa-check {
     background-color: rgb(50, 161, 50);
-
-}
-
-.fa-solid.fa-xmark {
-    background-color: rgb(240, 9, 9);
+    border-radius: 50%;
 }
 
 .status {

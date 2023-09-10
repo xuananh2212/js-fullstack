@@ -49,14 +49,14 @@ window.addEventListener("load", function (e) {
     });
   // tạo danh sách cách sản phẩm trong giỏ hàng.
 
-  if (Array.isArray(orders)) {
-    if (orders.length > 0) {
-      orderData.innerHTML = returnHtml();
-      orders.forEach((order) => {
-        createRowTable(order);
-      });
-    }
+  // if (Array.isArray(orders)) {
+  if (orders.length > 0) {
+    orderData.innerHTML = returnHtml();
+    orders.forEach((order) => {
+      createRowTable(order);
+    });
   }
+  // }
   function totalmoney() {
     var totalQuantity = 0;
     var totalMoney = 0;

@@ -380,9 +380,7 @@ function checkWordsInLyric(lyricsSong) {
     console.log(startTime, audio.currentTime * 1000);
     if (
       (startTime && startTime - audio.currentTime > 4) ||
-      audio.currentTime -
-        lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        4
+      audio.currentTime - lyricsSong[lyricsSong.lenght - 1].words[0].endTime > 4
     ) {
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     }

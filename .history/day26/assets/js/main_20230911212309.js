@@ -181,7 +181,6 @@ function songRandom() {
   }
   song(index);
   audio.play();
-  renderLyrics(lyricsObj[index]);
 }
 
 btnToggle.addEventListener("click", function (e) {
@@ -4231,8 +4230,8 @@ function checkWordsInLyric() {
 
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
+  renderLyrics(lyricsObj[index]);
 });
-renderLyrics(lyricsObj[index]);
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");
 });

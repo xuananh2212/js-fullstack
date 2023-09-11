@@ -108,6 +108,7 @@ audio.addEventListener("loadeddata", function (e) {
   durationTime.innerHTML = getTime(totalTime);
 });
 function handleDrag(e) {
+  console.log(e.pageX, progressBar.getBoundingClientRect().left);
   var currentWidth =
     (e.pageX >= progressBar.getBoundingClientRect().left
       ? e.pageX
@@ -181,7 +182,6 @@ function songRandom() {
   }
   song(index);
   audio.play();
-  renderLyrics(lyricsObj[index]);
 }
 
 btnToggle.addEventListener("click", function (e) {
@@ -295,7 +295,6 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    renderLyrics(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -309,7 +308,6 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    renderLyrics(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {
@@ -4173,8 +4171,9 @@ var lyrics = `
 `;
 
 var lyricsObj = JSON.parse(lyrics);
+console.log(lyricsObj);
+
 function renderLyrics(lyricsSong) {
-  ulLyric.innerHTML = "";
   lyricsSong.forEach((lyric) => {
     var html = "";
     lyric.words.forEach((word) => {
@@ -4194,6 +4193,10 @@ function renderLyrics(lyricsSong) {
 function checkWordsInLyric() {
   var lyricItems = $$(".lyric-items");
   var liLyricCurrent = [...lyricItems].find((lyricItem) => {
+    console.log(
+      Number(lyricItem.dataset.timeStart) / 1000,
+      Number(lyricItem.dataset.timeEnd) / 1000
+    );
     return (
       audio.currentTime >= Number(lyricItem.dataset.timeStart) / 1000 &&
       audio.currentTime <= Number(lyricItem.dataset.timeEnd) / 1000
@@ -4208,10 +4211,17 @@ function checkWordsInLyric() {
     var li = null;
     [...lyricItems].forEach((lyricItem) => {
       if (audio.currentTime > Number(lyricItem.dataset.timeEnd) / 1000) {
+        console.log("vao khong");
+        console.log(lyricItem);
         li = lyricItem;
         return;
       }
+      console.log(
+        "audio" + audio.currentTime,
+        "lyricItem" + Number(lyricItem.dataset.timeEnd) / 1000
+      );
     });
+    console.log(li);
     if (li) {
       lyricItems.forEach((lyricItem) =>
         lyricItem.classList.remove("is-active")
@@ -4219,20 +4229,20 @@ function checkWordsInLyric() {
       li.classList.add("is-active");
       li.scrollIntoView();
     }
-  }
-  console.log(audio.currentTime);
-  console.log([...lyricItems][0].dataset.timeStart / 1000);
-  if (audio.currentTime < [...lyricItems][0].dataset.timeStart / 1000) {
-    console.log("vao kh");
-    ulLyric.scroll(0, 0);
-    lyricItems.forEach((lyricItem) => lyricItem.classList.remove("is-active"));
+    console.log([...lyricItems][0].dataset.timeStart / 1000);
+    if (audio.currentTime < [...lyricItems][0].dataset.timeStart / 1000) {
+      ulLyric.scroll(0, 0);
+      lyricItems.forEach((lyricItem) =>
+        lyricItem.classList.remove("is-active")
+      );
+    }
   }
 }
 
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
+  renderLyrics(lyricsObj[index]);
 });
-renderLyrics(lyricsObj[index]);
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");
 });

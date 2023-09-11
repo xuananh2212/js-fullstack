@@ -43,19 +43,12 @@ const songs = [
     view: "43,600,120",
     durationTime: "4:22",
   },
-  //   {
-  //     nameSong: "Chúng Ta của Hiện Tại",
-  //     path: "./assets/music/Chung-Ta-Cua-Hien-Tai-Son-Tung-M-TP.mp3",
-  //     img: "./assets/imgs/chung-ta-cua-hien-tai.jpg",
-  //     view: "143,120,000",
-  //     durationTime: "5:01",
-  //   },
   {
-    nameSong: "Nơi Này Có Anh",
-    path: "./assets/music/Noi-Nay-Co-Anh-Masew-Bootleg-Son-Tung-M-TP-Masew.mp3",
-    img: "./assets/imgs/noi-nay-co-anh.jpg",
-    view: "113,032,030",
-    durationTime: "4:16",
+    nameSong: "Chúng Ta của Hiện Tại",
+    path: "./assets/music/Chung-Ta-Cua-Hien-Tai-Son-Tung-M-TP.mp3",
+    img: "./assets/imgs/chung-ta-cua-hien-tai.jpg",
+    view: "143,120,000",
+    durationTime: "5:01",
   },
   {
     nameSong: "Lạc Trôi",
@@ -64,28 +57,34 @@ const songs = [
     view: "63,120,000",
     durationTime: "4:24",
   },
-  //   {
-  //     nameSong: "Em Của Ngày Hôm Qua",
-  //     path: "./assets/music/Em-Cua-Ngay-Hom-Qua-Slim-V-Remix-Son-Tung-M-TP.mp3",
-  //     img: "./assets/imgs/em-cua-ngay-hom-qua.jpg",
-  //     view: "131,120,121",
-  //     durationTime: "3:54",
-  //   },
-  //   {
-  //     nameSong: "Chạy Ngay Đi",
-  //     path: "./assets/music/Chay-Ngay-Di-Onionn-Remix-Son-Tung-M-TP.mp3",
-  //     img: "./assets/imgs/chay-ngay-di.jpg",
-  //     view: "13,232,230",
-  //     durationTime: "3:50",
-  //   },
-
-  //   {
-  //     nameSong: "Chắc Ai đó sẽ về",
-  //     path: "./assets/music/Chac-Ai-Do-Se-Ve-DJ-DSmall-Remix-Son-Tung-M-TP-DJ-DSmall.mp3",
-  //     img: "./assets/imgs/chac-ai-do-se-ve.jpg",
-  //     view: "53,132,130",
-  //     durationTime: "4:53",
-  //   },
+  {
+    nameSong: "Em Của Ngày Hôm Qua",
+    path: "./assets/music/Em-Cua-Ngay-Hom-Qua-Slim-V-Remix-Son-Tung-M-TP.mp3",
+    img: "./assets/imgs/em-cua-ngay-hom-qua.jpg",
+    view: "131,120,121",
+    durationTime: "3:54",
+  },
+  {
+    nameSong: "Chạy Ngay Đi",
+    path: "./assets/music/Chay-Ngay-Di-Onionn-Remix-Son-Tung-M-TP.mp3",
+    img: "./assets/imgs/chay-ngay-di.jpg",
+    view: "13,232,230",
+    durationTime: "3:50",
+  },
+  {
+    nameSong: "Nơi Này Có Anh",
+    path: "./assets/music/Noi-Nay-Co-Anh-Masew-Bootleg-Son-Tung-M-TP-Masew.mp3",
+    img: "./assets/imgs/noi-nay-co-anh.jpg",
+    view: "113,032,030",
+    durationTime: "4:16",
+  },
+  {
+    nameSong: "Chắc Ai đó sẽ về",
+    path: "./assets/music/Chac-Ai-Do-Se-Ve-DJ-DSmall-Remix-Son-Tung-M-TP-DJ-DSmall.mp3",
+    img: "./assets/imgs/chac-ai-do-se-ve.jpg",
+    view: "53,132,130",
+    durationTime: "4:53",
+  },
 ];
 
 songs.forEach((song, index) => {
@@ -108,6 +107,7 @@ audio.addEventListener("loadeddata", function (e) {
   durationTime.innerHTML = getTime(totalTime);
 });
 function handleDrag(e) {
+  console.log(e.pageX, progressBar.getBoundingClientRect().left);
   var currentWidth =
     (e.pageX >= progressBar.getBoundingClientRect().left
       ? e.pageX
@@ -181,7 +181,6 @@ function songRandom() {
   }
   song(index);
   audio.play();
-  renderLyrics(lyricsObj[index]);
 }
 
 btnToggle.addEventListener("click", function (e) {
@@ -295,7 +294,6 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    renderLyrics(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -309,7 +307,6 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    renderLyrics(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {
@@ -4173,9 +4170,9 @@ var lyrics = `
 `;
 
 var lyricsObj = JSON.parse(lyrics);
-function renderLyrics(lyricsSong) {
-  ulLyric.innerHTML = "";
-  lyricsSong.forEach((lyric) => {
+
+function renderLyrics() {
+  lyricsObj.forEach((lyric) => {
     var html = "";
     lyric.words.forEach((word) => {
       html += word.data + " ";
@@ -4192,8 +4189,14 @@ function renderLyrics(lyricsSong) {
 }
 
 function checkWordsInLyric() {
+  console.log("co vao khong");
   var lyricItems = $$(".lyric-items");
+
   var liLyricCurrent = [...lyricItems].find((lyricItem) => {
+    console.log(
+      Number(lyricItem.dataset.timeStart) / 1000,
+      Number(lyricItem.dataset.timeEnd) / 1000
+    );
     return (
       audio.currentTime >= Number(lyricItem.dataset.timeStart) / 1000 &&
       audio.currentTime <= Number(lyricItem.dataset.timeEnd) / 1000
@@ -4202,16 +4205,24 @@ function checkWordsInLyric() {
   if (liLyricCurrent) {
     lyricItems.forEach((lyricItem) => lyricItem.classList.remove("is-active"));
     liLyricCurrent.classList.add("is-active");
+    // ulLyric.scroll(0, li.offsetTop);
     liLyricCurrent.scrollIntoView();
   }
   if (!liLyricCurrent) {
     var li = null;
     [...lyricItems].forEach((lyricItem) => {
       if (audio.currentTime > Number(lyricItem.dataset.timeEnd) / 1000) {
+        console.log("vao khong");
+        console.log(lyricItem);
         li = lyricItem;
         return;
       }
+      console.log(
+        "audio" + audio.currentTime,
+        "lyricItem" + Number(lyricItem.dataset.timeEnd) / 1000
+      );
     });
+    console.log(li);
     if (li) {
       lyricItems.forEach((lyricItem) =>
         lyricItem.classList.remove("is-active")
@@ -4219,20 +4230,19 @@ function checkWordsInLyric() {
       li.classList.add("is-active");
       li.scrollIntoView();
     }
-  }
-  console.log(audio.currentTime);
-  console.log([...lyricItems][0].dataset.timeStart / 1000);
-  if (audio.currentTime < [...lyricItems][0].dataset.timeStart / 1000) {
-    console.log("vao kh");
-    ulLyric.scroll(0, 0);
-    lyricItems.forEach((lyricItem) => lyricItem.classList.remove("is-active"));
+    if (audio.currentTime < [...lyricItems][0].dataset.timeStart / 1000) {
+      ulLyric.scroll(0, 0);
+      lyricItems.forEach((lyricItem) =>
+        lyricItem.classList.remove("is-active")
+      );
+    }
   }
 }
 
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
+  renderLyrics();
 });
-renderLyrics(lyricsObj[index]);
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");
 });

@@ -4232,7 +4232,6 @@ function checkWordsInLyric() {
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
 });
-renderLyrics(lyricsObj[index]);
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");
 });

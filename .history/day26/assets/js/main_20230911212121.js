@@ -181,7 +181,6 @@ function songRandom() {
   }
   song(index);
   audio.play();
-  renderLyrics(lyricsObj[index]);
 }
 
 btnToggle.addEventListener("click", function (e) {
@@ -295,7 +294,6 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    renderLyrics(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -309,7 +307,6 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    renderLyrics(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {
@@ -4231,8 +4228,8 @@ function checkWordsInLyric() {
 
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
+  renderLyrics(lyricsObj[index]);
 });
-renderLyrics(lyricsObj[index]);
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");
 });

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MP3</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <aside class="header">
+        <nav class="nav-bar">
+            <div class="nav-bar-top">
+                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <ul class="nav-bar-bottom">
+                <li>
+                    <div class="user">
+                        <img src="./assets/imgs/nguyen-xuan-tuan-anh.jpg" alt="">
+                    </div>
+                </li>
+                <li>
+                    <div class="logo">
+                        <img src="./assets/imgs/spotify_icon_cmyk_green.png" alt="">
+                    </div>
+                </li>
+
+                <li><i class="fa-solid fa-plus"></i></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <section class="player">
+        <!-- Dashboard -->
+        <div class="dashboard dashboard-karaoke">
+            <h4>Now playing:</h4>
+            <!-- CD -->
+            <div class="cd-thumb">
+                <img src="./assets/imgs/anh-sai-roi.jpg" alt="">
+            </div>
+            <h2>Anh Sai Rồi</h2>
+            <!-- Control -->
+            <div class="control">
+                <div class="btn btn-repeat">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <div class="btn btn-prev">
+                    <i class="fas fa-step-backward"></i>
+                </div>
+                <div class="btn btn-toggle">
+                    <i class="fas fa-play icon-toggle"></i>
+                </div>
+                <div class="btn btn-next">
+                    <i class="fas fa-step-forward"></i>
+                </div>
+                <div class="btn btn-karaoke">
+                    <i class="fa-solid fa-microphone"></i>
+                    <span class="text-karaoke">Hát KaraoKe</span>
+                </div>
+                <div class="btn btn-random">
+                    <i class="fas fa-random"></i>
+                </div>
+            </div>
+            <!--progress -->
+            <div class="player-inner">
+                <span class="current-time">0:00</span>
+                <div class="progress-bar">
+                    <div class="progress">
+                        <span class="progress-dot"></span>
+                        <span class="text-value"></span>
+                    </div>
+                </div>
+                <span class="duration-time">4:22</span>
+            </div>
+            <audio id="audio" src="./assets/music/Anh-Sai-Roi-Son-Tung-M-TP.mp3"></audio>
+        </div>
+
+
+        <div class="player-content">
+            <div class="player-infor">
+                <div class="verified">
+                    <i class="fa-solid fa-check"></i>
+                    <span>Verified Artist</span>
+                </div>
+                <span class="name-author">Sơn Tùng MTP</span>
+                <p class="player-desc">41,402,510 mothly listeners</p>
+            </div>
+            <div class="play-list">
+                <h3 class="popular">Popular</h3>
+                <!-- Playlist -->
+                <div class="play-list-inner">
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- END. player -->
+    <section class="karaoke">
+        <div class="karaoke-content">
+            <button class="btn btn-karaoke-hidden"> > </button>
+            <div class="lyric">
+            </div>
+        </div>
+    </section>
+
+
+    <script src="./assets/data/lyric.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

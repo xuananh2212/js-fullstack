@@ -357,11 +357,7 @@ function checkWordsInLyric() {
   if (liLyricCurrent) {
     lyricItems.forEach((lyricItem) => lyricItem.classList.remove("is-active"));
     liLyricCurrent.classList.add("is-active");
-    liLyricCurrent.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-      inline: "center",
-    });
+    liLyricCurrent.scrollIntoView();
   }
   if (!liLyricCurrent) {
     var li = null;
@@ -379,7 +375,6 @@ function checkWordsInLyric() {
       li.scrollIntoView({
         behavior: "smooth",
         block: "center",
-        inline: "center",
       });
     }
   }

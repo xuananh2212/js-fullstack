@@ -360,7 +360,6 @@ function checkWordsInLyric() {
     liLyricCurrent.scrollIntoView({
       behavior: "smooth",
       block: "center",
-      inline: "center",
     });
   }
   if (!liLyricCurrent) {
@@ -379,7 +378,6 @@ function checkWordsInLyric() {
       li.scrollIntoView({
         behavior: "smooth",
         block: "center",
-        inline: "center",
       });
     }
   }

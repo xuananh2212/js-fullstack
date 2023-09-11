@@ -16,7 +16,7 @@
 
 <body>
 
-    <aside class="header">
+    <header class="header">
         <nav class="nav-bar">
             <div class="nav-bar-top">
                 <i class="fa-solid fa-house"></i>
@@ -37,11 +37,11 @@
                 <li><i class="fa-solid fa-plus"></i></li>
             </ul>
         </nav>
-    </aside>
+    </header>
 
-    <section class="player">
+    <div class="player">
         <!-- Dashboard -->
-        <div class="dashboard dashboard-karaoke">
+        <div class="dashboard">
             <h4>Now playing:</h4>
             <!-- CD -->
             <div class="cd-thumb">
@@ -64,6 +64,7 @@
                 </div>
                 <div class="btn btn-karaoke">
                     <i class="fa-solid fa-microphone"></i>
+
                 </div>
                 <div class="btn btn-random">
                     <i class="fas fa-random"></i>
@@ -80,7 +81,7 @@
                 </div>
                 <span class="duration-time">4:22</span>
             </div>
-            <audio id="audio" src="./assets/music/Anh-Sai-Roi-Son-Tung-M-TP.mp3"></audio>
+            <audio id="audio" src="./assets/imgs/Anh-Sai-Roi-Son-Tung-M-TP.mp3"></audio>
         </div>
 
 
@@ -102,27 +103,7 @@
 
             </div>
         </div>
-    </section>
-    <!-- END. player -->
-    <section class="karaoke">
-        <div class="karaoke-content">
-            <button class="btn btn-karaoke-hidden"> > </button>
-            <ul class="lyric">
-                <!-- <li class="lyric-items">item1 fadsfa sd fasdfasd f</li>
-                <li class="lyric-items">item2 adsf asdfasdfasdf</li>
-                <li class="lyric-items">item3 asdf asdf asdf</li>
-                <li class="lyric-items">item4 asdf asdf asd</li>
-                <li class="lyric-items">item5</li>
-                <li class="lyric-items">item6</li>
-                <li class="lyric-items">item7</li>
-                <li class="lyric-items">item8</li>
-                <li class="lyric-items">item9</li>
-                <li class="lyric-items">item10</li> -->
-            </ul>
-        </div>
-    </section>
-
-
+    </div>
 
     <script src="./assets/js/main.js"></script>
 </body>

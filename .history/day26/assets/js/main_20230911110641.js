@@ -22,7 +22,6 @@ const dashboard = $(".dashboard");
 const btnKaraoke = $(".btn-karaoke");
 const btnKaraokeHidden = $(".btn-karaoke-hidden");
 const karaoke = $(".karaoke");
-const ulLyric = $(".lyric");
 
 var isDrag = false;
 var index = 0;
@@ -234,7 +233,6 @@ audio.addEventListener("timeupdate", function (e) {
     currentTime.innerHTML = getTime(this.currentTime);
     progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
   }
-  checkWordsInLyric();
 });
 
 audio.addEventListener("ended", function (e) {
@@ -1817,51 +1815,12 @@ var lyrics = `{
     "timestamp": 1694405044817
 }`;
 
-var lyricsObj = JSON.parse(lyrics).data.sentences;
+var lyricsObj = JSON.parse(lyrics);
+console.log(lyricsObj);
 
-function renderLyrics() {
-  lyricsObj.forEach((lyric) => {
-    var html = "";
-    lyric.words.forEach((word) => {
-      html += word.data + " ";
-    });
-    ulLyric.insertAdjacentHTML(
-      `beforeend`,
-      `<li class="lyric-items">${html.trim()}</li>`
-    );
-  });
-  btnKaraoke.addEventListener("click", function (e) {
-    karaoke.classList.toggle("is-show");
-  });
-}
-
-function checkWordsInLyric() {
-  console.log("co vao khong");
-  var lyricItems = $$(".lyric-items");
-  var wordObj = lyricsObj.find((lyrics) => {
-    var timeStart = lyrics.words[0].startTime / 1000;
-    console.log(timeStart);
-    var timeEnd = lyrics.words[lyrics.words.length - 1].endTime / 1000;
-    console.log(timeEnd);
-    console.log(audio.currentTime);
-    return audio.currentTime >= timeStart && audio.currentTime <= timeEnd;
-  });
-  if (wordObj) {
-    var html = "";
-    wordObj.words.forEach((word) => (html += word.data + " "));
-
-    var li = [...lyricItems].find(
-      (lyricItem) => lyricItem.textContent.trim() === html.trim()
-    );
-    [...lyricItems].forEach((lyricItem) => {
-      lyricItem.classList.remove("is-active");
-    });
-    li.classList.add("is-active");
-    li.scrollIntoView();
-  }
-}
-
-renderLyrics();
+btnKaraoke.addEventListener("click", function (e) {
+  karaoke.classList.toggle("is-show");
+});
 
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");

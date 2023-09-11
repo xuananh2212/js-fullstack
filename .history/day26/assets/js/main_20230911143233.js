@@ -234,7 +234,6 @@ audio.addEventListener("timeupdate", function (e) {
     currentTime.innerHTML = getTime(this.currentTime);
     progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
   }
-  checkWordsInLyric();
 });
 
 audio.addEventListener("ended", function (e) {
@@ -1827,38 +1826,12 @@ function renderLyrics() {
     });
     ulLyric.insertAdjacentHTML(
       `beforeend`,
-      `<li class="lyric-items">${html.trim()}</li>`
+      `<li class="lyric-items">${html}</li>`
     );
   });
   btnKaraoke.addEventListener("click", function (e) {
     karaoke.classList.toggle("is-show");
   });
-}
-
-function checkWordsInLyric() {
-  console.log("co vao khong");
-  var lyricItems = $$(".lyric-items");
-  var wordObj = lyricsObj.find((lyrics) => {
-    var timeStart = lyrics.words[0].startTime / 1000;
-    console.log(timeStart);
-    var timeEnd = lyrics.words[lyrics.words.length - 1].endTime / 1000;
-    console.log(timeEnd);
-    console.log(audio.currentTime);
-    return audio.currentTime >= timeStart && audio.currentTime <= timeEnd;
-  });
-  if (wordObj) {
-    var html = "";
-    wordObj.words.forEach((word) => (html += word.data + " "));
-
-    var li = [...lyricItems].find(
-      (lyricItem) => lyricItem.textContent.trim() === html.trim()
-    );
-    [...lyricItems].forEach((lyricItem) => {
-      lyricItem.classList.remove("is-active");
-    });
-    li.classList.add("is-active");
-    li.scrollIntoView();
-  }
 }
 
 renderLyrics();

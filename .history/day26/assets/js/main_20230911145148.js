@@ -1839,11 +1839,8 @@ function checkWordsInLyric() {
   console.log("co vao khong");
   var lyricItems = $$(".lyric-items");
   var wordObj = lyricsObj.find((lyrics) => {
-    var timeStart = lyrics.words[0].startTime / 1000;
-    console.log(timeStart);
-    var timeEnd = lyrics.words[lyrics.words.length - 1].endTime / 1000;
-    console.log(timeEnd);
-    console.log(audio.currentTime);
+    var timeStart = lyrics.words[0].startTime;
+    var timeEnd = lyrics.words[lyrics.words.length - 1].endTime;
     return audio.currentTime >= timeStart && audio.currentTime <= timeEnd;
   });
   if (wordObj) {

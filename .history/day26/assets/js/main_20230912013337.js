@@ -378,7 +378,7 @@ function checkWordsInLyric(lyricsSong) {
       }
     }
     console.log(startTime, audio.currentTime * 1000);
-    if (startTime && startTime - audio.currentTime > 4) {
+    if (startTime && startTime - audio.currentTime > 10) {
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     }
     console.log(audio.currentTime * 1000);

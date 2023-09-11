@@ -371,17 +371,17 @@ function checkWordsInLyric(lyricsSong) {
   } else {
     console.log("dfadsfa");
     var startTime;
-    for (var lyric of lyricsSong) {
+    lyricsSong.forEach((lyric) => {
+      console.log(lyric.words[0].startTime / 1000);
       if (audio.currentTime < lyric.words[0].startTime / 1000) {
         startTime = lyric.words[0].startTime / 1000;
-        break;
+        return;
       }
-    }
-    console.log(startTime, audio.currentTime * 1000);
-    if (startTime && startTime - audio.currentTime > 4) {
+    });
+    console.log(startTime, audio.currentTime);
+    if (startTime && startTime - audio.currentTime > 3) {
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     }
-    console.log(audio.currentTime * 1000);
   }
 }
 checkWordsInLyric(lyricsObj[index]);

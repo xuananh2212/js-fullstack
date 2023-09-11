@@ -358,8 +358,8 @@ function checkWordsInLyric(lyricsSong) {
   var lyricsText = $(".lyric-text");
   var lyricsCurrent = lyricsSong.find((lyric) => {
     return (
-      audio.currentTime >= lyric.words[0].startTime / 1000 &&
-      audio.currentTime <= lyric.words[lyric.words.length - 1].endTime / 1000
+      audio.currentTime >= lyric.words[0].startTime / 10000 &&
+      audio.currentTime <= lyric.words[lyric.words.length - 1].endTime / 10000
     );
   });
   if (lyricsCurrent) {
@@ -371,17 +371,17 @@ function checkWordsInLyric(lyricsSong) {
   } else {
     console.log("dfadsfa");
     var startTime;
-    for (var lyric of lyricsSong) {
-      if (audio.currentTime < lyric.words[0].startTime / 1000) {
-        startTime = lyric.words[0].startTime / 1000;
-        break;
+    lyricsSong.forEach((lyric) => {
+      if (audio.currentTime < lyric.words[0].startTime / 10000) {
+        startTime = lyric.words[0].startTime / 10000;
+        return;
       }
-    }
-    console.log(startTime, audio.currentTime * 1000);
-    if (startTime && startTime - audio.currentTime > 4) {
+    });
+    console.log(startTime, audio.currentTime);
+    if (startTime && startTime - audio.currentTime > 3) {
+      console.log("vao khong");
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     }
-    console.log(audio.currentTime * 1000);
   }
 }
 checkWordsInLyric(lyricsObj[index]);

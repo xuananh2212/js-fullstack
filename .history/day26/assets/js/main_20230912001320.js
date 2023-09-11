@@ -229,7 +229,6 @@ audio.addEventListener("timeupdate", function (e) {
     progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
   }
   //   checkWordsInLyric();
-  checkWordsInLyric(lyricsObj[index]);
 });
 
 audio.addEventListener("ended", function (e) {
@@ -281,7 +280,7 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    // renderLyrics(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -295,7 +294,7 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    // renderLyrics(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {
@@ -354,25 +353,7 @@ function renderLyrics() {
 }
 renderLyrics();
 
-function checkWordsInLyric(lyricsSong) {
-  var lyricsText = $(".lyric-text");
-  var lyricsCurrent = lyricsSong.find((lyric) => {
-    return (
-      audio.currentTime >= lyric.words[0].startTime / 1000 &&
-      audio.currentTime <= lyric.words[lyric.words.length - 1].endTime / 1000
-    );
-  });
-  if (lyricsCurrent) {
-    var html = "";
-    lyricsCurrent.words.forEach((word) => {
-      html += word.data + " ";
-    });
-    lyricsText.innerHTML = html;
-  } else {
-    lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
-  }
-}
-checkWordsInLyric(lyricsObj[index]);
+function checkWordsInLyric(lyricsSong) {}
 
 // function checkWordsInLyric() {
 //   var lyricItems = $$(".lyric-items");

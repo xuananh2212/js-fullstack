@@ -281,7 +281,7 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    checkWordsInLyric(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -295,7 +295,7 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    checkWordsInLyric(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {

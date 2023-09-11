@@ -281,7 +281,7 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    // renderLyrics(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -295,7 +295,7 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    // renderLyrics(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {
@@ -364,7 +364,7 @@ function checkWordsInLyric(lyricsSong) {
   });
   if (lyricsCurrent) {
     var html = "";
-    lyricsCurrent.words.forEach((word) => {
+    lyric.words.forEach((word) => {
       html += word.data + " ";
     });
     lyricsText.innerHTML = html;

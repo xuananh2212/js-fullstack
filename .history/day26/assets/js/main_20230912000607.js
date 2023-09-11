@@ -22,7 +22,7 @@ const dashboard = $(".dashboard");
 const btnKaraoke = $(".btn-karaoke");
 const btnKaraokeHidden = $(".btn-karaoke-hidden");
 const karaoke = $(".karaoke");
-const divLyric = $(".lyric");
+const ulLyric = $(".lyric");
 var wordObjPrev = null;
 var isDrag = false;
 var index = 0;
@@ -166,7 +166,7 @@ function songRandom() {
   }
   song(index);
   audio.play();
-  //   renderLyrics(lyricsObj[index]);
+  renderLyrics(lyricsObj[index]);
 }
 
 btnToggle.addEventListener("click", function (e) {
@@ -228,8 +228,7 @@ audio.addEventListener("timeupdate", function (e) {
     currentTime.innerHTML = getTime(this.currentTime);
     progress.style.width = `${(this.currentTime / totalTime) * 100}%`;
   }
-  //   checkWordsInLyric();
-  checkWordsInLyric(lyricsObj[index]);
+  checkWordsInLyric();
 });
 
 audio.addEventListener("ended", function (e) {
@@ -239,7 +238,7 @@ audio.addEventListener("ended", function (e) {
   }, 500);
   if (isRepeat) {
     audio.play();
-    divLyric.scroll(0, 0);
+    ulLyric.scroll(0, 0);
     lyricItems.forEach((lyricItem) => lyricItem.classList.remove("is-active"));
   }
   if (isRandom) {
@@ -281,7 +280,7 @@ btnNext.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    renderLyrics(lyricsObj[index]);
   }
 });
 btnPrev.addEventListener("click", function (e) {
@@ -295,7 +294,7 @@ btnPrev.addEventListener("click", function (e) {
     indexSong.push(index);
     song(index);
     audio.play();
-    // checkWordsInLyric(lyricsObj[index]);
+    renderLyrics(lyricsObj[index]);
   }
 });
 btnRepeat.addEventListener("click", function (e) {
@@ -325,18 +324,18 @@ playItems.forEach((itemSong) => {
     song(Number(itemSong.getAttribute("data-index")));
     index = Number(itemSong.getAttribute("data-index"));
     audio.play();
-    // renderLyrics(lyricsObj[index]);
+    renderLyrics(lyricsObj[index]);
   });
 });
 var lyricsObj = JSON.parse(lyrics);
 // function renderLyrics(lyricsSong) {
-//   divLyric.innerHTML = "";
+//   ulLyric.innerHTML = "";
 //   lyricsSong.forEach((lyric) => {
 //     var html = "";
 //     lyric.words.forEach((word) => {
 //       html += word.data + " ";
 //     });
-//     divLyric.insertAdjacentHTML(
+//     ulLyric.insertAdjacentHTML(
 //       `beforeend`,
 //       `<li class="lyric-items" data-time-start = ${
 //         lyric.words[0].startTime
@@ -347,32 +346,23 @@ var lyricsObj = JSON.parse(lyrics);
 //   });
 // }
 
-function renderLyrics() {
-  var spanLyric = document.createElement("span");
-  divLyric.appendChild(spanLyric);
-  spanLyric.className = "lyric-text";
+function renderLyrics(lyricicsSong) {
+  ulLyric.innerHTML = "";
+  //   lyricsSong.forEach((lyric) => {
+  //     var html = "";
+  //     lyric.words.forEach((word) => {
+  //       html += word.data + " ";
+  //     });
+  //     ulLyric.insertAdjacentHTML(
+  //       `beforeend`,
+  //       `<li class="lyric-items" data-time-start = ${
+  //         lyric.words[0].startTime
+  //       } data-time-end = ${
+  //         lyric.words[lyric.words.length - 1].endTime
+  //       }>${html.trim()}</li>`
+  //     );
+  //   });
 }
-renderLyrics();
-
-function checkWordsInLyric(lyricsSong) {
-  var lyricsText = $(".lyric-text");
-  var lyricsCurrent = lyricsSong.find((lyric) => {
-    return (
-      audio.currentTime >= lyric.words[0].startTime / 1000 &&
-      audio.currentTime <= lyric.words[lyric.words.length - 1].endTime / 1000
-    );
-  });
-  if (lyricsCurrent) {
-    var html = "";
-    lyricsCurrent.words.forEach((word) => {
-      html += word.data + " ";
-    });
-    lyricsText.innerHTML = html;
-  } else {
-    lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
-  }
-}
-checkWordsInLyric(lyricsObj[index]);
 
 // function checkWordsInLyric() {
 //   var lyricItems = $$(".lyric-items");
@@ -415,7 +405,7 @@ checkWordsInLyric(lyricsObj[index]);
 //   console.log([...lyricItems][0].dataset.timeStart / 1000);
 //   if (audio.currentTime < [...lyricItems][0].dataset.timeStart / 1000) {
 //     console.log("vao kh");
-//     divLyric.scroll(0, 0);
+//     ulLyric.scroll(0, 0);
 //     lyricItems.forEach((lyricItem) => lyricItem.classList.remove("is-active"));
 //   }
 // }
@@ -423,7 +413,7 @@ checkWordsInLyric(lyricsObj[index]);
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
 });
-// renderLyrics(lyricsObj[index]);
+renderLyrics(lyricsObj[index]);
 btnKaraokeHidden.addEventListener("click", function (e) {
   karaoke.classList.remove("is-show");
 });

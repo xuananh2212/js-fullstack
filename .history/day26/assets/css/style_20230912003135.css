@@ -517,11 +517,3 @@ body {
 .text-karaoke {
     font-size: 1.0rem;
 }
-
-.lyric-text {
-    font-size: 1.5rem;
-    line-height: 3.5rem;
-    color: yellow;
-    font-weight: 600;
-
-}

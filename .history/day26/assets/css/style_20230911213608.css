@@ -485,20 +485,4 @@ body {
 
 .btn-karaoke {
     position: absolute;
-    padding: 12px;
-    top: 15px;
-    right: 10px;
-    width: 160px;
-    display: flex;
-    gap: 5px;
-    justify-content: center;
-    align-items: center;
-    background-color: green;
-    color: #fff;
-    border-radius: 12px;
-
-}
-
-.text-karaoke {
-    font-size: 1.0rem;
 }

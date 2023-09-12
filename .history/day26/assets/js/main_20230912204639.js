@@ -390,7 +390,7 @@ function checkWordsInLyric(lyricsSong) {
         ].endTime / 1000;
     }
     console.log(startTime, endTime);
-    if (startTime - endTime > 9) {
+    if (startTime - endTime > 6) {
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     } else {
       nextRowLyrics(lyricsSong[indexEndTime - 1], lyricsText);
@@ -403,7 +403,7 @@ function checkWordsInLyric(lyricsSong) {
       if (
         audio.duration -
           lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        9
+        6
       ) {
         lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
       }

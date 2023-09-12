@@ -373,16 +373,14 @@ function checkWordsInLyric(lyricsSong) {
       audio.currentTime <= lyric.words[lyric.words.length - 1].endTime / 1000
     );
   });
-  if (lyricsCurrentIndex !== -1) {
-    if (lyricsCurrentIndex !== indexPrev) {
-      console.log("vao khong 1");
-      indexPrev = lyricsCurrentIndex + 1;
-      console.log(indexPrev);
-      nextRowLyrics(lyricsSong[lyricsCurrentIndex], lyricsTextTop);
-      if (lyricsCurrentIndex < lyricsSong.length - 1) {
-        console.log("vao khong 2");
-        nextRowLyrics(lyricsSong[lyricsCurrentIndex + 1], lyricsTextBottom);
-      }
+  if (lyricsCurrentIndex !== -1 && lyricsCurrentIndex !== indexPrev) {
+    console.log("vao khong 1");
+    indexPrev = lyricsCurrentIndex + 1;
+    console.log(indexPrev);
+    nextRowLyrics(lyricsSong[lyricsCurrentIndex], lyricsTextTop);
+    if (lyricsCurrentIndex < lyricsSong.length) {
+      console.log("vao khong 2");
+      nextRowLyrics(lyricsSong[lyricsCurrentIndex + 1], lyricsTextBottom);
     }
   } else {
     console.log("vao");

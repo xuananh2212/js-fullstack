@@ -443,7 +443,6 @@ body {
     /* height: 500px; */
     height: 100px;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: auto;
@@ -521,7 +520,6 @@ body {
 
 .lyric-text-top,
 .lyric-text-bottom {
-    display: block;
     font-size: 1.5rem;
     line-height: 3.5rem;
     color: yellow;

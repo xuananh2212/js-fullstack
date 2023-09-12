@@ -363,26 +363,21 @@ function nextRowLyrics(lyricsRow, lyricsText) {
   });
   lyricsText.innerHTML = html;
 }
-var indexPrev;
+
 function checkWordsInLyric(lyricsSong) {
+  var indexLyricsSong = 0;
   var lyricsTextTop = $(".lyric-text-top");
   var lyricsTextBottom = $(".lyric-text-bottom");
-  var lyricsCurrentIndex = lyricsSong.findIndex((lyric) => {
+  var lyricsCurrentIndex = lyricsSong.findIndex((lyric, index) => {
     return (
       audio.currentTime >= lyric.words[0].startTime / 1000 &&
       audio.currentTime <= lyric.words[lyric.words.length - 1].endTime / 1000
     );
   });
   if (lyricsCurrentIndex !== -1) {
-    if (lyricsCurrentIndex !== indexPrev) {
-      console.log("vao khong 1");
-      indexPrev = lyricsCurrentIndex + 1;
-      console.log(indexPrev);
-      nextRowLyrics(lyricsSong[lyricsCurrentIndex], lyricsTextTop);
-      if (lyricsCurrentIndex < lyricsSong.length - 1) {
-        console.log("vao khong 2");
-        nextRowLyrics(lyricsSong[lyricsCurrentIndex + 1], lyricsTextBottom);
-      }
+    nextRowLyrics(lyricsSong[lyricsCurrentIndex], lyricsTextTop);
+    if (lyricsCurrentIndex < lyricsSong[lyricsSong.length]) {
+      nextRowLyrics(lyricsSong[lyricsCurrentIndex + 1], lyricsTextBottom);
     }
   } else {
     console.log("vao");
@@ -402,18 +397,13 @@ function checkWordsInLyric(lyricsSong) {
           lyricsSong[indexEndTime - 1].words.length - 1
         ].endTime / 1000;
     }
-    console.log("time,start, end" + startTime, endTime);
+    console.log(startTime, endTime);
     if (startTime - endTime > 9) {
-      lyricsTextTop.innerHTML = `Bài Hát: ${songs[index].nameSong}`;
+      lyricsTextTop.innerHTML = `${songs[index].nameSong}`;
       lyricsTextBottom.innerHTML = `Ca Sĩ: Sơn Tùng MTP`;
-      indexPrev++;
+    } else {
+      nextRowLyrics(lyricsSong[indexEndTime - 1], lyricsText);
     }
-    // else {
-    //   nextRowLyrics(lyricsSong[indexEndTime - 1], lyricsTextTop);
-    //   if (indexEndTime - 1 < lyricsSong.length) {
-    //     nextRowLyrics(lyricsSong[indexEndTime], lyricsTextBottom);
-    //   }
-    // }
 
     if (
       audio.currentTime >
@@ -424,7 +414,8 @@ function checkWordsInLyric(lyricsSong) {
           lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
         9
       ) {
-        lyricsTextTop.innerHTML = `Bài Hát: ${songs[index].nameSong}`;
+        lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
+        lyricsTextTop.innerHTML = `${songs[index].nameSong}`;
         lyricsTextBottom.innerHTML = `Ca Sĩ: Sơn Tùng MTP`;
       }
     }

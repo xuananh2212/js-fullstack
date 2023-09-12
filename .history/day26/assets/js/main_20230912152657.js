@@ -369,10 +369,16 @@ function checkWordsInLyric(lyricsSong) {
     });
     lyricsText.innerHTML = html;
   } else {
+    console.log("vao");
+    console.log(audio.currentTime);
+    // if (lyricsSong[0].words[0].startTime / 1000 > 4) {
+    //   lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
+    // }
     var startTime = 0;
     var endTime = 0;
     var indexEndTime = 0;
     for (var lyric of lyricsSong) {
+      console.log("dau times" + lyric.words[0].startTime, startTime * 1000);
       if (audio.currentTime < lyric.words[0].startTime / 1000) {
         startTime = lyric.words[0].startTime / 1000;
         break;
@@ -385,6 +391,8 @@ function checkWordsInLyric(lyricsSong) {
           lyricsSong[indexEndTime - 1].words.length - 1
         ].endTime / 1000;
     }
+    console.log(endTime + "cuoi");
+    console.log(startTime + "dau");
     if (startTime - endTime > 4) {
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     }

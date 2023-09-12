@@ -382,8 +382,6 @@ function checkWordsInLyric(lyricsSong) {
       if (lyricsCurrentIndex < lyricsSong.length - 1) {
         console.log("vao khong 2");
         nextRowLyrics(lyricsSong[lyricsCurrentIndex + 1], lyricsTextBottom);
-      } else {
-        lyricsTextBottom.innerHTML = "";
       }
     }
   } else {
@@ -414,8 +412,6 @@ function checkWordsInLyric(lyricsSong) {
       if (indexEndTime - 1 < lyricsSong.length - 1) {
         nextRowLyrics(lyricsSong[indexEndTime], lyricsTextBottom);
         indexPrev = indexEndTime;
-      } else {
-        lyricsTextBottom.innerHTML = "";
       }
     }
     if (

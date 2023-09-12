@@ -353,9 +353,9 @@ function renderLyrics() {
   spanLyric.className = "lyric-text";
 }
 renderLyrics();
-function nextRowLyrics(lyricsRow, lyricsText) {
+function nextRowLyrics() {
   var html = "";
-  lyricsRow.words.forEach((word) => {
+  lyricsCurrent.words.forEach((word) => {
     html += word.data + " ";
   });
   lyricsText.innerHTML = html;
@@ -370,9 +370,7 @@ function checkWordsInLyric(lyricsSong) {
     );
   });
   if (lyricsCurrent) {
-    nextRowLyrics(lyricsCurrent, lyricsText);
   } else {
-    console.log("vao");
     var startTime = 0;
     var endTime = 0;
     var indexEndTime = 0;
@@ -389,11 +387,14 @@ function checkWordsInLyric(lyricsSong) {
           lyricsSong[indexEndTime - 1].words.length - 1
         ].endTime / 1000;
     }
-    console.log(startTime, endTime);
-    if (startTime - endTime > 6) {
+    if (startTime - endTime > 4) {
       lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     } else {
-      nextRowLyrics(lyricsSong[indexEndTime - 1], lyricsText);
+      var html = "";
+      lyricsCurrent.words.forEach((word) => {
+        html += word.data + " ";
+      });
+      lyricsText.innerHTML = html;
     }
 
     if (
@@ -403,7 +404,7 @@ function checkWordsInLyric(lyricsSong) {
       if (
         audio.duration -
           lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        6
+        4
       ) {
         lyricsText.innerHTML = `${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
       }

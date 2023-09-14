@@ -251,7 +251,7 @@ audio.addEventListener("ended", function (e) {
     btnNext.click();
     textValue.innerHTML = songs[index].durationTime;
   }
-  renderPreludeMusic();
+  indexPrev = undefined;
 });
 
 audio.addEventListener("pause", function (e) {
@@ -332,16 +332,40 @@ playItems.forEach((itemSong) => {
   });
 });
 var lyricsObj = JSON.parse(lyrics);
-const renderPreludeMusic = function () {
-  divLyric.innerHTML = "";
-  var descTop = document.createElement("p");
-  var descBottom = document.createElement("p");
-  descTop.innerHTML = `Bài Hát: ${songs[index].nameSong}`;
-  descBottom.innerHTML = `Ca Sĩ: Sơn Tùng`;
-  divLyric.appendChild(descTop);
-  divLyric.appendChild(descBottom);
-};
-renderPreludeMusic();
+// function renderLyrics(lyricsSong) {
+//   divLyric.innerHTML = "";
+//   lyricsSong.forEach((lyric) => {
+//     var html = "";
+//     lyric.words.forEach((word) => {
+//       html += word.data + " ";
+//     });
+//     divLyric.insertAdjacentHTML(
+//       `beforeend`,
+//       `<li class="lyric-items" data-time-start = ${
+//         lyric.words[0].startTime
+//       } data-time-end = ${
+//         lyric.words[lyric.words.length - 1].endTime
+//       }>${html.trim()}</li>`
+//     );
+//   });
+// }
+
+// function renderLyrics() {
+//   var spanLyricTop = document.createElement("span");
+//   var spanLyricBottom = document.createElement("span");
+//   divLyric.appendChild(spanLyricTop);
+//   divLyric.appendChild(spanLyricBottom);
+//   spanLyricTop.className = "lyric-text-top";
+//   spanLyricBottom.className = "lyric-text-bottom";
+// }
+// renderLyrics();
+// function nextRowLyrics(lyricsRow, lyricsText) {
+//   var html = "";
+//   lyricsRow.words.forEach((word) => {
+//     html += word.data + " ";
+//   });
+//   lyricsText.innerHTML = html;
+// }
 var pagePre;
 var number = 2;
 function checkWordsInLyric(lyricsSong) {
@@ -358,7 +382,7 @@ function checkWordsInLyric(lyricsSong) {
      *  */
 
     var page = Math.floor(lyricsCurrentIndex / 2 + 1);
-    handleColor(audio.currentTime);
+    handleColor(currentTime);
     if (page !== pagePre) {
       divLyric.innerHTML = "";
       var offset = (page - 1) * 2;
@@ -381,54 +405,19 @@ function checkWordsInLyric(lyricsSong) {
       }
       pagePre = page;
     }
-  } else {
-    var startTime = 0;
-    var endTime = 0;
-    var indexEndTime = 0;
-    for (var lyric of lyricsSong) {
-      if (audio.currentTime < lyric.words[0].startTime / 1000) {
-        startTime = lyric.words[0].startTime / 1000;
-        break;
-      }
-      indexEndTime++;
-    }
-    if (indexEndTime !== 0) {
-      endTime =
-        lyricsSong[indexEndTime - 1].words[
-          lyricsSong[indexEndTime - 1].words.length - 1
-        ].endTime / 1000;
-    }
-    console.log("time,start, end" + startTime, endTime);
-    if (startTime - endTime > 9) {
-      renderPreludeMusic();
-    }
-    if (
-      audio.currentTime >
-      lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000
-    ) {
-      if (
-        audio.duration -
-          lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        9
-      ) {
-        renderPreludeMusic();
-      }
-    }
   }
 }
 
 const handleColor = function (currentTime) {
   const spanAll = document.querySelectorAll(".word");
-  spanAll.forEach((spanText) => {
-    console.log(currentTime * 1000, Number(spanText.dataset.startTime));
-    var spanInner = spanText.querySelector("span");
-    if (currentTime * 1000 >= Number(spanText.dataset.startTime)) {
-      spanInner.style.width = `100%`;
-      spanInner.style.transition = `none`;
+  console.log("dfadsfa");
+  spanAll.forEach((word) => {
+    if (currentTime * 1000 >= Number(word.dataset.startTime)) {
+      word.style.width = `100%`;
       var totalTime =
-        Number(spanText.dataset.endTime) - Number(spanText.dataset.startTime);
-      if (totalTime > 200) {
-        spanInner.style.transition = `width ${totalTime}ms linear`;
+        Number(word.dataset.endTime) - Number(word.dataset.startTime);
+      if (totalTime > 60) {
+        word.style.trasition = `width ${totalTime}ms linear`;
       }
     }
   });

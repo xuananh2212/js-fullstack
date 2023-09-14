@@ -441,6 +441,7 @@ body {
 .lyric {
     width: 100%;
     /* height: 500px; */
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -528,26 +529,18 @@ body {
 
 }
 
-.lyric p {
-    margin-top: 18px;
-    font-size: 2.0rem;
-}
-
 .lyric .word {
-    display: inline-block;
-    height: auto;
-    line-height: 50px;
     font-size: 2.5rem;
     margin: 0 5px;
     position: relative;
 }
 
 .lyric .word span {
+    font-size: 2.5rem;
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     width: 0;
     color: yellow;
-    overflow: hidden;
 }

@@ -251,7 +251,7 @@ audio.addEventListener("ended", function (e) {
     btnNext.click();
     textValue.innerHTML = songs[index].durationTime;
   }
-  renderPreludeMusic();
+  indexPrev = undefined;
 });
 
 audio.addEventListener("pause", function (e) {
@@ -332,16 +332,40 @@ playItems.forEach((itemSong) => {
   });
 });
 var lyricsObj = JSON.parse(lyrics);
-const renderPreludeMusic = function () {
-  divLyric.innerHTML = "";
-  var descTop = document.createElement("p");
-  var descBottom = document.createElement("p");
-  descTop.innerHTML = `Bài Hát: ${songs[index].nameSong}`;
-  descBottom.innerHTML = `Ca Sĩ: Sơn Tùng`;
-  divLyric.appendChild(descTop);
-  divLyric.appendChild(descBottom);
-};
-renderPreludeMusic();
+// function renderLyrics(lyricsSong) {
+//   divLyric.innerHTML = "";
+//   lyricsSong.forEach((lyric) => {
+//     var html = "";
+//     lyric.words.forEach((word) => {
+//       html += word.data + " ";
+//     });
+//     divLyric.insertAdjacentHTML(
+//       `beforeend`,
+//       `<li class="lyric-items" data-time-start = ${
+//         lyric.words[0].startTime
+//       } data-time-end = ${
+//         lyric.words[lyric.words.length - 1].endTime
+//       }>${html.trim()}</li>`
+//     );
+//   });
+// }
+
+// function renderLyrics() {
+//   var spanLyricTop = document.createElement("span");
+//   var spanLyricBottom = document.createElement("span");
+//   divLyric.appendChild(spanLyricTop);
+//   divLyric.appendChild(spanLyricBottom);
+//   spanLyricTop.className = "lyric-text-top";
+//   spanLyricBottom.className = "lyric-text-bottom";
+// }
+// renderLyrics();
+// function nextRowLyrics(lyricsRow, lyricsText) {
+//   var html = "";
+//   lyricsRow.words.forEach((word) => {
+//     html += word.data + " ";
+//   });
+//   lyricsText.innerHTML = html;
+// }
 var pagePre;
 var number = 2;
 function checkWordsInLyric(lyricsSong) {
@@ -400,19 +424,7 @@ function checkWordsInLyric(lyricsSong) {
     }
     console.log("time,start, end" + startTime, endTime);
     if (startTime - endTime > 9) {
-      renderPreludeMusic();
-    }
-    if (
-      audio.currentTime >
-      lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000
-    ) {
-      if (
-        audio.duration -
-          lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        9
-      ) {
-        renderPreludeMusic();
-      }
+      divLyric.innerHTML = `Bài Hát: ${songs[index].nameSong} <br> Ca Sĩ: Sơn Tùng MTP`;
     }
   }
 }
@@ -421,14 +433,14 @@ const handleColor = function (currentTime) {
   const spanAll = document.querySelectorAll(".word");
   spanAll.forEach((spanText) => {
     console.log(currentTime * 1000, Number(spanText.dataset.startTime));
-    var spanInner = spanText.querySelector("span");
     if (currentTime * 1000 >= Number(spanText.dataset.startTime)) {
+      var spanInner = spanText.querySelector("span");
       spanInner.style.width = `100%`;
-      spanInner.style.transition = `none`;
       var totalTime =
         Number(spanText.dataset.endTime) - Number(spanText.dataset.startTime);
-      if (totalTime > 200) {
+      if (totalTime > 60) {
         spanInner.style.transition = `width ${totalTime}ms linear`;
+        console.log("2111");
       }
     }
   });

@@ -251,7 +251,7 @@ audio.addEventListener("ended", function (e) {
     btnNext.click();
     textValue.innerHTML = songs[index].durationTime;
   }
-  renderPreludeMusic();
+  indexPrev = undefined;
 });
 
 audio.addEventListener("pause", function (e) {
@@ -332,17 +332,41 @@ playItems.forEach((itemSong) => {
   });
 });
 var lyricsObj = JSON.parse(lyrics);
-const renderPreludeMusic = function () {
-  divLyric.innerHTML = "";
-  var descTop = document.createElement("p");
-  var descBottom = document.createElement("p");
-  descTop.innerHTML = `Bài Hát: ${songs[index].nameSong}`;
-  descBottom.innerHTML = `Ca Sĩ: Sơn Tùng`;
-  divLyric.appendChild(descTop);
-  divLyric.appendChild(descBottom);
-};
-renderPreludeMusic();
-var pagePre;
+// function renderLyrics(lyricsSong) {
+//   divLyric.innerHTML = "";
+//   lyricsSong.forEach((lyric) => {
+//     var html = "";
+//     lyric.words.forEach((word) => {
+//       html += word.data + " ";
+//     });
+//     divLyric.insertAdjacentHTML(
+//       `beforeend`,
+//       `<li class="lyric-items" data-time-start = ${
+//         lyric.words[0].startTime
+//       } data-time-end = ${
+//         lyric.words[lyric.words.length - 1].endTime
+//       }>${html.trim()}</li>`
+//     );
+//   });
+// }
+
+// function renderLyrics() {
+//   var spanLyricTop = document.createElement("span");
+//   var spanLyricBottom = document.createElement("span");
+//   divLyric.appendChild(spanLyricTop);
+//   divLyric.appendChild(spanLyricBottom);
+//   spanLyricTop.className = "lyric-text-top";
+//   spanLyricBottom.className = "lyric-text-bottom";
+// }
+// renderLyrics();
+// function nextRowLyrics(lyricsRow, lyricsText) {
+//   var html = "";
+//   lyricsRow.words.forEach((word) => {
+//     html += word.data + " ";
+//   });
+//   lyricsText.innerHTML = html;
+// }
+
 var number = 2;
 function checkWordsInLyric(lyricsSong) {
   var lyricsCurrentIndex = lyricsSong.findIndex((lyric) => {
@@ -356,84 +380,27 @@ function checkWordsInLyric(lyricsSong) {
      *    page 2 => index : 2 -3;
      *     index : (page - 1) * 2;
      *  */
-
+    console.log(lyricsCurrentIndex);
+    divLyric.innerHTML = "";
     var page = Math.floor(lyricsCurrentIndex / 2 + 1);
-    handleColor(audio.currentTime);
-    if (page !== pagePre) {
-      divLyric.innerHTML = "";
-      var offset = (page - 1) * 2;
-      for (var i = offset; i < offset + number; i++) {
-        var desc = document.createElement("p");
-        if (i < lyricsSong.length) {
-          lyricsSong[i].words.forEach((wordItem) => {
-            var span = document.createElement("span");
-            var spanInner = document.createElement("span");
-            span.className = "word";
-            span.innerHTML = wordItem.data;
-            span.setAttribute("data-start-time", wordItem.startTime);
-            span.setAttribute("data-end-time", wordItem.endTime);
-            spanInner.innerHTML = wordItem.data;
-            span.appendChild(spanInner);
-            desc.appendChild(span);
-          });
-          divLyric.appendChild(desc);
-        }
-      }
-      pagePre = page;
-    }
-  } else {
-    var startTime = 0;
-    var endTime = 0;
-    var indexEndTime = 0;
-    for (var lyric of lyricsSong) {
-      if (audio.currentTime < lyric.words[0].startTime / 1000) {
-        startTime = lyric.words[0].startTime / 1000;
-        break;
-      }
-      indexEndTime++;
-    }
-    if (indexEndTime !== 0) {
-      endTime =
-        lyricsSong[indexEndTime - 1].words[
-          lyricsSong[indexEndTime - 1].words.length - 1
-        ].endTime / 1000;
-    }
-    console.log("time,start, end" + startTime, endTime);
-    if (startTime - endTime > 9) {
-      renderPreludeMusic();
-    }
-    if (
-      audio.currentTime >
-      lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000
-    ) {
-      if (
-        audio.duration -
-          lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        9
-      ) {
-        renderPreludeMusic();
-      }
+    var offset = (page - 1) * 2;
+    for (var i = offset; i < offset + number; i++) {
+      var desc = document.createElement("p");
+      lyricsSong[i].words.forEach((wordItem) => {
+        var span = document.createElement("span");
+        var spanInner = document.createElement("span");
+        span.className = "word";
+        span.innerHTML = wordItem.data;
+        span.setAttribute("data-start-time", wordItem.startTime);
+        span.setAttribute("data-end-time", wordItem.endTime);
+        spanInner.innerHTML = wordItem.data;
+        span.appendChild(spanInner);
+        desc.appendChild(span);
+      });
+      divLyric.appendChild(desc);
     }
   }
 }
-
-const handleColor = function (currentTime) {
-  const spanAll = document.querySelectorAll(".word");
-  spanAll.forEach((spanText) => {
-    console.log(currentTime * 1000, Number(spanText.dataset.startTime));
-    var spanInner = spanText.querySelector("span");
-    if (currentTime * 1000 >= Number(spanText.dataset.startTime)) {
-      spanInner.style.width = `100%`;
-      spanInner.style.transition = `none`;
-      var totalTime =
-        Number(spanText.dataset.endTime) - Number(spanText.dataset.startTime);
-      if (totalTime > 200) {
-        spanInner.style.transition = `width ${totalTime}ms linear`;
-      }
-    }
-  });
-};
-
 btnKaraoke.addEventListener("click", function (e) {
   karaoke.classList.toggle("is-show");
 });

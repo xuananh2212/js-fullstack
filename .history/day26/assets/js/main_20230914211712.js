@@ -402,18 +402,6 @@ function checkWordsInLyric(lyricsSong) {
     if (startTime - endTime > 9) {
       renderPreludeMusic();
     }
-    if (
-      audio.currentTime >
-      lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000
-    ) {
-      if (
-        audio.duration -
-          lyricsSong[lyricsSong.length - 1].words[0].endTime / 1000 >
-        9
-      ) {
-        renderPreludeMusic();
-      }
-    }
   }
 }
 
@@ -421,15 +409,18 @@ const handleColor = function (currentTime) {
   const spanAll = document.querySelectorAll(".word");
   spanAll.forEach((spanText) => {
     console.log(currentTime * 1000, Number(spanText.dataset.startTime));
-    var spanInner = spanText.querySelector("span");
     if (currentTime * 1000 >= Number(spanText.dataset.startTime)) {
+      var spanInner = spanText.querySelector("span");
       spanInner.style.width = `100%`;
-      spanInner.style.transition = `none`;
       var totalTime =
         Number(spanText.dataset.endTime) - Number(spanText.dataset.startTime);
-      if (totalTime > 200) {
+      if (totalTime > 60) {
         spanInner.style.transition = `width ${totalTime}ms linear`;
+        console.log("2111");
       }
+    } else {
+      spanInner.style.width = `100%`;
+      spanInner.style.transition = `none`;
     }
   });
 };

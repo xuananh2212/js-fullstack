@@ -424,7 +424,6 @@ const handleColor = function (currentTime) {
     var spanInner = spanText.querySelector("span");
     if (currentTime * 1000 >= Number(spanText.dataset.startTime)) {
       spanInner.style.width = `100%`;
-      spanInner.style.transition = `none`;
       var totalTime =
         Number(spanText.dataset.endTime) - Number(spanText.dataset.startTime);
       if (totalTime > 200) {

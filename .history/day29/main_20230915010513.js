@@ -9,14 +9,6 @@ const lessons = [
       "Giới thiệu Khóa học HTML-CSS",
       "Nhập môn lập trình web - Phần 1",
       "Nhập môn lập trình web - Phần 2",
-      "Nhập môn lập trình web - Phần 3",
-      "Nhập môn lập trình web - Phần 4",
-      "Nhập môn lập trình web - Phần 5",
-      "Nhập môn lập trình web - Phần 6",
-      "Nhập môn lập trình web - Phần 7",
-      "Nhập môn lập trình web - Phần 8",
-      "Nhập môn lập trình web - Phần 9",
-      "Nhập môn lập trình web - Phần 10",
     ],
   },
   {
@@ -24,18 +16,6 @@ const lessons = [
       "Công cụ - Phần mềm cần chuẩn bị",
       "Ngôn ngữ HTML",
       "Thuộc tính Float trong CSS",
-      "Nhập môn lập trình web - Phần 11",
-      "Nhập môn lập trình web - Phần 12",
-      "Nhập môn lập trình web - Phần 13",
-      "Nhập môn lập trình web - Phần 14",
-      "Nhập môn lập trình web - Phần 15",
-      "Nhập môn lập trình web - Phần 16",
-      "Nhập môn lập trình web - Phần 17",
-      "Nhập môn lập trình web - Phần 18",
-      "Nhập môn lập trình web - Phần 19",
-      "Nhập môn lập trình web - Phần 20",
-      "Nhập môn lập trình web - Phần 21",
-      "Nhập môn lập trình web - Phần 22",
     ],
   },
   {
@@ -43,11 +23,27 @@ const lessons = [
       "Thuộc tính Position trong CSS",
       "Tích hợp font-awesome và kỹ thuật liên quan",
       "Tạo bộ đếm (Counter) trong CSS",
-      "Nhập môn lập trình web - Phần 23",
-      "Nhập môn lập trình web - Phần 24",
-      "Nhập môn lập trình web - Phần 25",
-      "Nhập môn lập trình web - Phần 26",
-      "Nhập môn lập trình web - Phần 27",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
+      "Thuộc tính Position trong CSS",
+      "Tích hợp font-awesome và kỹ thuật liên quan",
+      "Tạo bộ đếm (Counter) trong CSS",
     ],
   },
 ];
@@ -81,7 +77,7 @@ listItems.forEach((items) => {
     items.classList.remove("dragging");
   });
 });
-var pageYPrev;
+
 listTable.addEventListener("dragover", function (e) {
   console.log(1);
   var itemDragging = $(".list-items.dragging");
@@ -92,6 +88,12 @@ listTable.addEventListener("dragover", function (e) {
     return e.pageY <= itemNotDragging.offsetTop + itemDragging.offsetHeight / 2;
   });
   listTable.insertBefore(itemDragging, nodeElementNext);
+  if (e.pageY >= window.innerHeight) {
+    setInterval(function () {
+      console.log("fadsfasd");
+      window.scroll(0, window.innerHeight + 10);
+    }, 10);
+  }
 });
 
 listTable.addEventListener("dragend", function (e) {

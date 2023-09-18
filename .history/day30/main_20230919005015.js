@@ -74,7 +74,7 @@ spanChar.addEventListener("count", function () {
 });
 
 spanWord.addEventListener("count", function () {
-  var str = content.innerText.trim();
+  var str = content.innerText;
   if (str) {
     var countWord = str.split(/\s+/g).length;
     spanWord.innerHTML = `Số từ: ${countWord}`;

@@ -69,7 +69,8 @@ content.addEventListener("input", function () {
 });
 
 spanChar.addEventListener("count", function () {
-  var countChar = content.innerText.length;
+  console.log(content.textContent);
+  var countChar = content.textContent.trim().length;
   spanChar.innerHTML = `Số ký tự: ${countChar}`;
 });
 
@@ -88,7 +89,7 @@ btnNew.addEventListener("click", function (e) {
 });
 
 btnSaveTxt.addEventListener("click", function (e) {
-  const blob = new Blob([content.textContent]);
+  const blob = new Blob(content.textContent);
   const url = URL.createObjectURL(blob);
   const tagALink = document.createElement("a");
   tagALink.href = url;

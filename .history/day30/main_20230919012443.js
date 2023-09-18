@@ -69,6 +69,8 @@ content.addEventListener("input", function () {
 });
 
 spanChar.addEventListener("count", function () {
+  console.log(1 + content.innerText + 1);
+  console.log(1 + content.innerText.replace(/\n\n/, ""), "1");
   var countChar = content.innerText.replace(/\n\n/, "\n").length;
   spanChar.innerHTML = `Số ký tự: ${countChar}`;
 });

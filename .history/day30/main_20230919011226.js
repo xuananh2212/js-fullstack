@@ -69,12 +69,14 @@ content.addEventListener("input", function () {
 });
 
 spanChar.addEventListener("count", function () {
-  var countChar = content.innerText.replace(/\n\n/, "\n").length;
+  console.log(1 + content.innerText + 1);
+  var countChar = content.innerText.length;
   spanChar.innerHTML = `Số ký tự: ${countChar}`;
 });
 
 spanWord.addEventListener("count", function () {
   var str = content.innerText.trim();
+  console.log(content.innerHTML);
   if (str) {
     var countWord = str.split(/\s+/g).length;
     spanWord.innerHTML = `Số từ: ${countWord}`;

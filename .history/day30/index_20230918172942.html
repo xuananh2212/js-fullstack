@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc Edit (day30)</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="heading-lv2">Doc Editor</h2>
+        <hr>
+        <div class="controls">
+            <div class="controls-left">
+                <div class="drop-down">
+                    <button class="btn btn-controls-file">File
+                        <span class="icon-dropdown"></span>
+                    </button>
+                    <ul class="drop-down-list">
+                        <li>
+                            <button class="btn-new">New</button>
+                        </li>
+                        <li>
+                            <button class="btn-save-txt">Save as TXT</button>
+                        </li>
+                        <li>
+                            <button class="btn-save-pdf">Save as PDF</button>
+                        </li>
+                    </ul>
+                </div>
+                <input type="text" name="name-file" id="name-file" value="untitled">
+            </div>
+            <div class="controls-right">
+                <button class="btn btn-bold">b</button>
+                <button class="btn btn-underline">u</button>
+                <button class="btn btn-italic">i</button>
+                <input type="color" name="color" id="color">
+            </div>
+        </div>
+        <div class="content" contenteditable="true" spellcheck="true">
+        </div>
+        <div class="control-count">
+            <span class="count-char">Số ký tự: 0</span>
+            <span class="count-word">Số từ: 0</span>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc Edit (day30)</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="heading-lv2">Doc Editor</h2>
+        <hr>
+        <div class="controls">
+            <div class="controls-left">
+                <div class="drop-down">
+                    <button class="btn btn-controls-file">File
+                        <span class="icon-dropdown"></span>
+                    </button>
+
+                </div>
+                <input type="text" name="name-file" id="name-file" value="untitled">
+            </div>
+            <div class="controls-right">
+                <button class="btn btn-bold" data-command="bold">b</button>
+                <button class="btn btn-underline" data-command="underline">u</button>
+                <button class="btn btn-italic" data-command="italic">i</button>
+                <input type="color" name="color" id="color" data-command="foreColor">
+            </div>
+        </div>
+        <div class="content" contenteditable="true" spellcheck="false">
+        </div>
+        <div class="control-count">
+            <span class="count-char">Số ký tự: 0</span>
+            <span class="count-word">Số từ: 0</span>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>

@@ -70,6 +70,7 @@ content.addEventListener("input", function () {
 
 spanChar.addEventListener("count", function () {
   var countChar = content.innerText.replace(/(\n\n)/g, "\n").length;
+  console.log(1 + content.innerText.replace(/(\n\n)/g, "\n") + 1);
   spanChar.innerHTML = `Số ký tự: ${countChar}`;
 });
 

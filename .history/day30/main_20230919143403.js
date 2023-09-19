@@ -72,10 +72,10 @@ spanChar.addEventListener("count", function () {
   console.log(1 + content.innerText + 1);
   if (content.innerText === "\n") {
     spanChar.innerHTML = `Số ký tự: ${0}`;
+  } else if (content.innerText === "\n\n\n\n") {
+    spanChar.innerHTML = `Số ký tự: ${1}`;
   } else {
-    var countChar = content.innerText
-      .replace(/^\n\n\n/, "\n")
-      .replace(/(\n\n)/g, "\n").length;
+    var countChar = content.innerText.replace(/(\n\n)/g, "\n").length;
     spanChar.innerHTML = `Số ký tự: ${countChar}`;
   }
 });

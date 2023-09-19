@@ -69,12 +69,8 @@ content.addEventListener("input", function () {
 });
 
 spanChar.addEventListener("count", function () {
-  if (content.innerText === "\n") {
-    spanChar.innerHTML = `Số ký tự: ${0}`;
-  } else {
-    var countChar = content.innerText.replace(/(\n\n)/g, "\n").length;
-    spanChar.innerHTML = `Số ký tự: ${countChar}`;
-  }
+  var countChar = content.innerText.replace(/(\n\n)/g, "\n").length;
+  spanChar.innerHTML = `Số ký tự: ${countChar}`;
 });
 
 spanWord.addEventListener("count", function () {

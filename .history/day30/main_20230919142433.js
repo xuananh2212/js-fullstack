@@ -69,6 +69,7 @@ content.addEventListener("input", function () {
 });
 
 spanChar.addEventListener("count", function () {
+  // khi bôi đen từ rồi xoá.
   if (content.innerText === "\n") {
     spanChar.innerHTML = `Số ký tự: ${0}`;
   } else {

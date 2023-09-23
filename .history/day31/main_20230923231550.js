@@ -22,6 +22,7 @@ document.addEventListener("visibilitychange", (event) => {
 });
 
 function countDown() {
+  console.log("vao");
   counter.innerHTML = Math.floor(
     (dateEnd.getTime() - dateNow.getTime()) / 1000
   );

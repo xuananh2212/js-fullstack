@@ -5,7 +5,7 @@ const counter = $(".counter");
 const btn = $(".btn");
 let dateNow = new Date();
 const dateEnd = new Date();
-dateEnd.setTime(dateNow.getTime() + 20000);
+dateEnd.setTime(dateNow.getTime() + 10000);
 var isFocus = true;
 var timeNotFouce;
 
@@ -22,6 +22,7 @@ document.addEventListener("visibilitychange", (event) => {
 });
 
 function countDown() {
+  console.log("vao");
   counter.innerHTML = Math.floor(
     (dateEnd.getTime() - dateNow.getTime()) / 1000
   );
@@ -35,6 +36,7 @@ function countDown() {
 countDown();
 
 btn.addEventListener("click", function (e) {
+  console.log(1);
   if (+counter.textContent === 0)
     window.location.href = "https://fullstack.edu.vn/";
 });

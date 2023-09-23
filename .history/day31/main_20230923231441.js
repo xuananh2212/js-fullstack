@@ -22,6 +22,7 @@ document.addEventListener("visibilitychange", (event) => {
 });
 
 function countDown() {
+  console.log("vao");
   counter.innerHTML = Math.floor(
     (dateEnd.getTime() - dateNow.getTime()) / 1000
   );
@@ -35,6 +36,6 @@ function countDown() {
 countDown();
 
 btn.addEventListener("click", function (e) {
-  if (+counter.textContent === 0)
-    window.location.href = "https://fullstack.edu.vn/";
+  console.log(1);
+  if (+counter === 0) window.location.href = "https://fullstack.edu.vn/";
 });

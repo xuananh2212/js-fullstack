@@ -67,13 +67,12 @@ class F8 {
                     [...nodeElement.childNodes].forEach(
                       (textNode, indexNode) => {
                         if (
-                          textNode.textContent !==
-                          [...textNodeTemplate.childNodes][indexNode]
-                            .textContent
+                          textNode.innerHTML !==
+                          [...textNodeTemplate.childNodes][indexNode].innerHTML
                         ) {
-                          textNode.textContent = [
-                            ...textNodeTemplate.childNodes,
-                          ][indexNode].textContent;
+                          textNode.innerHTML = [...textNodeTemplate.childNodes][
+                            indexNode
+                          ].innerHTML;
                         }
                       }
                     );

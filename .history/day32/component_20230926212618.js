@@ -45,6 +45,7 @@ class F8 {
           templateEl.innerHTML = str;
           const templateNode = templateEl.content.cloneNode(true);
           F8.renderTextNode(templateNode);
+          console.log(templateNode.innerHTML);
           [...templateNode.children].forEach((node) => {
             var matchString = node.outerHTML.match(/v-on:(\w+)=["'](.*)["']/);
             if (matchString) {
@@ -55,9 +56,11 @@ class F8 {
                   strNew = strNew.replace(/{{.+?}}/, "/" + window[key] + "/");
                 });
                 const templateElNew = document.createElement("template");
+                console.log(strNew);
                 templateElNew.innerHTML = strNew;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 F8.renderTextNode(templateNodeNew);
+                console.log(templateNodeNew.innerHTML);
                 [..._this.children].forEach((nodeElement, index) => {
                   var textNodeTemplate = [...templateNodeNew.children][index];
                   if (
@@ -67,13 +70,12 @@ class F8 {
                     [...nodeElement.childNodes].forEach(
                       (textNode, indexNode) => {
                         if (
-                          textNode.textContent !==
-                          [...textNodeTemplate.childNodes][indexNode]
-                            .textContent
+                          textNode.innerHTML !==
+                          [...textNodeTemplate.childNodes][indexNode].innerHTML
                         ) {
-                          textNode.textContent = [
-                            ...textNodeTemplate.childNodes,
-                          ][indexNode].textContent;
+                          textNode.innerHTML = [...textNodeTemplate.childNodes][
+                            indexNode
+                          ].innerHTML;
                         }
                       }
                     );

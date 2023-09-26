@@ -58,6 +58,9 @@ class F8 {
                 templateElNew.innerHTML = strNew;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 F8.renderTextNode(templateNodeNew);
+                console.log(
+                  templateNodeNew.children[0].childNodes[0].innerHTML
+                );
                 [..._this.children].forEach((nodeElement, index) => {
                   var textNodeTemplate = [...templateNodeNew.children][index];
                   if (
@@ -67,13 +70,12 @@ class F8 {
                     [...nodeElement.childNodes].forEach(
                       (textNode, indexNode) => {
                         if (
-                          textNode.textContent !==
-                          [...textNodeTemplate.childNodes][indexNode]
-                            .textContent
+                          textNode.innerHTML !==
+                          [...textNodeTemplate.childNodes][indexNode].innerHTML
                         ) {
-                          textNode.textContent = [
-                            ...textNodeTemplate.childNodes,
-                          ][indexNode].textContent;
+                          textNode.innerHTML = [...textNodeTemplate.childNodes][
+                            indexNode
+                          ].innerHTML;
                         }
                       }
                     );

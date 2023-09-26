@@ -52,9 +52,10 @@ class F8 {
                 console.log(eval(matchString[2]));
                 var strNew = template;
                 keys.forEach((key) => {
-                  strNew = strNew.replace(/{{.+?}}/, "/" + window[key] + "/");
+                  strNew = strNew.replace(/{{.+?}}/, window[key]);
                 });
                 const templateElNew = document.createElement("template");
+                console.log(strNew);
                 templateElNew.innerHTML = strNew;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 F8.renderTextNode(templateNodeNew);
@@ -67,13 +68,12 @@ class F8 {
                     [...nodeElement.childNodes].forEach(
                       (textNode, indexNode) => {
                         if (
-                          textNode.textContent !==
-                          [...textNodeTemplate.childNodes][indexNode]
-                            .textContent
+                          textNode.innerHTML !==
+                          [...textNodeTemplate.childNodes][indexNode].innerHTML
                         ) {
-                          textNode.textContent = [
-                            ...textNodeTemplate.childNodes,
-                          ][indexNode].textContent;
+                          textNode.innerHTML = [...textNodeTemplate.childNodes][
+                            indexNode
+                          ].innerHTML;
                         }
                       }
                     );

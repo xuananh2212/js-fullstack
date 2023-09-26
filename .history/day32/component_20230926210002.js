@@ -1,25 +1,5 @@
 class F8 {
   constructor() {}
-
-  static renderTextNode(templateNode) {
-    [...templateNode.children].forEach((node) => {
-      var nodeStr = node.childNodes[0].textContent;
-      node.innerHTML = "";
-      var ArrTextNodeStr = nodeStr.split("/");
-      var textNodeStr = nodeStr.match(/[/](.*)[/]/);
-      if (ArrTextNodeStr) {
-        ArrTextNodeStr.forEach((text) => {
-          if (text) {
-            const textNodeObj = document.createTextNode(text);
-            if (textNodeStr && textNodeStr[1] === text) {
-              textNodeObj.className = "choic";
-            }
-            node.append(textNodeObj);
-          }
-        });
-      }
-    });
-  }
   static setCustomElement(nameTag, template, data) {
     customElements.define(
       nameTag,
@@ -39,12 +19,26 @@ class F8 {
           }
           var str = template;
           keys.forEach((key) => {
-            str = str.replace(/{{.+?}}/, "/" + window[key] + "/");
+            str = str.replace(/{{.+?}}/, "+" + window[key] + "+");
           });
           const templateEl = document.createElement("template");
           templateEl.innerHTML = str;
           const templateNode = templateEl.content.cloneNode(true);
-          F8.renderTextNode(templateNode);
+          [...templateNode.children].forEach((node) => {
+            var nodeStr = node.childNodes[0].textContent;
+            node.innerHTML = "";
+            var ArrTextNodeStr = nodeStr.split("+");
+            var textNodeStr = nodeStr.match(/[+](.*)[+]/);
+            if (ArrTextNodeStr) {
+              ArrTextNodeStr.forEach((text) => {
+                if (text) {
+                  const textNodeObj = document.createTextNode(text);
+                  node.append(textNodeObj);
+                }
+              });
+            }
+          });
+
           [...templateNode.children].forEach((node) => {
             var matchString = node.outerHTML.match(/v-on:(\w+)=["'](.*)["']/);
             if (matchString) {
@@ -52,31 +46,21 @@ class F8 {
                 console.log(eval(matchString[2]));
                 var strNew = template;
                 keys.forEach((key) => {
-                  strNew = strNew.replace(/{{.+?}}/, "/" + window[key] + "/");
+                  strNew = strNew.replace(/{{.+?}}/, window[key]);
                 });
                 const templateElNew = document.createElement("template");
+                console.log(strNew);
                 templateElNew.innerHTML = strNew;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
-                F8.renderTextNode(templateNodeNew);
                 [..._this.children].forEach((nodeElement, index) => {
-                  var textNodeTemplate = [...templateNodeNew.children][index];
+                  console.log(nodeElement.childNodes);
                   if (
                     nodeElement.innerHTML.trim() !==
-                    textNodeTemplate.innerHTML.trim()
+                    [...templateNodeNew.children][index].innerHTML.trim()
                   )
-                    [...nodeElement.childNodes].forEach(
-                      (textNode, indexNode) => {
-                        if (
-                          textNode.textContent !==
-                          [...textNodeTemplate.childNodes][indexNode]
-                            .textContent
-                        ) {
-                          textNode.textContent = [
-                            ...textNodeTemplate.childNodes,
-                          ][indexNode].textContent;
-                        }
-                      }
-                    );
+                    nodeElement.innerHTML = [...templateNodeNew.children][
+                      index
+                    ].innerHTML;
                 });
               });
             }
@@ -92,6 +76,7 @@ class F8 {
       var data = object.data;
       var templateold = object.template;
       if (data) {
+        console.log(data());
         Object.keys(data()).forEach((key) => {
           window[key] = data()[key];
         });

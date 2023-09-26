@@ -65,10 +65,11 @@ class F8 {
         });
 
         if (templateold) {
-          F8.setCustomElement(name, templateold);
+          F8.setCustomElement(name, templateold, data);
         }
       } else {
-        F8.setCustomElement(name, templateold);
+        console.log("vao");
+        F8.setCustomElement(name, templateold, data);
       }
     }
   }

@@ -18,3 +18,5 @@ F8.component("counter-app", {
 F8.component("header-component", {
   template: `<h1>HEADER</h1>`,
 });
+
+F8.component();

@@ -30,7 +30,6 @@ class F8 {
               node.addEventListener(matchString[1], function (e) {
                 console.log(eval(matchString[2]));
                 var str1 = template;
-                // var index = [];
                 keys.forEach((key) => {
                   str1 = str1.replace(/{{.+?}}/, window[key]);
                 });
@@ -39,13 +38,9 @@ class F8 {
                 templateElNew.innerHTML = str1;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 [..._this.children].forEach((nodeElement, index) => {
-                  if (
-                    nodeElement.innerHTML.trim() !==
-                    [...templateNodeNew.children][index].innerHTML.trim()
-                  )
-                    nodeElement.innerHTML = [...templateNodeNew.children][
-                      index
-                    ].innerHTML;
+                  nodeElement.innerHTML = [...templateNodeNew.children][
+                    index
+                  ].innerHTML;
                 });
               });
             }

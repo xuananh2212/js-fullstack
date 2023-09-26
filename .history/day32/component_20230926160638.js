@@ -39,13 +39,9 @@ class F8 {
                 templateElNew.innerHTML = str1;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 [..._this.children].forEach((nodeElement, index) => {
-                  if (
-                    nodeElement.innerHTML.trim() !==
-                    [...templateNodeNew.children][index].innerHTML.trim()
-                  )
-                    nodeElement.innerHTML = [...templateNodeNew.children][
-                      index
-                    ].innerHTML;
+                  nodeElement.innerHTML = [...templateNodeNew.children][
+                    index
+                  ].innerHTML;
                 });
               });
             }

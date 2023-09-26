@@ -7,7 +7,7 @@ F8.component("counter-app", {
      <h1>{{ title }}</h1>
      <h2> Đã Đếm: {{ count }} lần</h2>
      <h1>{{ title }}</h1>
-     <h2> Đã Đếm: {{ count }} lần</h2>
+     <h2><span class="count-span">{{ count }}</span>lần</h2>
      <button v-on:click="count--">-</button>
      <button v-on:click="count++">+</button>
      <button v-on:click="title='xin chao F9'">change</button>

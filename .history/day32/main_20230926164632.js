@@ -11,7 +11,7 @@ F8.component("counter-app", {
      <button v-on:click="count--">-</button>
      <button v-on:click="count++">+</button>
      <button v-on:click="title='xin chao F9'">change</button>
-      <button v-on:dblclick="title='xin chao F1'">change double click</button>
+      <button v-on:dblclick="title='xin chao F1'">change</button>
     `,
 });
 

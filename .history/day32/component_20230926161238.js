@@ -29,12 +29,13 @@ class F8 {
             if (matchString) {
               node.addEventListener(matchString[1], function (e) {
                 console.log(eval(matchString[2]));
-                var strNew = template;
+                var str1 = template;
                 keys.forEach((key) => {
-                  strNew = strNew.replace(/{{.+?}}/, window[key]);
+                  str1 = str1.replace(/{{.+?}}/, window[key]);
                 });
+                console.log(str1);
                 const templateElNew = document.createElement("template");
-                templateElNew.innerHTML = strNew;
+                templateElNew.innerHTML = str1;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 [..._this.children].forEach((nodeElement, index) => {
                   if (

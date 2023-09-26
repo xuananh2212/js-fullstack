@@ -34,7 +34,7 @@ class F8 {
                   strNew = strNew.replace(/{{.+?}}/, window[key]);
                 });
                 const templateElNew = document.createElement("template");
-                templateElNew.innerHTML = strNew;
+                templateElNew.innerHTML = str1;
                 const templateNodeNew = templateElNew.content.cloneNode(true);
                 [..._this.children].forEach((nodeElement, index) => {
                   if (

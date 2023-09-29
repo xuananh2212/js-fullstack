@@ -76,6 +76,7 @@ recognition.addEventListener("result", (e) => {
   }
 });
 recognition.addEventListener("error", (e) => {
+  console.log("error");
   recognition.stop();
   isActive = false;
   console.log("không thể nhận biết giọng nói này");

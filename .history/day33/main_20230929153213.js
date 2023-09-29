@@ -66,7 +66,7 @@ recognition.addEventListener("result", (e) => {
       handleDelay(`https://www.google.com/maps/place/${text}`);
     } else if (text.includes("bài hát")) {
       var musicName = text.split("bài hát")[1];
-      handleDelay(`https://zingmp3.vn/tim-kiem/tat-ca?q=${musicName}`);
+      handleDelay(`https://zingmp3.vn/tim-kiem/${musicName}`);
     } else if (text.includes("video")) {
       handleDelay(`https://www.youtube.com/results?search_query=${text}`);
     } else {
@@ -76,6 +76,7 @@ recognition.addEventListener("result", (e) => {
   }
 });
 recognition.addEventListener("error", (e) => {
+  console.log("error");
   recognition.stop();
   isActive = false;
   console.log("không thể nhận biết giọng nói này");

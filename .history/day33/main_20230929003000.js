@@ -19,7 +19,7 @@ const span = $(".status span");
 
 var text = null;
 
-var isActive = false;
+var isActive = true;
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -32,12 +32,12 @@ recognition.continuous = false;
 
 btnVoic.addEventListener("click", (e) => {
   e.preventDefault();
-  recognition.start();
   btnVoic.classList.toggle("talking");
   status.classList.add("talking");
   result.classList.remove("is-show");
   span.innerHTML = "Hãy nói nội dung bạn muốn";
   span.classList.remove("voic-end");
+  recognition.start();
 });
 
 function handleDelay(message) {
@@ -49,7 +49,7 @@ function handleDelay(message) {
 }
 
 recognition.addEventListener("result", (e) => {
-  text = e.results[0][0].transcript.toLowerCase().replaceAll(",", "");
+  text = e.results[0][0].transcript.toLowerCase();
   console.log(text);
   if (text === "google") {
     handleDelay("https://www.google.com");
@@ -66,17 +66,18 @@ recognition.addEventListener("result", (e) => {
       handleDelay(`https://www.google.com/maps/place/${text}`);
     } else if (text.includes("bài hát")) {
       var musicName = text.split("bài hát")[1];
-      handleDelay(`https://zingmp3.vn/tim-kiem/tat-ca?q=${musicName}`);
+      handleDelay(`https://zingmp3.vn/tim-kiem/${musicName}`);
     } else if (text.includes("video")) {
       handleDelay(`https://www.youtube.com/results?search_query=${text}`);
     } else {
+      console.log("dfadf");
       isActive = false;
       result.innerHTML = "đang thực hiện: " + text;
     }
   }
 });
 recognition.addEventListener("error", (e) => {
-  recognition.stop();
+  console.log("error");
   isActive = false;
   console.log("không thể nhận biết giọng nói này");
 });

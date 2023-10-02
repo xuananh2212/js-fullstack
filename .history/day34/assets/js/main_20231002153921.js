@@ -121,23 +121,19 @@ function handleAllDesc() {
 
   var descTodoCompleted = null;
   if (btnCompleted.matches(".is-active")) {
-    descTodoCompleted = listTodoCompleted.querySelectorAll(".desc");
     console.log(descTodoCompleted);
+    descTodoCompleted = listTodoCompleted.querySelectorAll(".desc");
   }
   if (descTodoCompleted) {
-    if (descAll) {
-      descAll = [...descAll, ...descTodoCompleted];
-    } else {
-      descAll = [...descTodoCompleted];
-    }
+    descAll = [...descAll, ...descTodoCompleted];
   }
   return descAll;
 }
 
 inputSearch.addEventListener("input", function (e) {
   var descAll = handleAllDesc();
-  console.log(descAll);
   var value = this.value;
+  console.log(value + "1");
   if (this.value) {
     if (descAll) {
       descAll.forEach((desc) => {

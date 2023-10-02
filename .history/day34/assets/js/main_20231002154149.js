@@ -127,8 +127,6 @@ function handleAllDesc() {
   if (descTodoCompleted) {
     if (descAll) {
       descAll = [...descAll, ...descTodoCompleted];
-    } else {
-      descAll = [...descTodoCompleted];
     }
   }
   return descAll;
@@ -136,8 +134,8 @@ function handleAllDesc() {
 
 inputSearch.addEventListener("input", function (e) {
   var descAll = handleAllDesc();
-  console.log(descAll);
   var value = this.value;
+  console.log(value + "1");
   if (this.value) {
     if (descAll) {
       descAll.forEach((desc) => {

@@ -127,8 +127,6 @@ function handleAllDesc() {
   if (descTodoCompleted) {
     if (descAll) {
       descAll = [...descAll, ...descTodoCompleted];
-    } else {
-      descAll = [...descTodoCompleted];
     }
   }
   return descAll;

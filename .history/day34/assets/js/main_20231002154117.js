@@ -125,19 +125,15 @@ function handleAllDesc() {
     console.log(descTodoCompleted);
   }
   if (descTodoCompleted) {
-    if (descAll) {
-      descAll = [...descAll, ...descTodoCompleted];
-    } else {
-      descAll = [...descTodoCompleted];
-    }
+    descAll = [...descAll, ...descTodoCompleted];
   }
   return descAll;
 }
 
 inputSearch.addEventListener("input", function (e) {
   var descAll = handleAllDesc();
-  console.log(descAll);
   var value = this.value;
+  console.log(value + "1");
   if (this.value) {
     if (descAll) {
       descAll.forEach((desc) => {

@@ -11,7 +11,6 @@ import {
   spanValue,
   btnCompleted,
   inputSearch,
-  loadWrap,
 } from "./renderUi.js";
 import { getTodos, postTodos, deleteTodos, patchTodos } from "./crud.js";
 let li = null;
@@ -27,8 +26,6 @@ btnAddTodo.addEventListener("click", function (e) {
 
 async function getId(desc, listTodos) {
   const todos = await getTodos();
-  loadWrap.classList.remove("is-loading");
-  console.log("dm");
   var id = 0;
   if (todos.length > 0) {
     id = +todos[0].id;
@@ -45,19 +42,13 @@ async function getId(desc, listTodos) {
 formTodos.addEventListener("submit", function (e) {
   e.preventDefault();
   if (isAddNew) {
-    postTodos({ desc: inputTodos.value, status: false }).then(function () {
-      loadWrap.classList.remove("is-loading");
-      getId(inputTodos.value, listTodos);
-    });
+    postTodos({ desc: inputTodos.value, status: false });
+    getId(inputTodos.value, listTodos);
   } else {
     if (li.parentElement === listTodos) {
-      patchTodos(id, inputTodos.value, false).then(function () {
-        loadWrap.classList.remove("is-loading");
-      });
+      patchTodos(id, inputTodos.value, false);
     } else if (li.parentElement === listTodoCompleted) {
-      patchTodos(id, inputTodos.value, true).then(function () {
-        loadWrap.classList.remove("is-loading");
-      });
+      patchTodos(id, inputTodos.value, true);
     }
     desc.innerText = inputTodos.value;
   }
@@ -79,11 +70,8 @@ function handle(e) {
       var value = Number(spanValue.innerText);
       spanValue.innerHTML = --value;
     }
-    deleteTodos(id).then(function () {
-      li.remove();
-      console.log(loadWrap);
-      loadWrap.classList.remove("is-loading");
-    });
+    li.remove();
+    deleteTodos(id);
   } else if (e.target.matches(".btn-edit")) {
     modal.classList.add("is-show");
     inputTodos.value = desc.innerText;
@@ -92,27 +80,26 @@ function handle(e) {
     var value = Number(spanValue.innerHTML);
     if (li.parentElement === listTodos) {
       patchTodos(id, desc.innerText, true)
-        .then((data) => {
-          loadWrap.classList.remove("is-loading");
-          renderLi(data.desc, data.id, listTodoCompleted);
+        .then((response) => {
+          console.log(response);
+          console.log("update thanh cong");
+          renderLi(desc.innerText, id, listTodoCompleted);
           spanValue.innerHTML = ++value;
           li.remove();
-          console.log("update thanh cong");
         })
         .catch((err) => {
-          console.log("error");
+          console.log("vui lòng nhấn chậm");
         });
     } else if (li.parentElement === listTodoCompleted) {
       patchTodos(id, desc.innerText, false)
-        .then((data) => {
-          loadWrap.classList.remove("is-loading");
+        .then((response) => {
           console.log("update thanh cong");
-          renderLi(data.desc, data.id, listTodos);
+          renderLi(desc.innerText, id, listTodos);
           spanValue.innerHTML = --value;
           li.remove();
         })
         .catch((err) => {
-          console.log("error");
+          console.log("vui lòng nhấn chậm");
         });
     }
   }

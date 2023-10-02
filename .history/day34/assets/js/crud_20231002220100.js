@@ -1,16 +1,12 @@
 var apiUrl = "https://ncr72g-8080.csb.app/todos";
 
 export const getTodos = async () => {
-  const loading = document.querySelector(".load-wrap");
-  loading.classList.add("is-loading");
   const response = await fetch(apiUrl);
   const data = await response.json();
   return data;
 };
 
 export const postTodos = async (data) => {
-  const loading = document.querySelector(".load-wrap");
-  loading.classList.add("is-loading");
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: {
@@ -21,8 +17,6 @@ export const postTodos = async (data) => {
 };
 
 export const patchTodos = async (id, desc, status) => {
-  const loading = document.querySelector(".load-wrap");
-  loading.classList.add("is-loading");
   const response = await fetch(apiUrl + "/" + id, {
     method: "PATCH",
     headers: {
@@ -30,15 +24,11 @@ export const patchTodos = async (id, desc, status) => {
     },
     body: JSON.stringify({ desc, status }),
   });
-  const data = await response.json();
-  return data;
+  con;
 };
 
 export const deleteTodos = async (id) => {
-  const loading = document.querySelector(".load-wrap");
-  loading.classList.add("is-loading");
   const response = await fetch(apiUrl + "/" + id, {
     method: "DELETE",
   });
-  return response;
 };

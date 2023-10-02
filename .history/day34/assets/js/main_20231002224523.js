@@ -27,7 +27,7 @@ btnAddTodo.addEventListener("click", function (e) {
 
 async function getId(desc, listTodos) {
   const todos = await getTodos();
-  loadWrap.classList.remove("is-loading");
+  // loadWrap.classList.remove("is-loading");
   console.log("dm");
   var id = 0;
   if (todos.length > 0) {

@@ -184,7 +184,6 @@
      top: 50%;
      right: 15px;
      transform: translateY(-50%);
-     cursor: pointer;
  }
 
  .form-search .btn-add {
@@ -308,7 +307,6 @@
  }
 
  .load-wrap.is-loading {
-     display: block;
      position: fixed;
      inset: 0;
      background-color: #cccccc88;

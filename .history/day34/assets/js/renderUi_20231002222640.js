@@ -35,8 +35,6 @@ export function renderLi(desc, id, todos) {
 export async function renderTodos() {
   try {
     const todos = await getTodos();
-    const loadWrap = document.querySelector(".load-wrap");
-    loadWrap.classList.remove("is-loading");
     if (todos.length > 0) {
       todos.forEach((todos) => {
         if (!todos.status) {

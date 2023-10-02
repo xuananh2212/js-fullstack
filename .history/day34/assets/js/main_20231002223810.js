@@ -27,8 +27,6 @@ btnAddTodo.addEventListener("click", function (e) {
 
 async function getId(desc, listTodos) {
   const todos = await getTodos();
-  loadWrap.classList.remove("is-loading");
-  console.log("dm");
   var id = 0;
   if (todos.length > 0) {
     id = +todos[0].id;
@@ -47,8 +45,8 @@ formTodos.addEventListener("submit", function (e) {
   if (isAddNew) {
     postTodos({ desc: inputTodos.value, status: false }).then(function () {
       loadWrap.classList.remove("is-loading");
-      getId(inputTodos.value, listTodos);
     });
+    getId(inputTodos.value, listTodos);
   } else {
     if (li.parentElement === listTodos) {
       patchTodos(id, inputTodos.value, false).then(function () {

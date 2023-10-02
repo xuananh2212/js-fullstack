@@ -27,8 +27,6 @@ btnAddTodo.addEventListener("click", function (e) {
 
 async function getId(desc, listTodos) {
   const todos = await getTodos();
-  loadWrap.classList.remove("is-loading");
-  console.log("dm");
   var id = 0;
   if (todos.length > 0) {
     id = +todos[0].id;
@@ -45,19 +43,13 @@ async function getId(desc, listTodos) {
 formTodos.addEventListener("submit", function (e) {
   e.preventDefault();
   if (isAddNew) {
-    postTodos({ desc: inputTodos.value, status: false }).then(function () {
-      loadWrap.classList.remove("is-loading");
-      getId(inputTodos.value, listTodos);
-    });
+    postTodos({ desc: inputTodos.value, status: false });
+    getId(inputTodos.value, listTodos);
   } else {
     if (li.parentElement === listTodos) {
-      patchTodos(id, inputTodos.value, false).then(function () {
-        loadWrap.classList.remove("is-loading");
-      });
+      patchTodos(id, inputTodos.value, false);
     } else if (li.parentElement === listTodoCompleted) {
-      patchTodos(id, inputTodos.value, true).then(function () {
-        loadWrap.classList.remove("is-loading");
-      });
+      patchTodos(id, inputTodos.value, true);
     }
     desc.innerText = inputTodos.value;
   }
@@ -79,10 +71,10 @@ function handle(e) {
       var value = Number(spanValue.innerText);
       spanValue.innerHTML = --value;
     }
+
     deleteTodos(id).then(function () {
       li.remove();
-      console.log(loadWrap);
-      loadWrap.classList.remove("is-loading");
+      loadWrap.classList.remove(".is-loading");
     });
   } else if (e.target.matches(".btn-edit")) {
     modal.classList.add("is-show");

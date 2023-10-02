@@ -1,16 +1,12 @@
 var apiUrl = "https://ncr72g-8080.csb.app/todos";
 
 export const getTodos = async () => {
-  const loading = document.querySelector(".load-wrap");
-  loading.classList.add("is-loading");
   const response = await fetch(apiUrl);
   const data = await response.json();
   return data;
 };
 
 export const postTodos = async (data) => {
-  const loading = document.querySelector(".load-wrap");
-  loading.classList.add("is-loading");
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: {

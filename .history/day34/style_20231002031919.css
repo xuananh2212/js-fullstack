@@ -1,0 +1,266 @@
+ *,
+ *:before,
+ *:after {
+     box-sizing: border-box;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     font: inherit;
+ }
+
+ img,
+ picture,
+ svg,
+ video {
+     display: block;
+     max-width: 100%;
+ }
+
+ input,
+ select,
+ textarea {
+     background-color: transparent;
+     outline: none;
+ }
+
+ button {
+     cursor: pointer;
+     background-color: transparent;
+     outline: none;
+     border: 0;
+ }
+
+
+ body {
+     min-height: 100vh;
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 1;
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+
+ ul {
+     list-style: none;
+ }
+
+
+ .modal {
+     visibility: hidden;
+     opacity: 0;
+     position: fixed;
+     inset: 0;
+     z-index: 9999;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .modal-overlay {
+     position: absolute;
+     inset: 0;
+     background-color: rgba(0, 0, 0, 0.2);
+     cursor: pointer;
+ }
+
+
+ .modal-main {
+     overscroll-behavior-y: contain;
+ }
+
+ .form-todos {
+     padding: 15px 0 10px 0;
+     min-width: 450px;
+     min-height: 150px;
+     position: relative;
+     background-color: #fff;
+     border-radius: 12px;
+ }
+
+ .form-todos .form-group {
+     margin-top: 24px;
+ }
+
+ .form-todos .form-group:first-child {
+     padding: 0 20px;
+ }
+
+ input {
+     display: block;
+     width: 100%;
+     padding: 20px 10px;
+     border-radius: 12px;
+     border: 1px solid #ccc;
+     background-color: #eeeeee;
+ }
+
+ .btn {
+     min-width: 80px;
+     color: #fff;
+     padding: 14px 10px;
+     text-align: center;
+     background-color: #059669;
+     border-radius: 12px;
+ }
+
+ .form-todos .form-group:last-child {
+     padding: 18px;
+     border-top: 1px solid #eee8e8;
+     display: flex;
+     gap: 30px;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .form-todos .btn-cancel {
+     min-width: 100px;
+     background-color: #fff;
+     color: #292727;
+     border: 1px solid #ccc;
+ }
+
+ .form-todos .btn-cancel:hover {
+     background-color: #e7e2e2;
+ }
+
+ .container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+ }
+
+ .todos {
+     width: 750px;
+ }
+
+ .heading-lv2 {
+     font-size: 2.5rem;
+     font-weight: 600;
+     text-align: center;
+ }
+
+ .heading-lv2 span {
+     -webkit-background-clip: text;
+     background-clip: text;
+     color: transparent;
+     background-color: #60a5fa;
+     background-image: linear-gradient(90deg, #60a5fa 0%, #059669 100%);
+
+ }
+
+ .form-search {
+     margin-top: 18px;
+     display: flex;
+     align-items: center;
+     gap: 18px;
+ }
+
+ .form-search .btn-add {
+     flex-shrink: 0;
+ }
+
+ .form-search .form-group {
+     flex: 1;
+     display: flex;
+     position: relative;
+ }
+
+ .form-search .form-group .search {
+     position: absolute;
+     width: 50px;
+     height: 50px;
+     background-color: blue;
+     text-align: center;
+     line-height: 50px;
+     color: #fff;
+     border-radius: 12px;
+     top: 50%;
+     right: 15px;
+     transform: translateY(-50%);
+ }
+
+ .form-search .btn-add {
+     padding-left: 18px;
+     padding-right: 18px;
+ }
+
+ ul li+li {
+     margin-top: 14px;
+ }
+
+ .list-todos {
+     margin-top: 18px;
+ }
+
+ .row-feature {
+     display: flex;
+     gap: 10px;
+ }
+
+ .btn-icon {
+     width: 40px;
+     height: 40px;
+     color: #fff;
+     text-align: center;
+     line-height: 40px;
+     border-radius: 12px;
+ }
+
+ .btn-remove {
+     background-color: rgb(160, 9, 9);
+ }
+
+ .btn-edit {
+     background-color: blue;
+
+ }
+
+ .btn-check {
+     background-color: #9b9999;
+
+ }
+
+ .items-todo__inner {
+     display: flex;
+     align-items: center;
+     justify-content: space-between;
+ }
+
+ .items-todo {
+     padding: 14px 14px;
+     border: 1px solid #ccc;
+     border-radius: 12px;
+ }
+
+ .btn-cta {
+     margin-top: 18px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     gap: 10px;
+     min-width: 150px;
+     width: 200px;
+     padding: 14px;
+     color: #fff;
+     background-color: #ccc;
+     border-radius: 12px;
+ }
+
+ .btn-cta__icon {
+     width: 20px;
+     height: 20px;
+     border-radius: 50%;
+     border: 2px solid #fff;
+     display: flex;
+     align-items: center;
+ }
+
+ .btn-cta__icon .fa-solid.fa-arrow-right {
+     display: block;
+ }
+
+ .btn-completed {
+     color: #fff;
+ }

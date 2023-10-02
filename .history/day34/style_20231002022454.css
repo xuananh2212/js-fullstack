@@ -1,0 +1,119 @@
+ *,
+ *:before,
+ *:after {
+     box-sizing: border-box;
+ }
+
+ * {
+     margin: 0;
+     padding: 0;
+     font: inherit;
+ }
+
+ img,
+ picture,
+ svg,
+ video {
+     display: block;
+     max-width: 100%;
+ }
+
+ input,
+ select,
+ textarea {
+     background-color: transparent;
+     outline: none;
+ }
+
+ button {
+     cursor: pointer;
+     background-color: transparent;
+     outline: none;
+     border: 0;
+ }
+
+
+ body {
+     min-height: 100vh;
+     font-weight: 400;
+     font-size: 16px;
+     line-height: 1;
+     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+
+
+
+ .modal {
+     position: fixed;
+     inset: 0;
+     z-index: 9999;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .modal-overlay {
+     position: absolute;
+     inset: 0;
+     background-color: rgba(0, 0, 0, 0.2);
+     cursor: pointer;
+ }
+
+
+ .modal-main {
+     overscroll-behavior-y: contain;
+ }
+
+ .form-todos {
+     padding: 15px 0 10px 0;
+     min-width: 450px;
+     min-height: 150px;
+     position: relative;
+     background-color: #fff;
+     border-radius: 12px;
+ }
+
+ .form-todos .form-group {
+     margin-top: 24px;
+ }
+
+ .form-todos .form-group:first-child {
+     padding: 0 20px;
+ }
+
+ input {
+     display: block;
+     width: 100%;
+     padding: 20px 10px;
+     border-radius: 12px;
+     border: 1px solid #ccc;
+ }
+
+ .btn {
+     min-width: 80px;
+     color: #fff;
+     padding: 14px 10px;
+     text-align: center;
+     background-color: green;
+     border-radius: 12px;
+ }
+
+ .form-todos .form-group:last-child {
+     padding: 18px;
+     border-top: 1px solid #ccc;
+     display: flex;
+     gap: 30px;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .form-todos .btn-cancel {
+     min-width: 100px;
+     background-color: #fff;
+     color: #292727;
+     border: 1px solid #ccc;
+ }
+
+ .form-todos .btn-cancel:hover {
+     background-color: #eee0e0;
+ }

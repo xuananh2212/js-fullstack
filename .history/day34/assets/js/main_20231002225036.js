@@ -54,12 +54,10 @@ formTodos.addEventListener("submit", function (e) {
     if (li.parentElement === listTodos) {
       patchTodos(id, inputTodos.value, false).then(function () {
         loadWrap.classList.remove("is-loading");
-        inputTodos.value = "";
       });
     } else if (li.parentElement === listTodoCompleted) {
       patchTodos(id, inputTodos.value, true).then(function () {
         loadWrap.classList.remove("is-loading");
-        inputTodos.value = "";
       });
     }
     desc.innerText = inputTodos.value;

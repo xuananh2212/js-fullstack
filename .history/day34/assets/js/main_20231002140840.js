@@ -152,8 +152,6 @@ inputSearch.addEventListener("input", function (e) {
   } else {
     if (descAll) {
       descAll.forEach((desc) => {
-        var html = desc.innerText;
-        desc.innerText = html;
         desc.parentElement.parentElement.classList.remove("is-hidden");
       });
     }

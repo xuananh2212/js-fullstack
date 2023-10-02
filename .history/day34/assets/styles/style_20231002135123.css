@@ -296,8 +296,3 @@
  .items-todo.is-hidden {
      display: none;
  }
-
- .items-todo .desc span {
-     font-weight: 700;
-     background-color: #dbeafe;
- }

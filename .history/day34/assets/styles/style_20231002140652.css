@@ -297,7 +297,7 @@
      display: none;
  }
 
- .items-todo .desc span {
+ .desc span {
      font-weight: 700;
      background-color: #dbeafe;
  }

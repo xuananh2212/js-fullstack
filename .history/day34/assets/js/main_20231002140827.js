@@ -132,7 +132,7 @@ function handleAllDesc() {
 inputSearch.addEventListener("input", function (e) {
   var descAll = handleAllDesc();
   var value = this.value;
-  console.log(value + "1");
+  console.log(value);
   if (this.value) {
     if (descAll) {
       descAll.forEach((desc) => {
@@ -152,8 +152,6 @@ inputSearch.addEventListener("input", function (e) {
   } else {
     if (descAll) {
       descAll.forEach((desc) => {
-        var html = desc.innerText;
-        desc.innerText = html;
         desc.parentElement.parentElement.classList.remove("is-hidden");
       });
     }

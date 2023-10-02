@@ -98,6 +98,5 @@ export function renderUi() {
   inputTodos = $(".form-todos input");
   spanValue = $(".btn-completed span");
   btnCompleted = $(".btn-completed");
-  inputSearch = $("#input-search");
   renderTodos();
 }

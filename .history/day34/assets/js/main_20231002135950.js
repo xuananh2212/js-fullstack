@@ -132,18 +132,16 @@ function handleAllDesc() {
 inputSearch.addEventListener("input", function (e) {
   var descAll = handleAllDesc();
   var value = this.value;
-  console.log(value + "1");
   if (this.value) {
     if (descAll) {
       descAll.forEach((desc) => {
         var content = desc.innerText.trim();
         if (content.includes(value)) {
-          desc.parentElement.parentElement.classList.remove("is-hidden");
           var index = content.indexOf(value);
-          var html = content.slice(0, index);
+          var html = content.splice(0, index);
           html += `<span>${value}</span>`;
-          html += content.slice(index + value.length);
-          desc.innerHTML = html;
+          html += content.splice(index);
+          console.log(html);
         } else {
           desc.parentElement.parentElement.classList.add("is-hidden");
         }
@@ -152,8 +150,6 @@ inputSearch.addEventListener("input", function (e) {
   } else {
     if (descAll) {
       descAll.forEach((desc) => {
-        var html = desc.innerText;
-        desc.innerText = html;
         desc.parentElement.parentElement.classList.remove("is-hidden");
       });
     }

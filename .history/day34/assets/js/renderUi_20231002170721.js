@@ -35,15 +35,7 @@ export async function renderTodos() {
   try {
     const todos = await getTodos();
     if (todos.length > 0) {
-      todos.forEach((todos) => {
-        if (!todos.status) {
-          renderLi(todos.desc, todos.id, listTodos);
-        } else {
-          renderLi(todos.desc, todos.id, listTodoCompleted);
-          valueTodoCompleted++;
-        }
-      });
-      spanValue.innerHTML = valueTodoCompleted;
+      ì;
     }
   } catch (e) {
     console.log(e);

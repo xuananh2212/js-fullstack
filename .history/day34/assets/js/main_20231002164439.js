@@ -29,16 +29,8 @@ btnAddTodo.addEventListener("click", function (e) {
 
 async function getId(desc, listTodos) {
   const todos = await getTodos();
-  var id = 0;
-  if (todos.length > 0) {
-    id = +todos[0].id;
-    todos.forEach((todo) => {
-      if (+todo.id > id) {
-        id = todo.id;
-      }
-    });
-  }
-  id++;
+  var id = Number(todos.length) + 1;
+  console.log(id);
   renderLi(desc, id, listTodos);
 }
 
@@ -69,13 +61,13 @@ function handle(e) {
   desc = li.querySelector(".desc");
   id = li.dataset.id;
   if (e.target.matches(".btn-remove")) {
+    li.remove();
+    deleteTodos(id);
     if (li.parentElement === listTodoCompleted) {
       var value = Number(spanValue.innerText);
       console.log(value);
       spanValue.innerHTML = --value;
     }
-    li.remove();
-    deleteTodos(id);
   } else if (e.target.matches(".btn-edit")) {
     modal.classList.add("is-show");
     inputTodos.value = desc.innerText;

@@ -29,16 +29,8 @@ btnAddTodo.addEventListener("click", function (e) {
 
 async function getId(desc, listTodos) {
   const todos = await getTodos();
-  var id = 0;
-  if (todos.length > 0) {
-    id = +todos[0].id;
-    todos.forEach((todo) => {
-      if (+todo.id > id) {
-        id = todo.id;
-      }
-    });
-  }
-  id++;
+  var id = Number(todos.length) + 1;
+  console.log(id);
   renderLi(desc, id, listTodos);
 }
 

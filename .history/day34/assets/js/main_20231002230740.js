@@ -39,6 +39,8 @@ async function getId(desc, listTodos) {
       }
     });
   }
+  ++idNew;
+  console.log(idNew);
   renderLi(desc, idNew, listTodos);
   inputTodos.value = "";
 }

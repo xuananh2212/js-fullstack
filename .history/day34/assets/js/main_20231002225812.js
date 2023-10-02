@@ -28,18 +28,17 @@ btnAddTodo.addEventListener("click", function (e) {
 async function getId(desc, listTodos) {
   const todos = await getTodos();
   loadWrap.classList.remove("is-loading");
-  var idNew = 0;
+  var id = 0;
   if (todos.length > 0) {
-    idNew = todos[0].id;
-    console.log(idNew, "bd");
+    id = +todos[0].id;
     todos.forEach((todo) => {
-      if (todo.id > idNew) {
-        console.log(todo.id, "todo.id");
-        idNew = todo.id;
+      if (+todo.id > id) {
+        id = todo.id;
       }
     });
   }
-  renderLi(desc, idNew, listTodos);
+  id++;
+  renderLi(desc, id, listTodos);
   inputTodos.value = "";
 }
 

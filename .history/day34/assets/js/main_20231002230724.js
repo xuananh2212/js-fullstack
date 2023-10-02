@@ -31,14 +31,16 @@ async function getId(desc, listTodos) {
   var idNew = 0;
   if (todos.length > 0) {
     idNew = todos[0].id;
-    console.log(idNew, "bd");
+    console.log(idNew);
     todos.forEach((todo) => {
       if (todo.id > idNew) {
-        console.log(todo.id, "todo.id");
+        console.log(todo.id);
         idNew = todo.id;
       }
     });
   }
+  ++idNew;
+  console.log(idNew);
   renderLi(desc, idNew, listTodos);
   inputTodos.value = "";
 }

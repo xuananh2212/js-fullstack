@@ -28,21 +28,19 @@ btnAddTodo.addEventListener("click", function (e) {
 async function getId(desc, listTodos) {
   const todos = await getTodos();
   loadWrap.classList.remove("is-loading");
-  try {
-    var idNew = 0;
-    if (todos.length > 0) {
-      idNew = todos[0].id;
-      todos.forEach((todo) => {
-        if (todo.id > idNew) {
-          idNew = todo.id;
-        }
-      });
-    }
-    renderLi(desc, idNew, listTodos);
-    inputTodos.value = "";
-  } catch (e) {
-    console.log("Error");
+  var idNew = 0;
+  if (todos.length > 0) {
+    idNew = todos[0].id;
+    console.log(idNew, "bd");
+    todos.forEach((todo) => {
+      if (todo.id > idNew) {
+        console.log(todo.id, "todo.id");
+        idNew = todo.id;
+      }
+    });
   }
+  renderLi(desc, idNew, listTodos);
+  inputTodos.value = "";
 }
 
 formTodos.addEventListener("submit", function (e) {
@@ -86,6 +84,7 @@ function handleData(e) {
     }
     deleteTodos(id).then(function () {
       li.remove();
+      console.log(loadWrap);
       loadWrap.classList.remove("is-loading");
     });
   } else if (e.target.matches(".btn-edit")) {
@@ -185,7 +184,7 @@ inputSearch.addEventListener("input", function (e) {
         desc.parentElement.parentElement.classList.remove("is-hidden");
       });
       var value = listTodoCompleted.querySelectorAll("li").length;
-      spanValue.innerHTML = value;
+      console.log(value);
     }
   }
 });

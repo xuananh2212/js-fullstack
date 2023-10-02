@@ -32,8 +32,10 @@ async function getId(desc, listTodos) {
     var idNew = 0;
     if (todos.length > 0) {
       idNew = todos[0].id;
+      console.log(idNew, "bd");
       todos.forEach((todo) => {
         if (todo.id > idNew) {
+          console.log(todo.id, "todo.id");
           idNew = todo.id;
         }
       });
@@ -86,6 +88,7 @@ function handleData(e) {
     }
     deleteTodos(id).then(function () {
       li.remove();
+      console.log(loadWrap);
       loadWrap.classList.remove("is-loading");
     });
   } else if (e.target.matches(".btn-edit")) {

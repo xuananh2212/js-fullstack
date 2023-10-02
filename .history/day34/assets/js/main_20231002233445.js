@@ -28,21 +28,19 @@ btnAddTodo.addEventListener("click", function (e) {
 async function getId(desc, listTodos) {
   const todos = await getTodos();
   loadWrap.classList.remove("is-loading");
-  try {
-    var idNew = 0;
-    if (todos.length > 0) {
-      idNew = todos[0].id;
-      todos.forEach((todo) => {
-        if (todo.id > idNew) {
-          idNew = todo.id;
-        }
-      });
-    }
-    renderLi(desc, idNew, listTodos);
-    inputTodos.value = "";
-  } catch (e) {
-    console.log("Error");
+  var idNew = 0;
+  if (todos.length > 0) {
+    idNew = todos[0].id;
+    console.log(idNew, "bd");
+    todos.forEach((todo) => {
+      if (todo.id > idNew) {
+        console.log(todo.id, "todo.id");
+        idNew = todo.id;
+      }
+    });
   }
+  renderLi(desc, idNew, listTodos);
+  inputTodos.value = "";
 }
 
 formTodos.addEventListener("submit", function (e) {
@@ -86,6 +84,7 @@ function handleData(e) {
     }
     deleteTodos(id).then(function () {
       li.remove();
+      console.log(loadWrap);
       loadWrap.classList.remove("is-loading");
     });
   } else if (e.target.matches(".btn-edit")) {
@@ -135,14 +134,16 @@ btnCompleted.addEventListener("click", function (e) {
 });
 
 function handleAllDesc() {
-  var descAll = [];
+  var descAll = null;
   if (listTodos.children.length > 0) {
     var descTodos = listTodos.querySelectorAll(".desc");
     descAll = [...descTodos];
   }
 
   var descTodoCompleted = listTodoCompleted.querySelectorAll(".desc");
+  console.log(descTodoCompleted, "dfads");
   if (descTodoCompleted) {
+    console.log("1");
     if (descAll) {
       descAll = [...descAll, ...descTodoCompleted];
     } else {
@@ -155,16 +156,11 @@ function handleAllDesc() {
 inputSearch.addEventListener("input", function (e) {
   var descAll = handleAllDesc();
   var value = this.value;
-  var satisfiedQuantity = 0;
   if (this.value) {
-    if (descAll.length > 0) {
+    if (descAll) {
       descAll.forEach((desc) => {
         var content = desc.innerText.trim();
         if (content.includes(value)) {
-          var objectList = desc.parentElement.parentElement.parentElement;
-          if (objectList === listTodoCompleted) {
-            ++satisfiedQuantity;
-          }
           desc.parentElement.parentElement.classList.remove("is-hidden");
           var index = content.indexOf(value);
           var html = content.slice(0, index);
@@ -175,17 +171,14 @@ inputSearch.addEventListener("input", function (e) {
           desc.parentElement.parentElement.classList.add("is-hidden");
         }
       });
-      spanValue.innerHTML = satisfiedQuantity;
     }
   } else {
-    if (descAll.length > 0) {
+    if (descAll) {
       descAll.forEach((desc) => {
         var html = desc.innerText;
         desc.innerText = html;
         desc.parentElement.parentElement.classList.remove("is-hidden");
       });
-      var value = listTodoCompleted.querySelectorAll("li").length;
-      spanValue.innerHTML = value;
     }
   }
 });

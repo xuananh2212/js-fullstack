@@ -163,13 +163,12 @@ function handleSearch(e) {
           var index = content.indexOf(value);
           var html = content.slice(0, index);
           desc.innerText = html;
-          html = value;
+          html = `<span>${value}</span>`;
           const span = document.createElement("span");
-          span.innerText = html;
-          desc.appendChild(span);
+          textNode.innerHTML = html;
+
           html = content.slice(index + value.length);
-          const textNode = document.createTextNode(`${html}`);
-          desc.appendChild(textNode);
+          desc.innerHTML = html;
         } else {
           desc.parentElement.parentElement.classList.add("is-hidden");
         }

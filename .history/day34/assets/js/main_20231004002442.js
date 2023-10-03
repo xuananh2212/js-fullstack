@@ -163,7 +163,7 @@ function handleSearch(e) {
           var index = content.indexOf(value);
           var html = content.slice(0, index);
           desc.innerText = html;
-          html = value;
+          html = `<span>${value}</span>`;
           const span = document.createElement("span");
           span.innerText = html;
           desc.appendChild(span);

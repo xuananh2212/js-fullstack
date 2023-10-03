@@ -15,7 +15,7 @@ import {
   formSearch,
 } from "./renderUi.js";
 import { getTodos, postTodos, deleteTodos, patchTodos } from "./crud.js";
-import removeVietnames from "./convertWord.js";
+import removeVietnames from "./removeVietnames.js";
 let li = null;
 let desc = null;
 let id = null;
@@ -155,7 +155,6 @@ function handleSearch(e) {
     if (descAll.length > 0) {
       descAll.forEach((desc) => {
         var content = desc.innerText.trim();
-        console.log(content);
         var convertValue = removeVietnames(value);
         var convertContent = removeVietnames(content);
         if (convertContent.includes(convertValue)) {
@@ -164,10 +163,10 @@ function handleSearch(e) {
             ++satisfiedQuantity;
           }
           desc.parentElement.parentElement.classList.remove("is-hidden");
-          var index = convertContent.indexOf(convertValue);
+          var index = content.indexOf(value);
           var html = content.slice(0, index);
           desc.innerText = html;
-          html = content.slice(index, index + value.length);
+          html = value;
           const span = document.createElement("span");
           span.innerText = html;
           desc.appendChild(span);

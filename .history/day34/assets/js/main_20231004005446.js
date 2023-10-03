@@ -164,10 +164,10 @@ function handleSearch(e) {
             ++satisfiedQuantity;
           }
           desc.parentElement.parentElement.classList.remove("is-hidden");
-          var index = convertContent.indexOf(convertValue);
+          var index = content.indexOf(value);
           var html = content.slice(0, index);
           desc.innerText = html;
-          html = content.slice(index, index + value.length);
+          html = value;
           const span = document.createElement("span");
           span.innerText = html;
           desc.appendChild(span);

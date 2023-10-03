@@ -167,7 +167,7 @@ function handleSearch(e) {
           var index = convertContent.indexOf(convertValue);
           var html = content.slice(0, index);
           desc.innerText = html;
-          html = content.slice(index, index + value.length);
+          html = value;
           const span = document.createElement("span");
           span.innerText = html;
           desc.appendChild(span);

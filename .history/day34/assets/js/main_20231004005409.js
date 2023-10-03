@@ -158,16 +158,16 @@ function handleSearch(e) {
         console.log(content);
         var convertValue = removeVietnames(value);
         var convertContent = removeVietnames(content);
-        if (convertContent.includes(convertValue)) {
+        if (content.includes(value)) {
           var objectList = desc.parentElement.parentElement.parentElement;
           if (objectList === listTodoCompleted) {
             ++satisfiedQuantity;
           }
           desc.parentElement.parentElement.classList.remove("is-hidden");
-          var index = convertContent.indexOf(convertValue);
+          var index = content.indexOf(value);
           var html = content.slice(0, index);
           desc.innerText = html;
-          html = content.slice(index, index + value.length);
+          html = value;
           const span = document.createElement("span");
           span.innerText = html;
           desc.appendChild(span);

@@ -18,23 +18,21 @@ export let inputSearch = null;
 export let formSearch = null;
 export const loadWrap = $(".load-wrap");
 export function renderLi(desc, id, todos) {
-  var liElement = document.createElement("li");
-  var divElement = document.createElement("div");
-  var descElement = document.createElement("p");
-  descElement.className = "desc";
-  divElement.className = "items-todo__inner";
-  liElement.className = "items-todo";
-  liElement.setAttribute("data-id", id);
-  descElement.textContent = desc;
-  var html = ` <div class="row-feature">
+  var html = `<li class="items-todo" data-id="${id}">
+                    <div class="items-todo__inner">
+                        <p class="desc">
+                          
+                        </p>
+                        <div class="row-feature">
                             <button class="btn-icon btn-remove"><i class="fa-regular fa-trash-can"></i></button>
                             <button class="btn-icon btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
                             <button class="btn-icon btn-check"><i class="fa-solid fa-check-to-slot"></i></button>
-                        </div>`;
-  liElement.appendChild(divElement);
-  divElement.appendChild(descElement);
-  liElement.insertAdjacentHTML("beforeend", html);
-  todos.appendChild(liElement);
+                        </div>
+                    </div>
+                </li>`;
+  todos.insertAdjacentHTML("beforeend", html);
+  var descElement = $(".items-todo__inner .desc");
+  descElement.textContent = desc;
 }
 
 export async function renderTodos() {

@@ -37,8 +37,6 @@ formTodos.addEventListener("submit", function (e) {
         renderLi(data.desc, data.id, listTodos);
         inputTodos.value = "";
       });
-    } else {
-      inputTodos.value = "";
     }
   } else {
     if (inputTodos.value.trim()) {

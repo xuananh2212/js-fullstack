@@ -37,27 +37,20 @@ formTodos.addEventListener("submit", function (e) {
         renderLi(data.desc, data.id, listTodos);
         inputTodos.value = "";
       });
-    } else {
-      inputTodos.value = "";
     }
   } else {
-    if (inputTodos.value.trim()) {
-      if (li.parentElement === listTodos) {
-        patchTodos(id, inputTodos.value, false).then(function () {
-          loadWrap.classList.remove("is-loading");
-          inputTodos.value = "";
-        });
-      } else if (li.parentElement === listTodoCompleted) {
-        patchTodos(id, inputTodos.value, true).then(function () {
-          loadWrap.classList.remove("is-loading");
-          inputTodos.value = "";
-        });
-      }
-      desc.innerText = inputTodos.value;
-    } else {
-      var liRemove = document.querySelector(`.items-todo[data-id =${id}]`);
-      liRemove.remove();
+    if (li.parentElement === listTodos) {
+      patchTodos(id, inputTodos.value, false).then(function () {
+        loadWrap.classList.remove("is-loading");
+        inputTodos.value = "";
+      });
+    } else if (li.parentElement === listTodoCompleted) {
+      patchTodos(id, inputTodos.value, true).then(function () {
+        loadWrap.classList.remove("is-loading");
+        inputTodos.value = "";
+      });
     }
+    desc.innerText = inputTodos.value;
   }
 
   modal.classList.remove("is-show");

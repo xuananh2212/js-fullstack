@@ -25,7 +25,6 @@ export function renderLi(desc, id, todos) {
   divElement.className = "items-todo__inner";
   liElement.className = "items-todo";
   liElement.setAttribute("data-id", id);
-  descElement.textContent = desc;
   var html = ` <div class="row-feature">
                             <button class="btn-icon btn-remove"><i class="fa-regular fa-trash-can"></i></button>
                             <button class="btn-icon btn-edit"><i class="fa-solid fa-pen-to-square"></i></button>
@@ -34,7 +33,18 @@ export function renderLi(desc, id, todos) {
   liElement.appendChild(divElement);
   divElement.appendChild(descElement);
   liElement.insertAdjacentHTML("beforeend", html);
-  todos.appendChild(liElement);
+
+  // var html1 = `<li class="items-todo" data-id="${id}">
+  //                   <div class="items-todo__inner">
+  //                       <p class="desc">
+
+  //                       </p>
+
+  //                   </div>
+  //               </li>`;
+  todos.insertAdjacentHTML("beforeend", html);
+
+  descElement.textContent = desc;
 }
 
 export async function renderTodos() {

@@ -34,6 +34,15 @@ export function renderLi(desc, id, todos) {
   liElement.appendChild(divElement);
   divElement.appendChild(descElement);
   liElement.insertAdjacentHTML("beforeend", html);
+
+  // var html1 = `<li class="items-todo" data-id="${id}">
+  //                   <div class="items-todo__inner">
+  //                       <p class="desc">
+
+  //                       </p>
+
+  //                   </div>
+  //               </li>`;
   todos.appendChild(liElement);
 }
 

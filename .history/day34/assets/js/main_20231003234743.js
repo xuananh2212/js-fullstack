@@ -29,35 +29,24 @@ btnAddTodo.addEventListener("click", function (e) {
 formTodos.addEventListener("submit", function (e) {
   e.preventDefault();
   if (isAddNew) {
-    if (inputTodos.value.trim()) {
-      postTodos({ desc: inputTodos.value, status: false }).then(function (
-        data
-      ) {
+    postTodos({ desc: inputTodos.value, status: false }).then(function (data) {
+      loadWrap.classList.remove("is-loading");
+      renderLi(data.desc, data.id, listTodos);
+      inputTodos.value = "";
+    });
+  } else {
+    if (li.parentElement === listTodos) {
+      patchTodos(id, inputTodos.value, false).then(function () {
         loadWrap.classList.remove("is-loading");
-        renderLi(data.desc, data.id, listTodos);
         inputTodos.value = "";
       });
-    } else {
-      inputTodos.value = "";
+    } else if (li.parentElement === listTodoCompleted) {
+      patchTodos(id, inputTodos.value, true).then(function () {
+        loadWrap.classList.remove("is-loading");
+        inputTodos.value = "";
+      });
     }
-  } else {
-    if (inputTodos.value.trim()) {
-      if (li.parentElement === listTodos) {
-        patchTodos(id, inputTodos.value, false).then(function () {
-          loadWrap.classList.remove("is-loading");
-          inputTodos.value = "";
-        });
-      } else if (li.parentElement === listTodoCompleted) {
-        patchTodos(id, inputTodos.value, true).then(function () {
-          loadWrap.classList.remove("is-loading");
-          inputTodos.value = "";
-        });
-      }
-      desc.innerText = inputTodos.value;
-    } else {
-      var liRemove = document.querySelector(`.items-todo[data-id =${id}]`);
-      liRemove.remove();
-    }
+    desc.innerText = inputTodos.value;
   }
 
   modal.classList.remove("is-show");

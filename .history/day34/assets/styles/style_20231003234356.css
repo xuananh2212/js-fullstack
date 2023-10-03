@@ -242,8 +242,6 @@
 
  .items-todo {
      display: flex;
-     justify-content: space-between;
-     align-items: center;
      padding: 14px 14px;
      border: 1px solid #ccc;
      border-radius: 12px;

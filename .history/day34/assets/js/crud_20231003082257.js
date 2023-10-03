@@ -1,6 +1,7 @@
 var apiUrl = "https://ncr72g-8080.csb.app/todos";
-const loading = document.querySelector(".load-wrap");
+
 function isLoading() {
+  const loading = document.querySelector(".load-wrap");
   loading.classList.add("is-loading");
 }
 

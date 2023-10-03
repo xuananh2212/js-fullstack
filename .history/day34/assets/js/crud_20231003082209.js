@@ -1,6 +1,7 @@
 var apiUrl = "https://ncr72g-8080.csb.app/todos";
-const loading = document.querySelector(".load-wrap");
+
 function isLoading() {
+  const loading = document.querySelector(".load-wrap");
   loading.classList.add("is-loading");
 }
 
@@ -48,13 +49,9 @@ export const patchTodos = async (id, desc, status) => {
 };
 
 export const deleteTodos = async (id) => {
-  try {
-    isLoading();
-    const response = await fetch(apiUrl + "/" + id, {
-      method: "DELETE",
-    });
-    return response;
-  } catch (e) {
-    console.log(e.message);
-  }
+  isLoading();
+  const response = await fetch(apiUrl + "/" + id, {
+    method: "DELETE",
+  });
+  return response;
 };

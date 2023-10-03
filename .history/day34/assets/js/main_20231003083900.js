@@ -158,7 +158,7 @@ function handleSearch(e) {
   var descAll = handleAllDesc();
   var value = inputSearch.value;
   var satisfiedQuantity = 0;
-  if (value) {
+  if (this.value) {
     if (descAll.length > 0) {
       descAll.forEach((desc) => {
         var content = desc.innerText.trim();

@@ -105,6 +105,5 @@ export function renderUi() {
   spanValue = $(".btn-completed span");
   btnCompleted = $(".btn-completed");
   inputSearch = $("#input-search");
-  formSearch = $(".form-search");
   renderTodos();
 }

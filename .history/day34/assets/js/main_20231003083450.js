@@ -153,12 +153,12 @@ function handleAllDesc() {
   return descAll;
 }
 
-function handleSearch(e) {
+inputSearch.addEventListener("input", function (e) {
   e.preventDefault();
   var descAll = handleAllDesc();
-  var value = inputSearch.value;
+  var value = this.value;
   var satisfiedQuantity = 0;
-  if (value) {
+  if (this.value) {
     if (descAll.length > 0) {
       descAll.forEach((desc) => {
         var content = desc.innerText.trim();
@@ -190,11 +190,4 @@ function handleSearch(e) {
       spanValue.innerHTML = value;
     }
   }
-}
-
-inputSearch.addEventListener("input", function (e) {
-  handleSearch(e);
-});
-formSearch.addEventListener("submit", function (e) {
-  handleSearch(e);
 });

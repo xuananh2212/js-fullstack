@@ -15,7 +15,6 @@ export let valueTodoCompleted = 0;
 export let spanValue = null;
 export let btnCompleted = null;
 export let inputSearch = null;
-export let formSearch = null;
 export const loadWrap = $(".load-wrap");
 export function renderLi(desc, id, todos) {
   var html = `<li class="items-todo" data-id="${id}">
@@ -105,6 +104,5 @@ export function renderUi() {
   spanValue = $(".btn-completed span");
   btnCompleted = $(".btn-completed");
   inputSearch = $("#input-search");
-  formSearch = $(".form-search");
   renderTodos();
 }

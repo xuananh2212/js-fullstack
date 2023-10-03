@@ -25,8 +25,8 @@ export const postTodos = async (data) => {
       },
       body: JSON.stringify(data),
     });
-    const dataNow = await response.json();
-    return dataNow;
+    const data = await response.json();
+    return data;
   } catch (e) {
     console.log(e.message);
   }

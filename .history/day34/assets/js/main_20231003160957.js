@@ -26,12 +26,33 @@ btnAddTodo.addEventListener("click", function (e) {
   isAddNew = true;
 });
 
+async function getId(desc, listTodos) {
+  const todos = await getTodos();
+  loadWrap.classList.remove("is-loading");
+  try {
+    var idNew = 0;
+    if (todos.length > 0) {
+      idNew = todos[0].id;
+      todos.forEach((todo) => {
+        if (todo.id > idNew) {
+          idNew = todo.id;
+        }
+      });
+    }
+    renderLi(desc, idNew, listTodos);
+    inputTodos.value = "";
+  } catch (e) {
+    console.log("Error");
+  }
+}
+
 formTodos.addEventListener("submit", function (e) {
   e.preventDefault();
   if (isAddNew) {
     postTodos({ desc: inputTodos.value, status: false }).then(function (data) {
       loadWrap.classList.remove("is-loading");
-      renderLi(data.desc, data.id, listTodos);
+      console.log(data);
+      // renderLi(data.desc, data.id, listTodos);
     });
   } else {
     if (li.parentElement === listTodos) {

@@ -31,6 +31,7 @@ formTodos.addEventListener("submit", function (e) {
   if (isAddNew) {
     postTodos({ desc: inputTodos.value, status: false }).then(function (data) {
       loadWrap.classList.remove("is-loading");
+      console.log(data);
       renderLi(data.desc, data.id, listTodos);
     });
   } else {

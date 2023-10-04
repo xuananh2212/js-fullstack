@@ -154,7 +154,9 @@ function handleSearch(e) {
   if (value) {
     if (descAll.length > 0) {
       descAll.forEach((desc) => {
-        var content = desc.innerText.trim();
+        var content = desc.textContent;
+        console.log(content);
+        console.log(content);
         var convertValue = removeVietnames(value);
         var convertContent = removeVietnames(content);
         if (convertContent.includes(convertValue)) {

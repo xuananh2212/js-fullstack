@@ -79,7 +79,7 @@ body {
 }
 
 .title {
-    margin-top: 24px;
+    mt24px;
     font-size: 2.5rem;
     font-weight: 700;
     text-align: center;
@@ -135,8 +135,7 @@ body {
     color: green;
     border: 1px solid green;
     text-decoration: none;
-    border-radius: 999px;
-    text-align: center;
+    border-radius: 12px;
 }
 
 

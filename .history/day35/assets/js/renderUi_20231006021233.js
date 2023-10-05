@@ -17,7 +17,7 @@ export function returnHtml(
                 ${
                   type.length > 0
                     ? `<div class= "type">${type
-                        .map((item) => `<a href= "#!">${item}</a>`)
+                        .map((item) => `<a href= "#">${item}</a>`)
                         .join("")}</div>`
                     : ""
                 }

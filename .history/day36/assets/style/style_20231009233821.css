@@ -1,0 +1,158 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font: inherit;
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+}
+
+input,
+select,
+textarea {
+    background-color: transparent;
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+    background-color: transparent;
+    outline: none;
+    border: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1;
+    background-color: black;
+}
+
+.container {
+    display: flex;
+    gap: 10px;
+    min-height: 100vh;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.top {
+    width: 100%;
+}
+
+.bottom {
+
+    width: 100%;
+    background-color: green;
+
+}
+
+.bottom.incorrect {
+    background-color: red;
+}
+
+.bottom.corrent {
+    background-color: green;
+}
+
+.content {
+    height: 60%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(17, 100, 100);
+    border-radius: 12px;
+}
+
+.start-game.is-hidden {
+    display: none;
+}
+
+.start-game {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.btn-start {
+    min-width: 150px;
+    padding: 20px 5px;
+    border-radius: 12px;
+    border: 1px solid #fff;
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+.start-times-game {
+    position: fixed;
+    height: 150px;
+    width: 100%;
+    background-color: rgb(53, 13, 53);
+    top: 50%;
+    translate: 0 -50%;
+    text-align: center;
+    line-height: 150px;
+}
+
+.start-times-game span {
+    font-size: 2.5rem;
+    color: #fff;
+
+}
+
+.start-times-game.is-hidden {
+    display: none;
+}
+
+.questions {
+    width: 100%;
+    margin: 50px auto;
+    padding: 20px 10px;
+}
+
+.questions .title {
+    min-height: 200px;
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+.title .heading-lv2 {
+    font-size: 2.5rem;
+    text-align: center;
+}
+
+.title span {
+    margin-top: 24px;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.answers {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.answers .btn {
+    flex: 1 0 auto;
+    min-width: 100px;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 12px;
+
+}

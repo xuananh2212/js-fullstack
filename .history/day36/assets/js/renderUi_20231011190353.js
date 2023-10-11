@@ -29,14 +29,14 @@ export const audiocorrect = $(".audio-correct");
 export let divScore = null;
 export let currentQuestion = null;
 
-export function renderCorrectBottom() {
+export function RenderCorrectBottom() {
   divBottom.innerHTML = "";
   var html = `<span>CORRECT</span>`;
   divBottom.innerHTML = html;
   divBottom.className = "bottom";
   container.append(divBottom);
 }
-export function renderTop() {
+export function RenderTop() {
   var html = `  <div class="timer-total">
                 <div class="timer-progress">
                 </div>
@@ -68,9 +68,9 @@ export function renderTop() {
 
             </div>`;
   divTop.innerHTML = html;
-  timeClear = hanldTimeQuestion();
+  timeClear = HanldTimeQuestion();
 }
-function hanldTimeQuestion() {
+function HanldTimeQuestion() {
   const timerProgress = $(".timer-progress");
   var timeNow = 0;
   timerProgress.style.width = 100 + "%";
@@ -85,18 +85,18 @@ function hanldTimeQuestion() {
       btnAll.forEach((btn) => {
         btn.style.pointerEvents = "none";
       });
-      renderUi();
+      RenderUi();
       clearInterval(idTimeQuestion);
     }
   }, 10);
   return idTimeQuestion;
 }
 
-export function hanldTotalQuestions(response) {
+export function HanldTotalQuestions(response) {
   totalQuestions = response.headers.get("x-total-count");
 }
 
-function renderTotal(score, streak) {
+function RenderTotal(score, streak) {
   var html = ` <div class="total-game__inner">
             <h3 class="heading-lv3">Game performance</h3>
             <div class="accuracy">
@@ -147,16 +147,16 @@ function renderTotal(score, streak) {
   divTotal.append(btnStartAgain);
 }
 
-function hanldDisplay() {
+function HanldDisplay() {
   const btnAll = $$(".btn:not(.correct , .incorrect)");
   btnAll.forEach((btn) => {
     btn.classList.add("is-hidden");
   });
   PAGE_NUMBER++;
-  renderUi();
+  RenderUi();
 }
 
-function hanldStreakAndScore(flag) {
+function HanldStreakAndScore(flag) {
   clearInterval(timeClear);
   const streaks = [...$$(".steak__items")];
   const plusPoint = $(".plus-point");
@@ -192,12 +192,12 @@ function hanldStreakAndScore(flag) {
   }
 }
 
-function hanldQuestions(e, numberCorrect) {
+function HanldQuestions(e, numberCorrect) {
   e.target.style.pointerEvents = "none";
-  console.log(arrAnswer);
-  const answerFind = arrAnswer.find((answer) => {
-    return answer.id === +e.target.getAttribute("data-index");
-  });
+  console.log(e.target.datasetIndex);
+  const answerFind = arrAnswer.find(
+    (answer) => answer.id === e.target.datasetIndex
+  );
   if (answerFind.correct) {
     indexCorrect++;
     console.log(indexCorrect);
@@ -206,14 +206,14 @@ function hanldQuestions(e, numberCorrect) {
       totalCorrect++;
       divBottom.classList.add("is-show");
       divBottom.classList.add("correct");
-      hanldStreakAndScore(true);
-      hanldDisplay();
+      HanldStreakAndScore(true);
+      HanldDisplay();
     } else if (indexCorrect === numberCorrect) {
       totalCorrect++;
       divBottom.classList.add("is-show");
       divBottom.classList.add("correct");
-      hanldStreakAndScore(true);
-      hanldDisplay();
+      HanldStreakAndScore(true);
+      HanldDisplay();
     }
   } else {
     divBottom.classList.add("is-show");
@@ -230,12 +230,12 @@ function hanldQuestions(e, numberCorrect) {
     btnAll.forEach((btn) => {
       btn.classList.add("is-hidden");
     });
-    hanldStreakAndScore(false);
-    hanldDisplay();
+    HanldStreakAndScore(false);
+    HanldDisplay();
   }
 }
 
-export function renderHtml({ title, numberCorrect, answers }) {
+export function RenderHtml({ title, numberCorrect, answers }) {
   arrAnswer = answers;
   indexCorrect = 0;
   questions.innerHTML = "";
@@ -258,8 +258,8 @@ export function renderHtml({ title, numberCorrect, answers }) {
     button.innerHTML = answer.text;
     div.append(button);
     button.addEventListener("click", (e) => {
-      renderCorrectBottom();
-      hanldQuestions(e, numberCorrect);
+      RenderCorrectBottom();
+      HanldQuestions(e, numberCorrect);
     });
   });
   questions.append(div);
@@ -275,22 +275,22 @@ export async function getQuestions() {
   return getQuestions;
 }
 
-export function renderUi() {
+export function RenderUi() {
   console.log("vao");
   const get = getQuestions();
   get.then(({ data, response }) => {
     if (response.ok) {
       if (data.length > 0) {
         totalQuestions = response.headers.get("x-total-count");
-        renderHtml(data[0]);
-        renderCorrectBottom();
-        timeClear = hanldTimeQuestion();
+        RenderHtml(data[0]);
+        RenderCorrectBottom();
+        timeClear = HanldTimeQuestion();
         currentQuestion = $(".current__questions");
         currentQuestion.innerHTML = PAGE_NUMBER;
       } else {
         container.classList.add("is-hidden");
         divTotal.classList.add("is-show");
-        renderTotal(+divScore.innerHTML, numberSteak);
+        RenderTotal(+divScore.innerHTML, numberSteak);
       }
     }
   });

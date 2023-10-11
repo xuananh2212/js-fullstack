@@ -206,14 +206,14 @@ function hanldQuestions(e, numberCorrect) {
       totalCorrect++;
       divBottom.classList.add("is-show");
       divBottom.classList.add("correct");
-      hanldStreakAndScore(true);
-      hanldDisplay();
+      HanldStreakAndScore(true);
+      HanldDisplay();
     } else if (indexCorrect === numberCorrect) {
       totalCorrect++;
       divBottom.classList.add("is-show");
       divBottom.classList.add("correct");
-      hanldStreakAndScore(true);
-      hanldDisplay();
+      HanldStreakAndScore(true);
+      HanldDisplay();
     }
   } else {
     divBottom.classList.add("is-show");
@@ -230,8 +230,8 @@ function hanldQuestions(e, numberCorrect) {
     btnAll.forEach((btn) => {
       btn.classList.add("is-hidden");
     });
-    hanldStreakAndScore(false);
-    hanldDisplay();
+    HanldStreakAndScore(false);
+    HanldDisplay();
   }
 }
 
@@ -259,7 +259,7 @@ export function renderHtml({ title, numberCorrect, answers }) {
     div.append(button);
     button.addEventListener("click", (e) => {
       renderCorrectBottom();
-      hanldQuestions(e, numberCorrect);
+      HanldQuestions(e, numberCorrect);
     });
   });
   questions.append(div);

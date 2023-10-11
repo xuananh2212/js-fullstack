@@ -1,10 +1,10 @@
 import { btnStart, startGame } from "./renderUi.js";
 import {
   getQuestions,
-  renderHtml,
-  renderCorrectBottom,
-  renderTop,
-  hanldTotalQuestions,
+  RenderHtml,
+  RenderCorrectBottom,
+  RenderTop,
+  HanldTotalQuestions,
 } from "./renderUi.js";
 
 btnStart.addEventListener("click", function (e) {
@@ -32,10 +32,10 @@ function StartTimeGame() {
       get.then(({ data, response }) => {
         if (response.ok) {
           if (data.length > 0) {
-            renderHtml(data[0]);
-            hanldTotalQuestions(response);
-            renderCorrectBottom();
-            renderTop();
+            RenderHtml(data[0]);
+            HanldTotalQuestions(response);
+            RenderCorrectBottom();
+            RenderTop();
           }
         }
       });

@@ -637,11 +637,3 @@ body {
 
 
 }
-
-@keyframes mytoast {
-
-  20%,
-  100% {
-    translate: 0;
-  }
-}

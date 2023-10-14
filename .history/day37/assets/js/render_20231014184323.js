@@ -315,8 +315,8 @@ export function renderSignInAndUp() {
         activeBtnLogin();
         emailEL.value = email;
         passwd.value = password;
-        createToast("Đăng Kí Thành công", 1);
       }, 1000);
+      createToast("Đăng Kí Thành công", 1);
     } else {
       modalTextRegister.innerHTML = "Email đã tồn tại";
       modalTextRegister.classList.add("error");
@@ -390,9 +390,6 @@ async function handleSignout(token) {
     localStorage.removeItem("data");
     renderSignInAndUp();
     loadingEL.classList.add("is-hidden");
-    createToast("đăng xuất thành công", 1);
-  } else {
-    createToast("đăng xuất thất bại", 0);
   }
 }
 

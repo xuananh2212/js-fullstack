@@ -315,8 +315,8 @@ export function renderSignInAndUp() {
         activeBtnLogin();
         emailEL.value = email;
         passwd.value = password;
-        createToast("Đăng Kí Thành công", 1);
       }, 1000);
+      createToast("Đăng Kí Thành công", 1);
     } else {
       modalTextRegister.innerHTML = "Email đã tồn tại";
       modalTextRegister.classList.add("error");
@@ -334,11 +334,9 @@ export function renderSignInAndUp() {
       localStorage.setItem("data", JSON.stringify(tokens.data));
       root.innerHTML = "";
       renderBlogs();
-      createToast("Đăng nhập Thành công", 1);
     } else {
       modalTextLogin.innerHTML = "tài khoản và mật khẩu không chính xác";
       modalTextLogin.classList.add("error");
-      createToast("Đăng nhập Thất bại", 0);
     }
     loadingEL.classList.add("is-hidden");
   }
@@ -390,9 +388,6 @@ async function handleSignout(token) {
     localStorage.removeItem("data");
     renderSignInAndUp();
     loadingEL.classList.add("is-hidden");
-    createToast("đăng xuất thành công", 1);
-  } else {
-    createToast("đăng xuất thất bại", 0);
   }
 }
 

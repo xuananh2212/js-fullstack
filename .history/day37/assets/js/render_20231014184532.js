@@ -390,9 +390,6 @@ async function handleSignout(token) {
     localStorage.removeItem("data");
     renderSignInAndUp();
     loadingEL.classList.add("is-hidden");
-    createToast("đăng xuất thành công", 1);
-  } else {
-    createToast("đăng xuất thất bại", 0);
   }
 }
 

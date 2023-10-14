@@ -325,7 +325,6 @@ export function renderSignInAndUp() {
     } else {
       modalTextRegister.innerHTML = "Email đã tồn tại";
       modalTextRegister.classList.add("error");
-      modalTextRegister.classList.remove("success");
       createToast("Email đã tồi tại", 0);
     }
     loadingEL.classList.add("is-hidden");

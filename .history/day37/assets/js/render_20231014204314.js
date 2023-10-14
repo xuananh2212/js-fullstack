@@ -288,10 +288,9 @@ export function renderSignInAndUp() {
     var email = emailEL.value;
     var password = passwd.value;
     var name = fullName.value;
-    console.log(password.length);
     if (btnRegister.classList.contains("active")) {
       if (
-        passwd.value.length >= 8 &&
+        passwd.value.length >= 6 &&
         fullName.value !== "" &&
         fullName.value !== null
       ) {
@@ -320,13 +319,12 @@ export function renderSignInAndUp() {
           createToast("Đăng Kí Thành công", 1);
         }, 1000);
       } else {
+        modalTextRegister.innerHTML = "Email đã tồn tại";
+        modalTextRegister.classList.add("error");
         createToast("Đăng Kí thất bại", 0);
       }
     } else {
-      modalTextRegister.innerHTML = "Email đã tồn tại";
-      modalTextRegister.classList.add("error");
-      modalTextRegister.classList.remove("success");
-      createToast("Email đã tồi tại", 0);
+      createToast("lỗi Server", 0);
     }
     loadingEL.classList.add("is-hidden");
   }

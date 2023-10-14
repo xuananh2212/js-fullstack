@@ -359,6 +359,7 @@ async function getBlogs(blogsEL) {
     const blogItems = document.createElement("div");
     blogItems.className = "blog-items";
     blogItems.innerHTML = html;
+    blogItems.appendChild(contentEl);
     const contentEl = document.createElement("div");
     contentEl.className = "content";
     const h2El = document.createElement("h2");
@@ -373,7 +374,6 @@ async function getBlogs(blogsEL) {
                             <a href="#!">#${blog.userId.name}</a>
                         </button>`;
     contentEl.insertAdjacentHTML("beforeend", htmlEl);
-    blogItems.appendChild(contentEl);
     blogsEL.append(blogItems);
   });
   loadingEL.classList.add("is-hidden");

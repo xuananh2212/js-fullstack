@@ -348,19 +348,19 @@ async function getBlogs(blogsEL) {
   );
   blogs.data.forEach((blog) => {
     var charFirst = blog.userId.name.split(/\s+/);
-    var html = `
+    var html = ` <div class="blog-items">
                     <div class="blog-user">
                         <div class="avatar">${charFirst[
                           charFirst.length - 1
                         ].charAt(0)}</div>
                         <span class="name">${blog.userId.name}</span>
                     </div>
-                `;
-    const blogItems = document.createElement("div");
-    blogItems.className = "blog-items";
-    blogItems.innerHTML = html;
-    const contentEl = document.createElement("div");
-    contentEl.className = "content";
+                    <div class="content">
+                       
+                    </div>
+                </div>`;
+    blogsEL.insertAdjacentHTML("beforeend", html);
+    const contentEl = $(".blog-items .content");
     const h2El = document.createElement("h2");
     h2El.className = "title";
     const descEL = document.createElement("p");
@@ -372,9 +372,6 @@ async function getBlogs(blogsEL) {
     var htmlEl = ` <button class="btn btn-tag">
                             <a href="#!">#${blog.userId.name}</a>
                         </button>`;
-    contentEl.insertAdjacentHTML("beforeend", htmlEl);
-    blogItems.appendChild(contentEl);
-    blogsEL.append(blogItems);
   });
   loadingEL.classList.add("is-hidden");
 }

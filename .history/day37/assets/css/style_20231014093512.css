@@ -1,0 +1,389 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.nav-bar {
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  text-decoration: none;
+}
+
+input,
+button {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Arial", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  outline: none;
+  border: none;
+}
+
+.btn {
+  color: gray;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: transparent;
+}
+.btn i {
+  margin-left: 10px;
+  font-size: 24px;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.modal {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.25s linear;
+  transition-property: visibility, opacity;
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.modal.is-show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.modal-content {
+  position: fixed;
+  background-color: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 460px;
+  border-radius: 3px;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+.modal-group-btn {
+  display: flex;
+}
+.modal-group-btn button {
+  cursor: pointer;
+  max-width: 100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #999;
+  background: #eee none;
+  height: 56px;
+}
+.modal-group-btn .active {
+  background-color: #fff;
+  color: #333;
+}
+.modal-login-register {
+  padding: 0 40px 30px 40px;
+}
+.modal-login-register .modal-text {
+  display: block;
+  margin: 16px 0 0;
+  color: #1a1a1a;
+  text-align: center;
+  font-size: 1.6rem;
+}
+.modal-login-register .modal-text-register {
+  margin-top: 10px;
+  display: block;
+  text-align: center;
+}
+.modal-login-register .modal-text-register.error {
+  color: red;
+}
+.modal-login-register .modal-text-register.success {
+  color: rgb(7, 240, 7);
+}
+.modal-login-register .modal-text-login {
+  margin-top: 16px;
+  display: block;
+}
+.modal-login-register .modal-text-login.error {
+  color: red;
+}
+.modal-login-register .modal-social {
+  margin: 16px 0 0;
+  display: flex;
+  justify-content: space-between;
+}
+.modal-login-register .modal-social.hidden {
+  display: none;
+}
+.modal-login-register .modal-social .google,
+.modal-login-register .modal-social .facebook {
+  flex: 0 0 auto;
+  max-width: 100%;
+  width: calc(50% - 10px);
+  background: #e2e8f0 none;
+  border-radius: 5px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 22px;
+  color: #333;
+  height: 45px;
+  cursor: pointer;
+}
+.modal-login-register .modal-line {
+  margin-top: 30px;
+  position: relative;
+  text-align: center;
+}
+.modal-login-register .modal-line.hidden {
+  display: none;
+}
+.modal-login-register .modal-line span {
+  padding: 0 20px;
+  background-color: #fff;
+  font-size: 1.6rem;
+}
+.modal-login-register .modal-line span::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 0;
+  border-top: 1px solid #eee;
+  transform: translateY(-50%);
+  z-index: -1;
+}
+.modal-login-register .form-login-register {
+  margin-top: 20px;
+}
+.modal-login-register .form-login-register label {
+  display: block;
+}
+.modal-login-register .form-login-register .form-group + .form-group {
+  margin-top: 16px;
+}
+.modal-login-register .form-login-register input {
+  margin-top: 6px;
+  display: block;
+  width: 100%;
+  height: 44px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 12px 16px 10px;
+  font-size: 14px;
+  line-height: 22px;
+  color: #333;
+  outline: 0;
+}
+.modal-login-register .form-login-register .btn-forget {
+  display: block;
+  margin-left: auto;
+  background-color: transparent;
+  font-size: 1.4rem;
+  line-height: 22px;
+  color: gray;
+  font-style: italic;
+}
+.modal-login-register .form-login-register .btn-forget.hidden {
+  display: none;
+}
+.modal-login-register .form-login-register .btn-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 44px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  color: #f8fafc;
+  border-radius: 5px;
+  background: #1a7900;
+  cursor: pointer;
+}
+.modal-login-register .form-login-register .form-group__wrap__passwd {
+  position: relative;
+}
+.modal-login-register .form-login-register .form-group__wrap input {
+  padding-right: 48px;
+}
+.modal-login-register .form-login-register .form-group__wrap i {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  translate: 0 -50%;
+  color: #978e8e;
+  cursor: pointer;
+}
+.modal-login-register .form-login-register .form-group .email.error {
+  border: 1px solid red;
+}
+.modal-login-register .form-login-register .form-group .passwd.error {
+  border: 1px solid red;
+}
+.modal-login-register .form-login-register .form-group .full-name.error {
+  border: 1px solid red;
+}
+.modal-login-register .form-login-register .form-group span {
+  margin-top: 10px;
+  display: block;
+  color: red;
+}
+.modal-login-register .form-login-register .form-group .desc.hidden {
+  display: none;
+}
+.modal-login-register .form-login-register .form-group:nth-child(1).hidden {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */

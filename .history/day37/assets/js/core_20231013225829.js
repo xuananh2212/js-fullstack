@@ -1,12 +1,5 @@
 //modal
 
-const $ = function (tag) {
-  return document.querySelector(tag);
-};
-
-const $$ = function (tag) {
-  return document.querySelectorAll(tag);
-};
 const modal = $(".modal");
 const overlay = $(".modal-overlay");
 const modalText = $(".modal-text");
@@ -34,20 +27,6 @@ const email = $("input#email");
 const passwd = $("input#passwd");
 const fullName = $("input#full-name");
 const btnCta = $(".btn-cta");
-
-const users = [
-  {
-    fullName: "tuananh",
-    email: "xuantuananh2212@gmail.com",
-    passwd: "123456",
-  },
-];
-
-function User(fullName, email, passwd) {
-  this.fullName = fullName;
-  this.email = email;
-  this.passwd = passwd;
-}
 
 function activeBtnLogin() {
   btnLogin.classList.add("active");

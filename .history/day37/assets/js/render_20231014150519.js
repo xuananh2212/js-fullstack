@@ -340,14 +340,8 @@ export function renderSignInAndUp() {
   }
 }
 
-async function getBlogs(blogsEL, order) {
+async function getBlogs(blogsEL) {
   const { data: blogs } = await client.get(`/blogs`);
-  if (order === true) {
-    blogs.data.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }
   blogs.data.forEach((blog) => {
     var charFirst = blog.userId.name.split(/\s+/);
     var html = ` <div class="blog-items">
@@ -387,6 +381,7 @@ async function handleNewBlog(title, content, token, titleEL, contentEL) {
 }
 
 export function renderBlogs(order) {
+  console.log(queryObject);
   root.innerHTML = "";
   const user =
     localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));

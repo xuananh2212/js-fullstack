@@ -345,7 +345,7 @@ async function getBlogs(blogsEL, order) {
   if (order === true) {
     blogs.data.sort(
       (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
     );
   }
   blogs.data.forEach((blog) => {

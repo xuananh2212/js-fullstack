@@ -340,14 +340,11 @@ export function renderSignInAndUp() {
   }
 }
 
-async function getBlogs(blogsEL, order) {
-  const { data: blogs } = await client.get(`/blogs`);
-  if (order === true) {
-    blogs.data.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }
+async function getBlogs(blogsEL, query = {}) {
+  console.log(query);
+  const queryString = new URLSearchParams(query).toString();
+  const { data: blogs } = await client.get(`/blogs/${queryString}`);
+  console.log(blogs);
   blogs.data.forEach((blog) => {
     var charFirst = blog.userId.name.split(/\s+/);
     var html = ` <div class="blog-items">
@@ -380,13 +377,14 @@ async function handleSignout(token) {
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
   const { response } = await client.post("/blogs", { title, content }, token);
   if (response.ok) {
-    renderBlogs(true);
+    renderBlogs({ _sort: "_id", _order: "desc" });
     titleEL.value = "";
     contentEL.value = "";
   }
 }
 
-export function renderBlogs(order) {
+export function renderBlogs(queryObject = {}) {
+  console.log(queryObject);
   root.innerHTML = "";
   const user =
     localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));
@@ -416,7 +414,7 @@ export function renderBlogs(order) {
                     </div>
                 </form>`;
   blogsEL.innerHTML = html;
-  getBlogs(blogsEL, order);
+  getBlogs(blogsEL, queryObject);
   var form = $(".form-blogs");
   form.addEventListener("submit", function (e) {
     e.preventDefault();

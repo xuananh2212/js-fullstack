@@ -122,6 +122,7 @@ export function renderSignInAndUp() {
     modalTextRegister.innerHTML = "";
     inputAll.forEach((input) => {
       input.value = "";
+      console.log(input.value);
       input.classList.remove("error");
       spanPasswd.innerHTML = "";
       spanEmail.innerHTML = "";
@@ -340,14 +341,10 @@ export function renderSignInAndUp() {
   }
 }
 
-async function getBlogs(blogsEL, order) {
-  const { data: blogs } = await client.get(`/blogs`);
-  if (order === true) {
-    blogs.data.sort(
-      (a, b) =>
-        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }
+async function getBlogs(blogsEL, query = {}) {
+  const queryString = new URLSearchParams(query).toString();
+  const { data: blogs } = await client.get(`/blogs/${queryString}`);
+  console.log(blogs, "1111");
   blogs.data.forEach((blog) => {
     var charFirst = blog.userId.name.split(/\s+/);
     var html = ` <div class="blog-items">
@@ -380,13 +377,13 @@ async function handleSignout(token) {
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
   const { response } = await client.post("/blogs", { title, content }, token);
   if (response.ok) {
-    renderBlogs(true);
+    renderBlogs({ _sort: "_id", _order: "desc" });
     titleEL.value = "";
     contentEL.value = "";
   }
 }
 
-export function renderBlogs(order) {
+export function renderBlogs(query = {}) {
   root.innerHTML = "";
   const user =
     localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));
@@ -396,6 +393,7 @@ export function renderBlogs(order) {
   blogsEL.className = "blogs";
   containerEL.append(blogsEL);
   root.append(containerEL);
+  console.log(user);
   var charFirst = user?.name?.split(/\s+/);
   var html = `<div class="blog-user">
                     <div class="avatar">${charFirst[
@@ -416,7 +414,7 @@ export function renderBlogs(order) {
                     </div>
                 </form>`;
   blogsEL.innerHTML = html;
-  getBlogs(blogsEL, order);
+  getBlogs(blogsEL, user, query);
   var form = $(".form-blogs");
   form.addEventListener("submit", function (e) {
     e.preventDefault();

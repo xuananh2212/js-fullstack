@@ -8,4 +8,4 @@ if (localStorage.getItem("data")) {
 } else {
   renderSignInAndUp();
 }
-// renderBlogs();
+

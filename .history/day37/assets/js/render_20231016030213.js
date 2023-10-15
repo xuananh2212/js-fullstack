@@ -332,7 +332,6 @@ export function renderSignInAndUp() {
       }
       loadingEL.classList.add("is-hidden");
     } catch (e) {
-      createToast("Error 504", 0);
       location.reload();
       loadingEL.classList.add("is-hidden");
     }

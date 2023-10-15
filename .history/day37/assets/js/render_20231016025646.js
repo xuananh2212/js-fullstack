@@ -332,7 +332,6 @@ export function renderSignInAndUp() {
       }
       loadingEL.classList.add("is-hidden");
     } catch (e) {
-      createToast("Error 504", 0);
       location.reload();
       loadingEL.classList.add("is-hidden");
     }
@@ -438,7 +437,7 @@ async function handleNewBlog(title, content, token, titleEL, contentEL) {
   }
 }
 
-export function createToast(message, status) {
+function createToast(message, status) {
   var html = `<div class="toast">
         <div class="toast-inner">
             <i class="fa-solid icon-toast ${

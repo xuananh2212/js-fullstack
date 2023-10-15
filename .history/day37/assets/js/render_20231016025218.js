@@ -305,36 +305,32 @@ export function renderSignInAndUp() {
   async function handleSignUp(email, password, name) {
     try {
       loadingEL.classList.remove("is-hidden");
-      const { response, data } = await client.post("/auth/register", {
-        email,
-        password,
-        name,
-      });
-      if (response.ok) {
-        if (data.status_code === "SUCCESS") {
-          modalTextRegister.innerHTML = "Đăng Kí thành công";
-          modalTextRegister.classList.remove("error");
-          modalTextRegister.classList.add("success");
-          setTimeout(() => {
-            activeBtnLogin();
-            emailEL.value = email;
-            passwd.value = password;
-            createToast("Đăng Kí Thành công", 1);
-          }, 1000);
-        } else {
-          createToast("Đăng Kí thất bại", 0);
-        }
+    const { response, data } = await client.post("/auth/register", {
+      email,
+      password,
+      name,
+    });
+    if (response.ok) {
+      if (data.status_code === "SUCCESS") {
+        modalTextRegister.innerHTML = "Đăng Kí thành công";
+        modalTextRegister.classList.remove("error");
+        modalTextRegister.classList.add("success");
+        setTimeout(() => {
+          activeBtnLogin();
+          emailEL.value = email;
+          passwd.value = password;
+          createToast("Đăng Kí Thành công", 1);
+        }, 1000);
       } else {
-        modalTextRegister.innerHTML = "Email đã tồn tại";
-        modalTextRegister.classList.add("error");
-        modalTextRegister.classList.remove("success");
-        createToast("Email đã tồi tại", 0);
+        createToast("Đăng Kí thất bại", 0);
       }
-      loadingEL.classList.add("is-hidden");
-    } catch (e) {
-      createToast("Error 504", 0);
-      location.reload();
-      loadingEL.classList.add("is-hidden");
+    } else {
+      modalTextRegister.innerHTML = "Email đã tồn tại";
+      modalTextRegister.classList.add("error");
+      modalTextRegister.classList.remove("success");
+      createToast("Email đã tồi tại", 0);
+    }
+    loadingEL.classList.add("is-hidden");
     }
   }
   async function handleSignIn(email, password) {
@@ -438,7 +434,7 @@ async function handleNewBlog(title, content, token, titleEL, contentEL) {
   }
 }
 
-export function createToast(message, status) {
+function createToast(message, status) {
   var html = `<div class="toast">
         <div class="toast-inner">
             <i class="fa-solid icon-toast ${

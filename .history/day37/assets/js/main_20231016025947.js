@@ -9,11 +9,7 @@ if (localStorage.getItem("access_token")) {
     localStorage.getItem("access_token")
   );
   const user = getUser.data;
-  if (user) {
-    renderBlogs();
-  } else {
-    renderSignInAndUp();
-  }
+  renderBlogs();
 } else {
   renderSignInAndUp();
 }

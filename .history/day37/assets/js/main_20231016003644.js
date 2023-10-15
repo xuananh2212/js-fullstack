@@ -8,3 +8,13 @@ if (localStorage.getItem("access_token")) {
 } else {
   renderSignInAndUp();
 }
+
+async function getUser() {
+  const { data } = await client.get(
+    "/users/profile",
+    localStorage.getItem("access_token")
+  );
+  console.log(data);
+}
+
+// getUser();

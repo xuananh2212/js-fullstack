@@ -3,7 +3,6 @@ const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 export const root = $("#root");
 const loadingEL = $(".loading");
-let user = {};
 export function renderSignInAndUp() {
   var html = `<nav class="nav-bar">
             <button class="btn">
@@ -338,10 +337,9 @@ export function renderSignInAndUp() {
       password,
     });
     if (tokens.data) {
-      console.log(tokens);
-      console.log(tokens.accessToken, tokens.data.refreshToken);
-      localStorage.setItem("access_token", tokens.data.accessToken);
-      localStorage.setItem("refresh_token", tokens.data.refreshToken);
+      console.log(tokens.accessToken, tokens.refreshToken);
+      localStorage.setItem("access_token", tokens.accessToken);
+      localStorage.setItem("refresh_token", tokens.refreshToken);
       root.innerHTML = "";
       renderBlogs();
       createToast("Đăng nhập Thành công", 1);
@@ -406,29 +404,13 @@ async function handleSignout(token) {
     createToast("đăng xuất thất bại", 0);
   }
 }
-async function refreshToken() {
-  const { response, data } = await client.post(
-    "/auth/refresh-token",
-    localStorage.getItem("access_token")
-  );
-  if (response.ok) {
-    if (!data.status_code === "FAILED") {
-      location.setItem("access_token", data.accessToken);
-      location.setItem("refresh_token", data.accessToken);
-    }
-  }
-}
 
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
-  console.log(token);
   const { response } = await client.post("/blogs", { title, content }, token);
   if (response.ok) {
     renderBlogs();
     titleEL.value = "";
     contentEL.value = "";
-  } else {
-    refreshToken();
-    console.log("fadsfasd");
   }
 }
 
@@ -454,37 +436,43 @@ function createToast(message, status) {
 }
 
 async function getUser() {
-  const { data: getUser } = await client.get(
+  const { data } = await client.get(
     "/users/profile",
     localStorage.getItem("access_token")
   );
-  const user = getUser.data;
-  const containerEL = document.createElement("div");
-  containerEL.className = "container";
-  const blogsEL = document.createElement("div");
-  blogsEL.className = "blogs";
-  containerEL.append(blogsEL);
-  root.append(containerEL);
-  var charFirst = user?.name?.split(/\s+/);
-  var html = `<div class="blog-user">
-                    <div class="avatar">${charFirst[
-                      charFirst.length - 1
-                    ].charAt(0)}</div>
-                    <span class="name">${user.name}</span>
-                </div>
-                <form class="form-blogs" autocomplete="false">
-                    <div class="form-group">
-                        <h2 class="heading-lv2">Vui Lòng Nhập Tiêu Đề Bài Viết!</h2>
-                        <input type="text" name="title" id="title" placeholder="Please Enter The Title"  required>
-                        <textarea name="content" id="content" cols="30" rows="10"
-                            placeholder="Please Enter the Content"  required></textarea>
-                    </div>
-                    <div class="form-group btn-cta">
-                        <button class="btn btn-new">Write new!</button>
-                        <button type="button" class="btn btn-sign-out">Sign Out</button>
-                    </div>
-                </form>`;
-  blogsEL.innerHTML = html;
+  console.log(data);
+}
+
+export function renderBlogs() {
+  root.innerHTML = "";
+  // const user =
+  //   localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));
+  // const containerEL = document.createElement("div");
+  // containerEL.className = "container";
+  // const blogsEL = document.createElement("div");
+  // blogsEL.className = "blogs";
+  // containerEL.append(blogsEL);
+  // root.append(containerEL);
+  // var charFirst = user?.name?.split(/\s+/);
+  // var html = `<div class="blog-user">
+  //                   <div class="avatar">${charFirst[
+  //                     charFirst.length - 1
+  //                   ].charAt(0)}</div>
+  //                   <span class="name">${user.name}</span>
+  //               </div>
+  //               <form class="form-blogs" autocomplete="false">
+  //                   <div class="form-group">
+  //                       <h2 class="heading-lv2">Vui Lòng Nhập Tiêu Đề Bài Viết!</h2>
+  //                       <input type="text" name="title" id="title" placeholder="Please Enter The Title"  required>
+  //                       <textarea name="content" id="content" cols="30" rows="10"
+  //                           placeholder="Please Enter the Content"  required></textarea>
+  //                   </div>
+  //                   <div class="form-group btn-cta">
+  //                       <button class="btn btn-new">Write new!</button>
+  //                       <button type="button" class="btn btn-sign-out">Sign Out</button>
+  //                   </div>
+  //               </form>`;
+  // blogsEL.innerHTML = html;
   getBlogs(blogsEL);
   var form = $(".form-blogs");
   form.addEventListener("submit", function (e) {
@@ -494,22 +482,11 @@ async function getUser() {
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {
-      handleNewBlog(
-        title,
-        content,
-        localStorage.getItem("access_token"),
-        titleEL,
-        contentEL
-      );
+      handleNewBlog(title, content, user.accessToken, titleEL, contentEL);
     }
   });
   const btnSignOut = $(".btn-sign-out");
   btnSignOut.addEventListener("click", (e) => {
-    handleSignout(localStorage.getItem("access_token"));
+    handleSignout(user.accessToken);
   });
-}
-
-export function renderBlogs() {
-  root.innerHTML = "";
-  getUser();
 }

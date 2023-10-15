@@ -8,3 +8,12 @@ if (localStorage.getItem("access_token")) {
 } else {
   renderSignInAndUp();
 }
+
+async function refreshToken() {
+  const { data } = await client.post("/auth/refresh-token", {
+    refreshToken: localStorage.getItem("access_token"),
+  });
+  console.log(data);
+}
+
+refreshToken();

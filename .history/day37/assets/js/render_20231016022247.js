@@ -407,27 +407,20 @@ async function handleSignout(token) {
   }
 }
 async function refreshToken() {
-  const { response, data } = await client.post(
+  const { data } = await client.post(
     "/auth/refresh-token",
     localStorage.getItem("access_token")
   );
-  if (response.ok) {
-    if (!data.status_code === "FAILED") {
-      location.setItem("access_token", data.accessToken);
-      location.setItem("refresh_token", data.accessToken);
-    }
-  }
+  console.log(data);
 }
 
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
-  console.log(token);
   const { response } = await client.post("/blogs", { title, content }, token);
   if (response.ok) {
     renderBlogs();
     titleEL.value = "";
     contentEL.value = "";
   } else {
-    refreshToken();
     console.log("fadsfasd");
   }
 }
@@ -494,18 +487,12 @@ async function getUser() {
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {
-      handleNewBlog(
-        title,
-        content,
-        localStorage.getItem("access_token"),
-        titleEL,
-        contentEL
-      );
+      handleNewBlog(title, content, user.accessToken, titleEL, contentEL);
     }
   });
   const btnSignOut = $(".btn-sign-out");
   btnSignOut.addEventListener("click", (e) => {
-    handleSignout(localStorage.getItem("access_token"));
+    handleSignout(user.accessToken);
   });
 }
 

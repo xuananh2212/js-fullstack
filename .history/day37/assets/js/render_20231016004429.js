@@ -406,29 +406,13 @@ async function handleSignout(token) {
     createToast("đăng xuất thất bại", 0);
   }
 }
-async function refreshToken() {
-  const { response, data } = await client.post(
-    "/auth/refresh-token",
-    localStorage.getItem("access_token")
-  );
-  if (response.ok) {
-    if (!data.status_code === "FAILED") {
-      location.setItem("access_token", data.accessToken);
-      location.setItem("refresh_token", data.accessToken);
-    }
-  }
-}
 
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
-  console.log(token);
   const { response } = await client.post("/blogs", { title, content }, token);
   if (response.ok) {
     renderBlogs();
     titleEL.value = "";
     contentEL.value = "";
-  } else {
-    refreshToken();
-    console.log("fadsfasd");
   }
 }
 
@@ -454,11 +438,12 @@ function createToast(message, status) {
 }
 
 async function getUser() {
-  const { data: getUser } = await client.get(
+  const { data } = await client.get(
     "/users/profile",
     localStorage.getItem("access_token")
   );
-  const user = getUser.data;
+  const user =
+    localStorage.getItem("data") && JSON.parse(localStorage.getItem("data"));
   const containerEL = document.createElement("div");
   containerEL.className = "container";
   const blogsEL = document.createElement("div");
@@ -485,6 +470,11 @@ async function getUser() {
                     </div>
                 </form>`;
   blogsEL.innerHTML = html;
+}
+
+export function renderBlogs() {
+  root.innerHTML = "";
+
   getBlogs(blogsEL);
   var form = $(".form-blogs");
   form.addEventListener("submit", function (e) {
@@ -494,22 +484,11 @@ async function getUser() {
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {
-      handleNewBlog(
-        title,
-        content,
-        localStorage.getItem("access_token"),
-        titleEL,
-        contentEL
-      );
+      handleNewBlog(title, content, user.accessToken, titleEL, contentEL);
     }
   });
   const btnSignOut = $(".btn-sign-out");
   btnSignOut.addEventListener("click", (e) => {
-    handleSignout(localStorage.getItem("access_token"));
+    handleSignout(user.accessToken);
   });
-}
-
-export function renderBlogs() {
-  root.innerHTML = "";
-  getUser();
 }

@@ -407,27 +407,25 @@ async function handleSignout(token) {
   }
 }
 async function refreshToken() {
-  const { response, data } = await client.post(
+  const { data } = await client.post(
     "/auth/refresh-token",
     localStorage.getItem("access_token")
   );
-  if (response.ok) {
-    if (!data.status_code === "FAILED") {
-      location.setItem("access_token", data.accessToken);
-      location.setItem("refresh_token", data.accessToken);
-    }
-  }
+  console.log(data);
 }
 
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
   console.log(token);
-  const { response } = await client.post("/blogs", { title, content }, token);
+  const { response } = await client.post(
+    "/auth/blogs",
+    { title, content },
+    token
+  );
   if (response.ok) {
     renderBlogs();
     titleEL.value = "";
     contentEL.value = "";
   } else {
-    refreshToken();
     console.log("fadsfasd");
   }
 }

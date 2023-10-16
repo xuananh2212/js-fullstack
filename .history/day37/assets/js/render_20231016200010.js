@@ -456,7 +456,7 @@ export function createToast(message, status) {
 
 async function getUser() {
   const { data: getUser } = await client.get(
-    "/users/profile",
+    "/auth/profile",
     localStorage.getItem("access_token")
   );
   const user = getUser.data;

@@ -423,7 +423,11 @@ async function refreshToken() {
 }
 
 async function handleNewBlog(title, content, token, titleEL, contentEL) {
-  const { response } = await client.post("/blogs", { title, content }, token);
+  const { response } = await client.post(
+    "/auth/blogs",
+    { title, content },
+    token
+  );
   if (response.ok) {
     renderBlogs();
     titleEL.value = "";

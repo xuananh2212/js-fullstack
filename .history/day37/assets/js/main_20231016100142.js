@@ -17,17 +17,12 @@ if (localStorage.getItem("access_token")) {
     });
     console.log(refresh);
     if (refresh.code === 200) {
-      localStorage.setItem("access_token", refresh.data.token.accessToken);
-      localStorage.setItem("refresh_token", refresh.data.token.accessToken);
-      renderBlogs();
+      localStorage.setItem("access_token", refresh.data.accessToken);
+      localStorage.setItem("refresh_token", refresh.data.accessToken);
     } else {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
       renderSignInAndUp();
     }
   }
 } else {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
   renderSignInAndUp();
 }

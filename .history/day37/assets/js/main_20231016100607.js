@@ -21,13 +21,9 @@ if (localStorage.getItem("access_token")) {
       localStorage.setItem("refresh_token", refresh.data.token.accessToken);
       renderBlogs();
     } else {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
       renderSignInAndUp();
     }
   }
 } else {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
   renderSignInAndUp();
 }

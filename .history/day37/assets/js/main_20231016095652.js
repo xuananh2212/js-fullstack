@@ -12,22 +12,11 @@ if (localStorage.getItem("access_token")) {
   if (user) {
     renderBlogs();
   } else {
-    const { data: refresh } = await client.post("/auth/refresh-token", {
+    const { data } = await client.post("/auth/refresh-token", {
       refreshToken: localStorage.getItem("refresh_token"),
     });
-    console.log(refresh);
-    if (refresh.code === 200) {
-      localStorage.setItem("access_token", refresh.data.token.accessToken);
-      localStorage.setItem("refresh_token", refresh.data.token.accessToken);
-      renderBlogs();
-    } else {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      renderSignInAndUp();
-    }
+    console.log(data);
   }
 } else {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
   renderSignInAndUp();
 }

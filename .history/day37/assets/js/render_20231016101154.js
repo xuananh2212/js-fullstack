@@ -289,6 +289,7 @@ export function renderSignInAndUp() {
     var email = emailEL.value;
     var password = passwd.value;
     var name = fullName.value;
+    console.log(password.length);
     if (btnRegister.classList.contains("active")) {
       if (
         passwd.value.length >= 8 &&
@@ -343,6 +344,8 @@ export function renderSignInAndUp() {
       password,
     });
     if (tokens.data) {
+      console.log(tokens);
+      console.log(tokens.accessToken, tokens.data.refreshToken);
       localStorage.setItem("access_token", tokens.data.accessToken);
       localStorage.setItem("refresh_token", tokens.data.refreshToken);
       root.innerHTML = "";
@@ -430,6 +433,7 @@ async function handleNewBlog(title, content, token, titleEL, contentEL) {
     contentEL.value = "";
   } else {
     refreshToken();
+    console.log("fadsfasd");
   }
 }
 

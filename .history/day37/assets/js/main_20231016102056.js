@@ -18,7 +18,7 @@ if (localStorage.getItem("access_token")) {
     console.log(refresh);
     if (refresh.code === 200) {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
-      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+      localStorage.setItem("refresh_token", refresh.data.token.accessToken);
       renderBlogs();
     } else {
       localStorage.removeItem("access_token");

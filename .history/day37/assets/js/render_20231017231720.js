@@ -392,14 +392,14 @@ async function getBlogs(blogsEL) {
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
   blogs.data.forEach((blog) => {
-    var charFirst = blog?.userId?.name.split(/\s+/) || [""];
+    var charFirst = blog.userId.name.split(/\s+/);
     var html = `
                  
                       <div class="blog-user">
                           <div class="avatar">${charFirst[
                             charFirst.length - 1
                           ].charAt(0)}</div>
-                          <span class="name">${blog?.userId?.name}</span>
+                          <span class="name">${blog.userId.name}</span>
                       </div>
                   
                 `;
@@ -542,12 +542,12 @@ async function getUser() {
   blogsEL.className = "blogs";
   containerEL.append(blogsEL);
   root.append(containerEL);
-  var charFirst = user?.name?.split(/\s+/) || [""];
+  var charFirst = user?.name?.split(/\s+/);
   var html = `<div class="blog-user">
                     <div class="avatar">${charFirst[
                       charFirst.length - 1
                     ].charAt(0)}</div>
-                    <span class="name">${user?.name}</span>
+                    <span class="name">${user.name}</span>
                 </div>
                 <form class="form-blogs" autocomplete="false">
                     <div class="form-group">

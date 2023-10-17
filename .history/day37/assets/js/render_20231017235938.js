@@ -399,7 +399,7 @@ async function getBlogs(blogsEL) {
                           <div class="avatar">${charFirst[
                             charFirst.length - 1
                           ].charAt(0)}</div>
-                          <span class="name">${blog?.userId?.name}</span>
+                          <span class="name">${blog.userId.name}</span>
                       </div>
                   
                 `;

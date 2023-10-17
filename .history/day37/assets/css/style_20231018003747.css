@@ -568,9 +568,9 @@ body {
 }
 
 .blog-items .date-time {
-  flex-shrink: 0;
-  width: 100px;
-  max-width: 150px;
+  flex: 1 0 25%;
+  max-width: 100px;
+  min-width: 100px;
 }
 
 .blog-items .date-time .time {

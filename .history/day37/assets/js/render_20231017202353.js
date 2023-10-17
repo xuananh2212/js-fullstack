@@ -458,9 +458,11 @@ async function refreshToken() {
     if (refresh.code === 200) {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+      console.log("2");
+    } else {
+      renderSignInAndUp();
     }
   }
-  return refresh;
 }
 
 async function handleNewBlog(
@@ -472,23 +474,19 @@ async function handleNewBlog(
   createdAt
 ) {
   if (!createdAt) {
-    const { data } = await client.post("/blogs", { title, content }, token);
-    if (data.code === 200) {
+    const { response } = await client.post("/blogs", { title, content }, token);
+    if (response.ok) {
       renderBlogs();
       titleEL.value = "";
       contentEL.value = "";
     } else {
-      refreshToken().then(async (refresh) => {
-        if (refresh.code === 200) {
-          const { data } = await client.post(
-            "/blogs",
-            { title, content },
-            localStorage.getItem("access_token")
-          );
-          renderBlogs();
-        } else {
-          renderSignInAndUp();
-        }
+      refreshToken().then(async (data) => {
+        const { response } = await client.post(
+          "/blogs",
+          { title, content },
+          localStorage.getItem("access_token")
+        );
+        renderBlogs();
       });
     }
   } else {

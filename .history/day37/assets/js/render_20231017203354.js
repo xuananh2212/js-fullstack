@@ -449,7 +449,7 @@ async function handleSignout(token) {
     createToast("đăng xuất thất bại", 0);
   }
 }
-async function refreshToken() {
+async function refreshToken(title, content) {
   const { response, data: refresh } = await client.post("/auth/refresh-token", {
     refreshToken: localStorage.getItem("refresh_token"),
   });
@@ -458,9 +458,18 @@ async function refreshToken() {
     if (refresh.code === 200) {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
+      const { data } = await client.post(
+        "/blogs",
+        { title, content },
+        localStorage.getItem("access_token")
+      );
+      if (data.code === 200) {
+        renderBlogs();
+      }
+    } else {
+      renderSignInAndUp();
     }
   }
-  return refresh;
 }
 
 async function handleNewBlog(
@@ -478,18 +487,7 @@ async function handleNewBlog(
       titleEL.value = "";
       contentEL.value = "";
     } else {
-      refreshToken().then(async (refresh) => {
-        if (refresh.code === 200) {
-          const { data } = await client.post(
-            "/blogs",
-            { title, content },
-            localStorage.getItem("access_token")
-          );
-          renderBlogs();
-        } else {
-          renderSignInAndUp();
-        }
-      });
+      refreshToken(title, content);
     }
   } else {
     createToast("bạn sẽ đang bài vào" + formatDate(createdAt), 1, 2000);

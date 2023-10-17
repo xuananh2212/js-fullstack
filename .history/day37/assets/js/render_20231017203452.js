@@ -478,18 +478,7 @@ async function handleNewBlog(
       titleEL.value = "";
       contentEL.value = "";
     } else {
-      refreshToken().then(async (refresh) => {
-        if (refresh.code === 200) {
-          const { data } = await client.post(
-            "/blogs",
-            { title, content },
-            localStorage.getItem("access_token")
-          );
-          renderBlogs();
-        } else {
-          renderSignInAndUp();
-        }
-      });
+      refreshToken(title, content);
     }
   } else {
     createToast("bạn sẽ đang bài vào" + formatDate(createdAt), 1, 2000);

@@ -478,14 +478,13 @@ async function handleNewBlog(
       titleEL.value = "";
       contentEL.value = "";
     } else {
-      refreshToken().then(async (refresh) => {
-        if (refresh.code === 200) {
+      refreshToken().then(async (data) => {
+        if (data.code === 200) {
           const { data } = await client.post(
             "/blogs",
             { title, content },
-            localStorage.getItem("access_token")
+            token
           );
-          renderBlogs();
         } else {
           renderSignInAndUp();
         }

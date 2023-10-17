@@ -483,7 +483,7 @@ async function handleNewBlog(
           const { data } = await client.post(
             "/blogs",
             { title, content },
-            localStorage.getItem("access_token")
+            token
           );
           renderBlogs();
         } else {

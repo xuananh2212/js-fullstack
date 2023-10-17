@@ -486,7 +486,6 @@ async function handleNewBlog(
           { title, content },
           localStorage.getItem("access_token")
         );
-        renderBlogs();
       });
     }
   } else {

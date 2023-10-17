@@ -454,13 +454,12 @@ async function refreshToken() {
     refreshToken: localStorage.getItem("refresh_token"),
   });
   if (response.ok) {
-    console.log(refresh.status_code);
-    if (refresh.code === 200) {
-      localStorage.setItem("access_token", refresh.data.token.accessToken);
-      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
-      console.log("2");
+    if (!data.status_code === "FAILED") {
+      location.setItem("access_token", refresh.data.accessToken);
+      location.setItem("refresh_token", refresh.data.refreshToken);
+      console.log("fdfasd");
     } else {
-      console.log("1");
+      console.log(fdfasd);
     }
   }
 }
@@ -486,7 +485,6 @@ async function handleNewBlog(
           { title, content },
           localStorage.getItem("access_token")
         );
-        renderBlogs();
       });
     }
   } else {

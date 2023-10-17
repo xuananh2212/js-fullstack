@@ -454,8 +454,7 @@ async function refreshToken() {
     refreshToken: localStorage.getItem("refresh_token"),
   });
   if (response.ok) {
-    console.log(refresh.status_code);
-    if (refresh.code === 200) {
+    if (!refresh.status_code === "FAILED") {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
       console.log("2");
@@ -486,7 +485,6 @@ async function handleNewBlog(
           { title, content },
           localStorage.getItem("access_token")
         );
-        renderBlogs();
       });
     }
   } else {

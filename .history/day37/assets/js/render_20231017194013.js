@@ -450,17 +450,13 @@ async function handleSignout(token) {
   }
 }
 async function refreshToken() {
-  const { response, data: refresh } = await client.post("/auth/refresh-token", {
+  const { response, data } = await client.post("/auth/refresh-token", {
     refreshToken: localStorage.getItem("refresh_token"),
   });
   if (response.ok) {
-    console.log(refresh.status_code);
-    if (refresh.code === 200) {
-      localStorage.setItem("access_token", refresh.data.token.accessToken);
-      localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
-      console.log("2");
-    } else {
-      console.log("1");
+    if (!data.status_code === "FAILED") {
+      location.setItem("access_token", data.accessToken);
+      location.setItem("refresh_token", data.accessToken);
     }
   }
 }
@@ -484,9 +480,8 @@ async function handleNewBlog(
         const { response } = await client.post(
           "/blogs",
           { title, content },
-          localStorage.getItem("access_token")
+          token
         );
-        renderBlogs();
       });
     }
   } else {

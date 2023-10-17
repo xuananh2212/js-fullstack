@@ -4,12 +4,13 @@ import { config } from "./config.js";
 client.setUrl(config.SERVER_AUTH_API);
 console.log(client.serverApi);
 if (localStorage.getItem("access_token")) {
-  const { data } = await client.get(
+  const { data: getUser } = await client.get(
     "/users/profile",
     localStorage.getItem("access_token")
   );
-  console.log(data);
-  if (data.code === 200) {
+  console.log(getUser);
+  const user = getUser.data;
+  if (user) {
     renderBlogs();
   } else {
     const { data: refresh } = await client.post("/auth/refresh-token", {

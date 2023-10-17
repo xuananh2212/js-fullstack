@@ -8,7 +8,6 @@ if (localStorage.getItem("access_token")) {
     "/users/profile",
     localStorage.getItem("access_token")
   );
-  console.log(data);
   if (data.code === 200) {
     renderBlogs();
   } else {

@@ -389,7 +389,7 @@ async function getBlogs(blogsEL) {
                         <div class="avatar">${charFirst[
                           charFirst.length - 1
                         ].charAt(0)}</div>
-                       <div class ="user-wrap">
+                       <div class ="content">
                         <span class="name">${blog.userId.name}</span>
                         <span class="timer">${handleTime(blog.createdAt)}</span>
                         </div>
@@ -444,14 +444,7 @@ async function refreshToken() {
   }
 }
 
-async function handleNewBlog(
-  title,
-  content,
-  token,
-  titleEL,
-  contentEL,
-  createdAt
-) {
+async function handleNewBlog(title, content, token, titleEL, contentEL) {
   const { response } = await client.post(
     "/blogs",
     { title, content, createdAt },

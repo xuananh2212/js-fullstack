@@ -29,10 +29,22 @@
             <div></div>
         </div>
     </div>
-
+    <input type="text" class="picker">
     <script type="module" src="./assets/js/main.js"></script>
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/jquery.datetimepicker.full.min.js"></script>
+    <script>
+
+        $('.picker').datetimepicker({
+            autoclose: true,
+            timepicker: false,
+            datepicker: true,
+            format: 'd/m/Y',
+            weeks: true,
+            step: 30
+        });
+
+    </script>
 </body>
 
 </html>

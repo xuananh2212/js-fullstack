@@ -357,24 +357,6 @@ export function renderSignInAndUp() {
     loadingEL.classList.add("is-hidden");
   }
 }
-function handleTime(time) {
-  const dateNow = new Date();
-  const dateBlog = new Date(time);
-  const timeMS = (dateNow.getTime() - dateBlog.getTime()) / 1000;
-  if (timeMS < 60) {
-    return "Vừa Xong";
-  } else if (timeMS < 3600) {
-    return `${Math.floor(timeMS / 60)} phút trước`;
-  } else if (timeMS < 86400) {
-    return `${Math.floor(timeMS / 3600)} giờ trước`;
-  } else if (timeMS < 2419200) {
-    return `${Math.floor(timeMS / 86400)} ngày trước`;
-  } else if (timeMS < 31536000) {
-    return `${Math.floor(timeMS / 2419200)} tháng trước`;
-  } else {
-    return `${Math.floor(timeMS / 31536000)} năm trước`;
-  }
-}
 
 async function getBlogs(blogsEL) {
   loadingEL.classList.remove("is-hidden");
@@ -389,10 +371,7 @@ async function getBlogs(blogsEL) {
                         <div class="avatar">${charFirst[
                           charFirst.length - 1
                         ].charAt(0)}</div>
-                       <div class ="user-wrap">
                         <span class="name">${blog.userId.name}</span>
-                        <span class="timer">${handleTime(blog.createdAt)}</span>
-                        </div>
                     </div>
                 `;
     const blogItems = document.createElement("div");
@@ -444,19 +423,8 @@ async function refreshToken() {
   }
 }
 
-async function handleNewBlog(
-  title,
-  content,
-  token,
-  titleEL,
-  contentEL,
-  createdAt
-) {
-  const { response } = await client.post(
-    "/blogs",
-    { title, content, createdAt },
-    token
-  );
+async function handleNewBlog(title, content, token, titleEL, contentEL) {
+  const { response } = await client.post("/blogs", { title, content }, token);
   if (response.ok) {
     renderBlogs();
     titleEL.value = "";
@@ -527,8 +495,6 @@ async function getUser() {
     e.preventDefault();
     const titleEL = $("input#title");
     const contentEL = $("textarea#content");
-    const dateEl = $(".picker");
-    var createdAt = dateEl.value.trim();
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {
@@ -537,8 +503,7 @@ async function getUser() {
         content,
         localStorage.getItem("access_token"),
         titleEL,
-        contentEL,
-        createdAt
+        contentEL
       );
     }
   });

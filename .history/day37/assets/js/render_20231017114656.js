@@ -444,14 +444,7 @@ async function refreshToken() {
   }
 }
 
-async function handleNewBlog(
-  title,
-  content,
-  token,
-  titleEL,
-  contentEL,
-  createdAt
-) {
+async function handleNewBlog(title, content, token, titleEL, contentEL) {
   const { response } = await client.post(
     "/blogs",
     { title, content, createdAt },

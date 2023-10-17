@@ -446,7 +446,7 @@ async function handleSignout(token) {
     loadingEL.classList.add("is-hidden");
     createToast("đăng xuất thành công", 1);
   } else {
-    refreshToken().then(async (refresh) => {
+    refreshToken.then(async (refresh) => {
       if (refresh.code === 200) {
         const { data } = await client.post(
           "/auth/logout",

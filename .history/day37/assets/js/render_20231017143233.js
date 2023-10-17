@@ -375,15 +375,6 @@ function handleTime(time) {
     return `${Math.floor(timeMS / 31536000)} năm trước`;
   }
 }
-function formatDate(time) {
-  const date = new Date(time);
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  return `${day}/${month + 1}/${year}  ${hours}h:${minutes}phút`;
-}
 
 async function getBlogs(blogsEL) {
   loadingEL.classList.remove("is-hidden");
@@ -394,26 +385,24 @@ async function getBlogs(blogsEL) {
   blogs.data.forEach((blog) => {
     var charFirst = blog.userId.name.split(/\s+/);
     var html = `
-                 
+                  <div class="blog-items__inner">
                       <div class="blog-user">
                           <div class="avatar">${charFirst[
                             charFirst.length - 1
                           ].charAt(0)}</div>
                           <span class="name">${blog.userId.name}</span>
-                      </div>
-                  
-                `;
-    var htmlDate = ` <div class= "date-time">
-                           <span class="time">${handleTime(
+                          <div class= "date-time">
+                           <span class="timer">${handleTime(
                              blog.createdAt
                            )}</span>
-                            <span >${formatDate(blog.createdAt)}</span>
-                          </div>`;
+                          </div>
+                      </div>
+                  </div>
+                `;
     const blogItems = document.createElement("div");
     blogItems.className = "blog-items";
-    const blogItemsInner = document.createElement("div");
-    blogItemsInner.className = "blog-items__inner";
-    blogItemsInner.innerHTML = html;
+    blogItems.innerHTML = html;
+    const blogItemsInner = $(".blog-items__inner");
     const contentEl = document.createElement("div");
     contentEl.className = "content";
     const h2El = document.createElement("h2");
@@ -429,8 +418,6 @@ async function getBlogs(blogsEL) {
                         </button>`;
     contentEl.insertAdjacentHTML("beforeend", htmlEl);
     blogItemsInner.appendChild(contentEl);
-    blogItems.append(blogItemsInner);
-    blogItems.insertAdjacentHTML("afterbegin", htmlDate);
     blogsEL.append(blogItems);
   });
   loadingEL.classList.add("is-hidden");
@@ -470,21 +457,21 @@ async function handleNewBlog(
   contentEL,
   createdAt
 ) {
-  if (!createdAt) {
-    const { response } = await client.post("/blogs", { title, content }, token);
-    if (response.ok) {
-      renderBlogs();
-      titleEL.value = "";
-      contentEL.value = "";
-    } else {
-      refreshToken();
-    }
+  const { response } = await client.post(
+    "/blogs",
+    { title, content, createdAt },
+    token
+  );
+  if (response.ok) {
+    renderBlogs();
+    titleEL.value = "";
+    contentEL.value = "";
   } else {
-    createToast("bạn sẽ đang bài vào" + formatDate(createdAt), 1, 2000);
+    refreshToken();
   }
 }
 
-export function createToast(message, status, time = 1600) {
+export function createToast(message, status) {
   var html = `<div class="toast">
         <div class="toast-inner">
             <i class="fa-solid icon-toast ${
@@ -502,7 +489,7 @@ export function createToast(message, status, time = 1600) {
   setTimeout(function () {
     var toast = document.querySelector(".toast");
     toast.remove();
-  }, time);
+  }, 1600);
 }
 
 async function getUser() {
@@ -547,23 +534,6 @@ async function getUser() {
     const contentEL = $("textarea#content");
     const dateEl = $(".picker");
     var createdAt = dateEl.value.trim();
-    if (createdAt) {
-      const dateNow = new Date();
-      const dateBlog = new Date(createdAt);
-      dateBlog.setHours(dateNow.getHours());
-      dateBlog.setMinutes(dateNow.getMinutes());
-      dateBlog.setSeconds(dateNow.getSeconds());
-      if (
-        dateNow.getDate() === dateBlog.getDate() &&
-        dateNow.getMonth() === dateBlog.getMonth() &&
-        dateNow.getFullYear() == dateBlog.getFullYear()
-      ) {
-        createdAt = "";
-      } else {
-        createdAt = String(dateBlog);
-      }
-    }
-
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {
@@ -575,9 +545,6 @@ async function getUser() {
         contentEL,
         createdAt
       );
-      titleEL.value = "";
-      contentEL.value = "";
-      dateEl.value = "";
     }
   });
   const btnSignOut = $(".btn-sign-out");

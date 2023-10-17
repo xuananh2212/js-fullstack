@@ -556,7 +556,7 @@ body {
 
 .blog-items {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 .blog-items .date-time span {
@@ -566,8 +566,8 @@ body {
 
 .blog-items .date-time .time {
   padding: 10px 5px;
-  border-top: 2px solid green;
-  border-bottom: 2px solid green;
+  border-top: 1px solid green;
+  border-bottom: 1px solid green;
 
 }
 

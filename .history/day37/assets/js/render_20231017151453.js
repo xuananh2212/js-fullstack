@@ -547,23 +547,12 @@ async function getUser() {
     const contentEL = $("textarea#content");
     const dateEl = $(".picker");
     var createdAt = dateEl.value.trim();
-    if (createdAt) {
-      const dateNow = new Date();
-      const dateBlog = new Date(createdAt);
-      dateBlog.setHours(dateNow.getHours());
-      dateBlog.setMinutes(dateNow.getMinutes());
-      dateBlog.setSeconds(dateNow.getSeconds());
-      if (
-        dateNow.getDate() === dateBlog.getDate() &&
-        dateNow.getMonth() === dateBlog.getMonth() &&
-        dateNow.getFullYear() == dateBlog.getFullYear()
-      ) {
-        createdAt = "";
-      } else {
-        createdAt = String(dateBlog);
-      }
-    }
-
+    const dateNow = new Date();
+    const DateBlog = new Date(createdAt);
+    DateBlog.setHours(dateNow.getHours());
+    DateBlog.setMinutes(dateNow.getMinutes());
+    DateBlog.setMilliseconds(dateNow.getMilliseconds());
+    createdAt = String(DateBlog);
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {

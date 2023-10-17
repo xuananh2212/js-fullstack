@@ -480,7 +480,7 @@ async function handleNewBlog(
       refreshToken();
     }
   } else {
-    createToast("bạn sẽ đang bài vào" + formatDate(createdAt), 1, 2000);
+    createToast(formatDate(createdAt), 1, 2000);
   }
 }
 
@@ -547,23 +547,6 @@ async function getUser() {
     const contentEL = $("textarea#content");
     const dateEl = $(".picker");
     var createdAt = dateEl.value.trim();
-    if (createdAt) {
-      const dateNow = new Date();
-      const dateBlog = new Date(createdAt);
-      dateBlog.setHours(dateNow.getHours());
-      dateBlog.setMinutes(dateNow.getMinutes());
-      dateBlog.setSeconds(dateNow.getSeconds());
-      if (
-        dateNow.getDate() === dateBlog.getDate() &&
-        dateNow.getMonth() === dateBlog.getMonth() &&
-        dateNow.getFullYear() == dateBlog.getFullYear()
-      ) {
-        createdAt = "";
-      } else {
-        createdAt = String(dateBlog);
-      }
-    }
-
     var title = titleEL.value.trim();
     var content = contentEL.value.trim();
     if (title && content) {
@@ -575,9 +558,6 @@ async function getUser() {
         contentEL,
         createdAt
       );
-      titleEL.value = "";
-      contentEL.value = "";
-      dateEl.value = "";
     }
   });
   const btnSignOut = $(".btn-sign-out");

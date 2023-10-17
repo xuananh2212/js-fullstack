@@ -556,19 +556,11 @@ body {
 
 .blog-items {
   display: flex;
-  gap: 30px;
+  gap: 20px;
 }
 
 .blog-items .date-time span {
-  margin-top: 18px;
   display: block;
-}
-
-.blog-items .date-time .time {
-  padding: 10px 5px;
-  border-top: 2px solid green;
-  border-bottom: 2px solid green;
-
 }
 
 .bounce-loading>div {

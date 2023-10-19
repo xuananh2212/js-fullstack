@@ -291,13 +291,12 @@ export function renderSignInAndUp() {
     var password = passwd.value;
     var name = fullName.value;
     if (btnRegister.classList.contains("active")) {
-      if (fullName.value !== "" && fullName.value !== null) {
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(password)) {
-          handleSignUp(email, password, name);
-        } else {
-          spanPasswd.innerHTML =
-            "Mật khẩu không hợp lệ mật khẩu tối thiểu 8 kí tự <br> Chứa ít nhất kí tự số <br> Chứa ít nhất 1 kí tự viết hoa <br> chứa ít nhất 1 kí tự thường";
-        }
+      if (
+        passwd.value.length >= 8 &&
+        fullName.value !== "" &&
+        fullName.value !== null
+      ) {
+        handleSignUp(email, password, name);
       }
     } else {
       handleSignIn(email, password);
@@ -409,22 +408,29 @@ function handleStringRegex(content) {
 function handleXSS(content, descEL) {
   content = content.trim();
   var position = content.indexOf("<a");
+  console.log(position, "111111");
   while (position !== -1) {
+    console.log("2222222222");
     var contentSlice = content.slice(0, position);
+    console.log(content);
     if (contentSlice) {
       const textNode = document.createTextNode(contentSlice);
-      content = content.slice(position);
+      content = content.slice(position + 1);
       descEL.append(textNode);
     }
-    position = content.indexOf("</a>");
-    var html = content.slice(0, position + 4);
+    const position = content.indexOf("</a>");
+    console.log(position);
+    var html = content.slice(0, position + 1);
     descEL.insertAdjacentHTML("beforeend", html);
-    content = content.slice(position + 4);
+    content = content.slice(position + 1);
     position = content.indexOf("<a");
   }
+  console.log(content);
   if (content) {
+    console.log("vao");
     const textNode = document.createTextNode(content);
     descEL.append(textNode);
+    console.log(descEL);
   }
 }
 
@@ -435,6 +441,7 @@ async function getBlogs(blogsEL) {
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
   blogs.data.forEach((blog) => {
+    console.log(blog);
     var charFirst = blog?.userId?.name.split(/\s+/) || [""];
     var html = `
                  
@@ -466,6 +473,7 @@ async function getBlogs(blogsEL) {
     h2El.textContent = blog.title;
     var content = handleStringRegex(blog.content);
     handleXSS(content, descEL);
+    console.log(1);
     contentEl.append(h2El);
     contentEl.append(descEL);
     var htmlEl = ` <button class="btn btn-tag">
@@ -509,6 +517,7 @@ async function refreshToken() {
     refreshToken: localStorage.getItem("refresh_token"),
   });
   if (response.ok) {
+    console.log(refresh.status_code);
     if (refresh.code === 200) {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
@@ -576,7 +585,9 @@ async function getUser() {
     "/users/profile",
     localStorage.getItem("access_token")
   );
+  console.log(getUser);
   const user = getUser.data;
+  console.log(user);
   const containerEL = document.createElement("div");
   containerEL.className = "container";
   const blogsEL = document.createElement("div");

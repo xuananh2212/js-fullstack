@@ -291,13 +291,12 @@ export function renderSignInAndUp() {
     var password = passwd.value;
     var name = fullName.value;
     if (btnRegister.classList.contains("active")) {
-      if (fullName.value !== "" && fullName.value !== null) {
-        if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(password)) {
-          handleSignUp(email, password, name);
-        } else {
-          spanPasswd.innerHTML =
-            "Mật khẩu không hợp lệ mật khẩu tối thiểu 8 kí tự <br> Chứa ít nhất kí tự số <br> Chứa ít nhất 1 kí tự viết hoa <br> chứa ít nhất 1 kí tự thường";
-        }
+      if (
+        passwd.value.length >= 8 &&
+        fullName.value !== "" &&
+        fullName.value !== null
+      ) {
+        handleSignUp(email, password, name);
       }
     } else {
       handleSignIn(email, password);
@@ -386,15 +385,13 @@ function formatDate(time) {
   return `${day}/${month + 1}/${year}  ${hours}h:${minutes}phút`;
 }
 function handleStringRegex(content) {
-  content = " " + content + " ";
   const patternEmail =
     /([a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*)/g;
   content = content.replace(patternEmail, `<a href= "mailto:$1">$1</a>`);
+  console.log(content + "email");
   const patternNumberIphone = /((0|\+84)\d{9})/g;
   content = content.replace(patternNumberIphone, `<a href= "tel:$1">$1</a>`);
-  const patternLink =
-    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?(\s+))/g;
-  content = content.replace(patternLink, `<a href= "$1">$1</a>`);
+  console.log(content + "iphone");
   const patternYoutube =
     /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(.*?)\s+)/g;
   content = content.replace(
@@ -403,30 +400,13 @@ function handleStringRegex(content) {
     <iframe src="$2embed/$3" width="420" height="315"></iframe>
     </a>`
   );
+  console.log(content + "youtube");
+  const patternLink = /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(.^watch))/g;
+  content = content.replace(patternLink, `<a href= "$1">$1</a>`);
   return content;
 }
 
-function handleXSS(content, descEL) {
-  content = content.trim();
-  var position = content.indexOf("<a");
-  while (position !== -1) {
-    var contentSlice = content.slice(0, position);
-    if (contentSlice) {
-      const textNode = document.createTextNode(contentSlice);
-      content = content.slice(position);
-      descEL.append(textNode);
-    }
-    position = content.indexOf("</a>");
-    var html = content.slice(0, position + 4);
-    descEL.insertAdjacentHTML("beforeend", html);
-    content = content.slice(position + 4);
-    position = content.indexOf("<a");
-  }
-  if (content) {
-    const textNode = document.createTextNode(content);
-    descEL.append(textNode);
-  }
-}
+function handleXss(content) {}
 
 async function getBlogs(blogsEL) {
   loadingEL.classList.remove("is-hidden");
@@ -464,8 +444,8 @@ async function getBlogs(blogsEL) {
     const descEL = document.createElement("p");
     descEL.className = "desc";
     h2El.textContent = blog.title;
-    var content = handleStringRegex(blog.content);
-    handleXSS(content, descEL);
+    const content = handleStringRegex(blog.content);
+    content = handleXSS(content, descEL);
     contentEl.append(h2El);
     contentEl.append(descEL);
     var htmlEl = ` <button class="btn btn-tag">
@@ -509,6 +489,7 @@ async function refreshToken() {
     refreshToken: localStorage.getItem("refresh_token"),
   });
   if (response.ok) {
+    console.log(refresh.status_code);
     if (refresh.code === 200) {
       localStorage.setItem("access_token", refresh.data.token.accessToken);
       localStorage.setItem("refresh_token", refresh.data.token.refreshToken);
@@ -576,7 +557,9 @@ async function getUser() {
     "/users/profile",
     localStorage.getItem("access_token")
   );
+  console.log(getUser);
   const user = getUser.data;
+  console.log(user);
   const containerEL = document.createElement("div");
   containerEL.className = "container";
   const blogsEL = document.createElement("div");

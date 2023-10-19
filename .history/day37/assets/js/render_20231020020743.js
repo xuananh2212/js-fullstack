@@ -389,21 +389,12 @@ function handleStringRegex(content) {
   content = " " + content + " ";
   const patternEmail =
     /([a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*)/g;
-  content = content.replace(
-    patternEmail,
-    `<a href= "mailto:$1" target="_blank">$1</a>`
-  );
+  content = content.replace(patternEmail, `<a href= "mailto:$1">$1</a>`);
   const patternNumberIphone = /((0|\+84)\d{9})/g;
-  content = content.replace(
-    patternNumberIphone,
-    `<a href="tel:$1" target="_blank">$1</a>`
-  );
+  content = content.replace(patternNumberIphone, `<a href= "tel:$1">$1</a>`);
   const patternLink =
     /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?(\s+))/g;
-  content = content.replace(
-    patternLink,
-    `<a href= "$1" target="_blank">$1</a>`
-  );
+  content = content.replace(patternLink, `<a href= "$1">$1</a>`);
   const patternYoutube =
     /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(.*?)\s+)/g;
   content = content.replace(

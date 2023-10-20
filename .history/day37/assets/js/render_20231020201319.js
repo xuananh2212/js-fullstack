@@ -409,7 +409,7 @@ function handleStringRegex(content) {
     `<a href= "$1" target="_blank">$1</a>`
   );
   const patternYoutube =
-    /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(([a-zA-Z0-9\_\-])+)\&?(.*)\s+)/g;
+    /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(.*?)\s+)/g;
   content = content.replace(
     patternYoutube,
     `<a href= "#"> 

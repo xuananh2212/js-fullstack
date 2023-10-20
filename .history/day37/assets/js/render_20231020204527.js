@@ -413,7 +413,7 @@ function handleStringRegex(content) {
   content = content.replace(
     patternYoutube,
     `<a href= "#"> 
-    <iframe src="$2embed/$3" width="420" height="315"></iframe>
+    <iframe src="$2embed/$4" width="420" height="315"></iframe>
     </a>`
   );
   return content;

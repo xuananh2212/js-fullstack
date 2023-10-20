@@ -387,6 +387,7 @@ function formatDate(time) {
 }
 function handleStringRegex(content) {
   content = " " + content + " ";
+
   const patternSpace = /\s+/g;
   content = content.replace(patternSpace, " ");
   const patternNewLine = /\n+/g;

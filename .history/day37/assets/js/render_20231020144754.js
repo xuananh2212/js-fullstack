@@ -387,10 +387,10 @@ function formatDate(time) {
 }
 function handleStringRegex(content) {
   content = " " + content + " ";
+
   const patternSpace = /\s+/g;
   content = content.replace(patternSpace, " ");
-  const patternNewLine = /\n+/g;
-  content = content.replace(patternNewLine, "\n");
+
   const patternEmail =
     /([a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:\.[a-zA-Z0-9]+)*)/g;
   content = content.replace(

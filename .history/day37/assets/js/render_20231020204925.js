@@ -387,7 +387,7 @@ function formatDate(time) {
 }
 function handleStringRegex(content) {
   content = " " + content + " ";
-  console.log(content + "1");
+  console.log(content);
   const patternSpace = /\s+/g;
   content = content.replace(patternSpace, " ");
   const patternNewLine = /\n+/g;
@@ -403,22 +403,20 @@ function handleStringRegex(content) {
     patternNumberIphone,
     `<a href="tel:$1" target="_blank">$1</a>`
   );
-  console.log(content);
   const patternLink =
-    /(((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
+    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?(\s+))/g;
   content = content.replace(
     patternLink,
-    `<a href= "$2" target="_blank">$1</a>`
+    `<a href= "$1" target="_blank">$1</a>`
   );
   const patternYoutube =
-    /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(([a-zA-Z0-9\_\-])+)\&?(.*?)(?:\s+|\n+|\\n))/g;
+    /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(([a-zA-Z0-9\_\-])+)\&?(.*)\s+)/g;
   content = content.replace(
     patternYoutube,
     `<a href= "#"> 
     <iframe src="$2embed/$3" width="420" height="315"></iframe>
     </a>`
   );
-  console.log(content, "2");
   return content;
 }
 

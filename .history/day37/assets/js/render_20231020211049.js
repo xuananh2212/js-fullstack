@@ -403,15 +403,14 @@ function handleStringRegex(content) {
     patternNumberIphone,
     `<a href="tel:$1" target="_blank">$1</a>`
   );
-  console.log(content);
   const patternLink =
-    /(((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
+    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?(?:\s+|\n+))/g;
   content = content.replace(
     patternLink,
-    `<a href= "$2" target="_blank">$1</a>`
+    `<a href= "$1" target="_blank">$1</a>`
   );
   const patternYoutube =
-    /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(([a-zA-Z0-9\_\-])+)\&?(.*?)(?:\s+|\n+|\\n))/g;
+    /(((?:http|https):\/\/(?:www.)?(?:youtube.com|youto.be)\/)watch\?v\=(([a-zA-Z0-9\_\-])+)\&?(.*)(?:\s+|\n+))/g;
   content = content.replace(
     patternYoutube,
     `<a href= "#"> 

@@ -403,7 +403,7 @@ function handleStringRegex(content) {
     `<a href="tel:$1" target="_blank">$1</a>`
   );
   const patternLink =
-    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
+    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}(?!\/watch).*?)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternLink,
     `<a href= "$2" target="_blank">$1</a>`

@@ -403,18 +403,23 @@ function handleStringRegex(content) {
     `<a href="tel:$1" target="_blank">$1</a>`
   );
   const patternLink =
-    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
+    /(((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternLink,
     `<a href= "$2" target="_blank">$1</a>`
   );
-
+  const patternDomain =
+    /((http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}(?:\s+|\n+|\\n))/g;
+  content = content.replace(
+    patternDomain,
+    `<a href= "$1" target="_blank">$1</a>`
+  );
   const patternYoutube =
-    /((?:http|https):\/\/(?:www.)?(?:youtube.com\/watch\?v\=|youtu.be\/)(([a-zA-Z0-9\_\-])+)\&?(.*?)(?:\s+|\n+|\\n))/g;
+    /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/|v\/|shorts\/|channel\/\w+\/)([a-zA-Z0-9_-]+)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternYoutube,
     `<a href= "#"> 
-    <iframe src="https://www.youtube.com/embed/$3" width="420" height="315"></iframe>
+    <iframe src="$2/embed/$3" width="420" height="315"></iframe>
     </a>`
   );
   return content;

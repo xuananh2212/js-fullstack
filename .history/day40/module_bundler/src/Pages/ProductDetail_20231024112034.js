@@ -1,0 +1,7 @@
+
+export function ProductDetail({ data }) {
+     return `
+     <h1>Chi tiết sản phẩm:${data.id}</h1>
+     <button onclick="navigate("/san-pham")">Back</button>
+     `
+}

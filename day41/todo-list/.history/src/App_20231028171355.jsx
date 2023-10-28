@@ -69,7 +69,6 @@ export class App extends Component {
      }
      async apiUpdateTodo(id, newTodo, listTodos) {
           var url = `/todos/${id}`;
-          this.handleSateUpdateLoading(true);
           const { data } = await client.patch(url, newTodo, this.getApiKeyCookie());
           if (data.code === 200) {
                this.handleStateUpdateTodos(listTodos, null);
@@ -79,11 +78,9 @@ export class App extends Component {
                this.handleStateUpdateToast("cập nhật thất bại", 3);
                this.getApiKey();
           }
-          this.handleSateUpdateLoading(false);
      }
      async apiDeleteTodo(id, newTodos) {
           var url = `/todos/${id}`;
-          this.handleSateUpdateLoading(true);
           const { data } = await client.delete(url, this.getApiKeyCookie());
           if (data.code === 200) {
                this.handleStateUpdateTodos(newTodos, null);
@@ -92,7 +89,6 @@ export class App extends Component {
                this.handleStateUpdateToast("Xoá Thất Bại", 3);
                this.getApiKey();
           }
-          this.handleSateUpdateLoading(false);
      }
      async getApiKey() {
           var email = prompt('Please enter your email:?', "example@example.com");
@@ -133,7 +129,6 @@ export class App extends Component {
      async apiAddTodo(todo) {
           const apiKey = this.getApiKeyCookie();
           if (apiKey) {
-               this.handleSateUpdateLoading(true);
                const { data } = await client.post("/todos", { todo }, apiKey);
                if (data.code === 201) {
                     this.handleStateUpdateTodos(null, data.data);
@@ -143,7 +138,6 @@ export class App extends Component {
                     this.getApiKey()
 
                }
-               this.handleSateUpdateLoading(false);
           } else {
                this.handleStateUpdateToast("Email không Tồn tại!", 3);
                setTimeout(() => {

@@ -5,7 +5,8 @@ import FormAddTodo from './Components/FormAddTodo';
 import TodoList from './Components/TodoList';
 import ToastTodo from './Components/ToastTodo';
 import { client } from './Utils/client.jsx';
-import ScaleLoader from "react-spinners/ScaleLoader";
+import { useState, CSSProperties } from "react";
+import PacmanLoader from "react-spinners/PacmanLoader";
 
 export class App extends Component {
 
@@ -69,7 +70,6 @@ export class App extends Component {
      }
      async apiUpdateTodo(id, newTodo, listTodos) {
           var url = `/todos/${id}`;
-          this.handleSateUpdateLoading(true);
           const { data } = await client.patch(url, newTodo, this.getApiKeyCookie());
           if (data.code === 200) {
                this.handleStateUpdateTodos(listTodos, null);
@@ -79,11 +79,9 @@ export class App extends Component {
                this.handleStateUpdateToast("cập nhật thất bại", 3);
                this.getApiKey();
           }
-          this.handleSateUpdateLoading(false);
      }
      async apiDeleteTodo(id, newTodos) {
           var url = `/todos/${id}`;
-          this.handleSateUpdateLoading(true);
           const { data } = await client.delete(url, this.getApiKeyCookie());
           if (data.code === 200) {
                this.handleStateUpdateTodos(newTodos, null);
@@ -92,14 +90,12 @@ export class App extends Component {
                this.handleStateUpdateToast("Xoá Thất Bại", 3);
                this.getApiKey();
           }
-          this.handleSateUpdateLoading(false);
      }
      async getApiKey() {
           var email = prompt('Please enter your email:?', "example@example.com");
           if (email) {
                var emailPath = email.replace(/@/g, "%40");
                const url = `/api-key?email=${emailPath}`;
-               this.handleSateUpdateLoading(true);
                const { data } = await client.get(url);
                if (data.code === 200) {
                     const { apiKey } = data.data;
@@ -113,7 +109,6 @@ export class App extends Component {
                } else {
                     this.handleStateUpdateToast("email không tồn tại", 3)
                }
-               this.handleSateUpdateLoading(false);
           } else {
                this.handleStateUpdateToast("Vui lòng nhập email!", 3)
           }
@@ -133,7 +128,6 @@ export class App extends Component {
      async apiAddTodo(todo) {
           const apiKey = this.getApiKeyCookie();
           if (apiKey) {
-               this.handleSateUpdateLoading(true);
                const { data } = await client.post("/todos", { todo }, apiKey);
                if (data.code === 201) {
                     this.handleStateUpdateTodos(null, data.data);
@@ -143,7 +137,6 @@ export class App extends Component {
                     this.getApiKey()
 
                }
-               this.handleSateUpdateLoading(false);
           } else {
                this.handleStateUpdateToast("Email không Tồn tại!", 3);
                setTimeout(() => {
@@ -153,12 +146,10 @@ export class App extends Component {
 
      }
      async getList(apiKey) {
-          this.handleSateUpdateLoading(true);
           const { data } = await client.get("/todos", null, apiKey);
           if (data.code === 200) {
                const { listTodo } = data.data;
                this.handleStateUpdateTodos(listTodo);
-               this.handleSateUpdateLoading(false);
           } else {
                this.getApiKey();
           }
@@ -166,6 +157,7 @@ export class App extends Component {
      }
 
      callApi() {
+          console.log("1 lan");
           const apiKey = this.getApiKeyCookie();
           if (apiKey) {
                this.getList(apiKey).then((data) => {
@@ -194,9 +186,6 @@ export class App extends Component {
           }
 
      }
-     handleSateUpdateLoading = (value) => {
-          this.setState({ loading: value });
-     }
      handleStateUpdateEditTodo = (id) => {
           this.setState({ editTodo: id });
      }
@@ -204,7 +193,7 @@ export class App extends Component {
           this.setState({ toast: { messageToast: message, statusToast: status } })
      }
      render() {
-          const { toast, todos, editTodo, loading } = this.state;
+          const { toast, todos, editTodo } = this.state;
           console.log(toast);
           return (
                <div className='container'>
@@ -219,31 +208,22 @@ export class App extends Component {
                          editTodo={editTodo} />
                     <ToastTodo
                          toastTodo={toast} />
-
-                    <ScaleLoader
+                    <PacmanLoader
                          color="#36d7b7"
                          cssOverride={{
-                              display: "flex",
-                              justifyContent: "center",
-                              alignItems: "center",
-                              width: "100vw",
-                              height: "100vh",
                               position: "fixed",
                               inset: 0,
-                              backgroundColor: "#d8cbcb7a",
-                              top: "50%",
-                              left: "50%",
-                              translate: "-50% -50%",
+                              translate: "50% , 50%",
+                              backgroundColor: '#fff'
+
+
+
                          }}
-                         loading={loading}
+                         loading
                          margin={14}
                          size={50}
                          speedMultiplier={1}
-
                     />
-
-
-
                </div>
           )
      }

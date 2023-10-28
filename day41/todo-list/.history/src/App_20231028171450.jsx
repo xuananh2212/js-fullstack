@@ -69,7 +69,6 @@ export class App extends Component {
      }
      async apiUpdateTodo(id, newTodo, listTodos) {
           var url = `/todos/${id}`;
-          this.handleSateUpdateLoading(true);
           const { data } = await client.patch(url, newTodo, this.getApiKeyCookie());
           if (data.code === 200) {
                this.handleStateUpdateTodos(listTodos, null);
@@ -79,7 +78,6 @@ export class App extends Component {
                this.handleStateUpdateToast("cập nhật thất bại", 3);
                this.getApiKey();
           }
-          this.handleSateUpdateLoading(false);
      }
      async apiDeleteTodo(id, newTodos) {
           var url = `/todos/${id}`;

@@ -1,0 +1,248 @@
+
+import "./assets/css/style.css";
+import { Component } from 'react';
+import FormAddTodo from './Components/FormAddTodo';
+import TodoList from './Components/TodoList';
+import ToastTodo from './Components/ToastTodo';
+import { client } from './Utils/client.jsx';
+import ScaleLoader from "react-spinners/ScaleLoader";
+import { ToastContainer, toast } from 'react-toastify';
+
+export class App extends Component {
+
+     constructor() {
+          super();
+          this.state = {
+               todos: [],
+               editTodo: null,
+               isToast: false,
+               toastObj: {
+                    messageToast: null,
+                    statusToast: 0,
+               },
+               loading: false,
+
+          }
+     }
+
+     handleAddTodo = (e) => {
+          e.preventDefault();
+          const todoEl = document.querySelector("#text-new-todo");
+          var nameTodo = todoEl.value;
+          if (/.{2,}/.test(nameTodo)) {
+               this.apiAddTodo(nameTodo);
+          } else {
+               this.handleSateUpdateToast("Todo cần ít nhất nhất là 2 kí tự", 2);
+          }
+          todoEl.value = "";
+     }
+     handleDeleteTodo = (id) => {
+          const { todos } = this.state;
+          var newTodos = todos.filter(todo => todo._id !== id);
+          this.apiDeleteTodo(id, newTodos);
+
+     }
+     handleUpdateTodo = (isEditing, id, isCompleted, value) => {
+          if (isEditing) {
+               this.handleStateUpdateEditTodo(id);
+
+          } else {
+               const { todos } = this.state;
+               if (/.{2,}/.test(value)) {
+                    var listTodos = JSON.parse(JSON.stringify(todos));
+                    var todoFind = listTodos.find(todo => todo._id === id);
+                    todoFind.todo = value;
+                    todoFind.isCompleted = isCompleted;
+                    console.log(todoFind);
+                    this.apiUpdateTodo(id, { todo: todoFind.todo, isCompleted: todoFind.isCompleted }, listTodos);
+                    toast.success("sửa thành công");
+               } else {
+                    toast.warning("Todo cần ít nhất nhất là 2 kí tự");
+
+
+               }
+          }
+     }
+     handleExitEditTodo = () => {
+          this.handleStateUpdateEditTodo(null);
+     }
+     async apiUpdateTodo(id, newTodo, listTodos) {
+          var url = `/todos/${id}`;
+          this.handleSateUpdateLoading(true);
+          const { data } = await client.patch(url, newTodo, this.getApiKeyCookie());
+          if (data.code === 200) {
+               console.log(data);
+               this.handleStateUpdateTodos(listTodos, null);
+               toast.success("cập nhật Thành Công");
+               this.handleStateUpdateEditTodo(null);
+          } else {
+               toast.error("cập nhật thất bại");
+               this.getApiKey();
+          }
+          this.handleSateUpdateLoading(false);
+     }
+     async apiDeleteTodo(id, newTodos) {
+          var url = `/todos/${id}`;
+          this.handleSateUpdateLoading(true);
+          const { data } = await client.delete(url, this.getApiKeyCookie());
+          if (data.code === 200) {
+               this.handleStateUpdateTodos(newTodos, null);
+               toast.success("xoá thành công")
+          } else {
+               toast.error("xoá thất bại");
+               this.getApiKey();
+          }
+          this.handleSateUpdateLoading(false);
+     }
+     async getApiKey() {
+          var email = prompt('Please enter your email:?', "example@example.com");
+          if (email) {
+               var emailPath = email.replace(/@/g, "%40");
+               const url = `/api-key?email=${emailPath}`;
+               this.handleSateUpdateLoading(true);
+               const { data } = await client.get(url);
+               if (data.code === 200) {
+                    const { apiKey } = data.data;
+                    document.cookie = `apiKey=${apiKey}`;
+                    document.cookie = `email=${email}`;
+                    this.getList(this.getApiKeyCookie()).then((data) => {
+                         if (data.code === 200) {
+                              toast.success(`chào mừng bạn: ${email}`)
+                         }
+                    })
+               } else {
+                    this.handleStateUpdateToast("email không tồn tại", 3)
+               }
+          } else {
+               this.handleStateUpdateToast("Vui lòng nhập email!", 3)
+          }
+          this.handleSateUpdateLoading(false);
+     }
+     getApiKeyCookie() {
+          const str = document.cookie + ";";
+          const pattern = /apiKey=([^;]*)/
+          const strSub = str.match(pattern);
+          return strSub ? strSub[1] : null;
+     }
+     getEmailCookie() {
+          const str = document.cookie + ";";
+          const pattern = /email=([^;]*)/
+          const strSub = str.match(pattern);
+          return strSub ? strSub[1] : null;
+     }
+     async apiAddTodo(todo) {
+          const apiKey = this.getApiKeyCookie();
+          if (apiKey) {
+               this.handleSateUpdateLoading(true);
+               const { data } = await client.post("/todos", { todo }, apiKey);
+               if (data.code === 201) {
+                    toast.success("Thêm Todo Thành Công")
+               } else {
+                    toast.error("Thất Bại! Email không tồn tại");
+                    this.getApiKey()
+
+               }
+               this.handleSateUpdateLoading(false);
+          } else {
+               toast.error("Thất Bại! Email không tồn tại");
+               setTimeout(() => {
+                    this.getApiKey();
+               }, 1500)
+          }
+
+     }
+     async getList(apiKey) {
+          this.handleSateUpdateLoading(true);
+          const { data } = await client.get("/todos", null, apiKey);
+          if (data.code === 200) {
+               const { listTodo } = data.data;
+               this.handleStateUpdateTodos(listTodo);
+               this.handleSateUpdateLoading(false);
+          } else {
+               this.getApiKey();
+          }
+          return data;
+     }
+
+     callApi() {
+          const apiKey = this.getApiKeyCookie();
+          if (apiKey) {
+               this.getList(apiKey).then((data) => {
+                    if (data.code === 200) {
+                         toast.success(`chào mừng bạn đã quay trở lại:${this.getEmailCookie()}`)
+                    }
+               })
+          } else {
+               this.getApiKey();
+          }
+
+     }
+     componentDidMount() {
+          this.callApi();
+     }
+     // handles update state
+
+     handleStateUpdateTodos = (listTodo, todo) => {
+          if (todo) {
+               var { todos } = this.state;
+               todos.unshift(todo);
+               this.setState({ todos: todos })
+          } else {
+               this.setState({ todos: listTodo });
+          }
+
+     }
+     handleSateUpdateLoading = (value) => {
+          this.setState({ loading: value });
+     }
+     handleStateUpdateEditTodo = (id) => {
+          this.setState({ editTodo: id });
+     }
+     render() {
+          const { todos, editTodo, loading } = this.state;
+          return (
+               <div className='container'>
+                    <h2 className='heading-lv2'>Welcome to Todo App</h2>
+                    <FormAddTodo
+                         handleAddTodo={this.handleAddTodo} />
+                    <TodoList
+                         todos={todos}
+                         handleDeleteTodo={this.handleDeleteTodo}
+                         handleUpdateTodo={this.handleUpdateTodo}
+                         handleExitEditTodo={this.handleExitEditTodo}
+                         editTodo={editTodo} />
+                    <ToastContainer
+                         autoClose={1500}>
+                    </ToastContainer>
+
+                    <ScaleLoader
+                         color="#36d7b7"
+                         cssOverride={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              width: "100vw",
+                              height: "100vh",
+                              position: "fixed",
+                              inset: 0,
+                              backgroundColor: "#d8cbcb7a",
+                              top: "50%",
+                              left: "50%",
+                              translate: "-50% -50%",
+                         }}
+                         loading={loading}
+                         margin={14}
+                         size={50}
+                         speedMultiplier={1}
+
+                    />
+
+
+
+               </div>
+          )
+     }
+}
+
+
+export default App

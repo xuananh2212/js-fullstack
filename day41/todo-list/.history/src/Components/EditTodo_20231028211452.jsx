@@ -1,0 +1,124 @@
+import React from 'react'
+// export default function EditTodo({ todo, handleExitEditTodo, handleDeleteTodo, handleUpdateTodo }) {
+
+//      return (
+//           <form className='form-edit-todo' autoComplete='true' onClick={(e) => e.preventDefault()}>
+//                <div className='form-group'>
+//                     <div className='form-group-content'>
+//                          <input
+//                               type="text"
+//                               id="text-edit-todo"
+//                               defaultValue={todo.todo}
+//                          />
+//                          <div className='form-group-content__inner'>
+//                               <input
+//                                    type="checkbox"
+//                                    name={todo._id}
+//                                    id={todo._id}
+//                                    checked={todo.isCompleted}
+//                                    onChange={(e) => { }} />
+//                               <label
+//                                    htmlFor={todo._id}>
+//                                    {todo.isCompleted ? 'Completed' : 'not Completed'}
+//                               </label>
+//                          </div>
+//                     </div>
+//                     <div className="btn-group">
+//                          <button
+//                               type="button"
+//                               className='btn btn-exit'
+//                               onClick={() => handleExitEditTodo()}
+//                          >
+//                               Thoát
+//                          </button>
+//                          <button
+//                               type="button"
+//                               className='btn btn-update'
+//                               onClick={(e) =>
+//                                    handleUpdateTodo(
+//                                         false,
+//                                         todo._id,
+//                                         document.querySelector("#text-edit-todo").value)}
+//                          >
+//                               Update
+//                          </button>
+//                          <button
+//                               type="button"
+//                               className='btn btn-remove'
+//                               onClick={() => { handleDeleteTodo(todo._id) }}
+//                          >
+//                               Xoá
+//                          </button>
+//                     </div>
+//                </div>
+
+//           </form>
+//      )
+// }
+
+
+import React, { Component } from 'react'
+
+export default class EditTodo extends Component {
+     constructor({ todo, handleExitEditTodo, handleDeleteTodo, handleUpdateTodo }) {
+          super();
+          this.state = {
+
+          }
+     }
+     render() {
+          return (
+               <form className='form-edit-todo' autoComplete='true' onClick={(e) => e.preventDefault()}>
+                    <div className='form-group'>
+                         <div className='form-group-content'>
+                              <input
+                                   type="text"
+                                   id="text-edit-todo"
+                                   defaultValue={todo.todo}
+                              />
+                              <div className='form-group-content__inner'>
+                                   <input
+                                        type="checkbox"
+                                        name={todo._id}
+                                        id={todo._id}
+                                        checked={todo.isCompleted}
+                                        onChange={(e) => { }} />
+                                   <label
+                                        htmlFor={todo._id}>
+                                        {todo.isCompleted ? 'Completed' : 'not Completed'}
+                                   </label>
+                              </div>
+                         </div>
+                         <div className="btn-group">
+                              <button
+                                   type="button"
+                                   className='btn btn-exit'
+                                   onClick={() => handleExitEditTodo()}
+                              >
+                                   Thoát
+                              </button>
+                              <button
+                                   type="button"
+                                   className='btn btn-update'
+                                   onClick={(e) =>
+                                        handleUpdateTodo(
+                                             false,
+                                             todo._id,
+                                             document.querySelector("#text-edit-todo").value)}
+                              >
+                                   Update
+                              </button>
+                              <button
+                                   type="button"
+                                   className='btn btn-remove'
+                                   onClick={() => { handleDeleteTodo(todo._id) }}
+                              >
+                                   Xoá
+                              </button>
+                         </div>
+                    </div>
+
+               </form>
+          )
+     }
+}

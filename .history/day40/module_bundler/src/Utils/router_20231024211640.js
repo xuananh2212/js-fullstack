@@ -11,7 +11,6 @@ window.navigate = function (path) {
      routerObj.navigate(path);
 }
 function renderHtml(defaultLayout, componentPath, params) {
-     console.log(params);
      var html = defaultLayout();
      if (html) {
           html = html.replace(/\{.*\}/g, componentPath(params));

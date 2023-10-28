@@ -11,7 +11,6 @@ window.navigate = function (path) {
      routerObj.navigate(path);
 }
 function renderHtml(defaultLayout, componentPath, params) {
-     console.log(params);
      var html = defaultLayout();
      if (html) {
           html = html.replace(/\{.*\}/g, componentPath(params));
@@ -26,7 +25,7 @@ function router(arrayPath, defaultLayout) {
      if (Array.isArray(arrayPath)) {
           arrayPath.forEach(patchItems => {
                routerObj.on(patchItems.path,
-                    (params) => renderRoot(root, renderHtml(defaultLayout, patchItems.component, params)))
+                    (params12) => renderRoot(root, renderHtml(defaultLayout, patchItems.component, params12)))
           })
           routerObj.notFound(() => renderRoot(root, Error()));
           routerObj.resolve();

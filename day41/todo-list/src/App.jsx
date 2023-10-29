@@ -7,6 +7,7 @@ import ToastTodo from './Components/ToastTodo';
 import { client } from './Utils/client.jsx';
 import ScaleLoader from "react-spinners/ScaleLoader";
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export class App extends Component {
 
      constructor() {

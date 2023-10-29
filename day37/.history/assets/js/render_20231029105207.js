@@ -400,26 +400,19 @@ function handleStringRegex(content) {
   const patternNumberIphone = /((0|\+84)\d{9})/g;
   content = content.replace(
     patternNumberIphone,
-    ` <a href="tel:$1" target="_blank">$1</a>`
+    `<a href="tel:$1" target="_blank">$1</a>`
   );
-  console.log(content, "number")
   const patternLink =
-    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/.*?)(?:\s+|\n+|\\n))/g;
+    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternLink,
-    ` <a href= "$2" target="_blank">$1</a>`
+    `<a href= "$2" target="_blank">$1</a>`
   );
-  const patternLocalHost = /(http:\/\/|https:\/\/)?(localhost:)[0-9]{4}/g
-  content = content.replace(
-    patternLocalHost,
-    ` <a href= "$2" target="_blank">$1</a>`
-  );
-  console.log(content, "link")
   const patternYoutube =
     /((?:http|https):\/\/(?:www.)?(?:youtube.com\/watch\?v\=|youtu.be\/)(([a-zA-Z0-9\_\-])+)\&?(.*?)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternYoutube,
-    ` <a href= "#"> 
+    `<a href= "#"> 
     <iframe src="https://www.youtube.com/embed/$3" width="420" height="315"></iframe>
     </a>`
   );
@@ -484,13 +477,11 @@ async function getBlogs(blogsEL) {
     const descEL = document.createElement("p");
     descEL.className = "desc";
     h2El.textContent = blog.title;
-    console.log(blog.content);
     var content = handleStringRegex(blog.content);
-    console.log(content);
     // handleXSS(content, descEL);
-    descEL.innerHTML = content;
     contentEl.append(h2El);
     contentEl.append(descEL);
+    descEL.append(content);
     var htmlEl = ` <button class="btn btn-tag">
                             <a href="#!">#${blog.userId.name}</a>
                         </button>`;

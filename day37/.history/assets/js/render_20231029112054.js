@@ -409,11 +409,6 @@ function handleStringRegex(content) {
     patternLink,
     ` <a href= "$2" target="_blank">$1</a>`
   );
-  const patternLocalHost = /(http:\/\/|https:\/\/)?(localhost:)[0-9]{4}/g
-  content = content.replace(
-    patternLocalHost,
-    ` <a href= "$2" target="_blank">$1</a>`
-  );
   console.log(content, "link")
   const patternYoutube =
     /((?:http|https):\/\/(?:www.)?(?:youtube.com\/watch\?v\=|youtu.be\/)(([a-zA-Z0-9\_\-])+)\&?(.*?)(?:\s+|\n+|\\n))/g;

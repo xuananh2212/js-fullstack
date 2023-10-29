@@ -400,53 +400,47 @@ function handleStringRegex(content) {
   const patternNumberIphone = /((0|\+84)\d{9})/g;
   content = content.replace(
     patternNumberIphone,
-    ` <a href="tel:$1" target="_blank">$1</a>`
+    `<a href="tel:$1" target="_blank">$1</a>`
   );
-  console.log(content, "number")
   const patternLink =
-    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/.*?)(?:\s+|\n+|\\n))/g;
+    /(((?:http|https):\/\/[a-z-_0-9\.]+\.[a-z]{2,}\/(?!watch).*?)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternLink,
-    ` <a href= "$2" target="_blank">$1</a>`
+    `<a href= "$2" target="_blank">$1</a>`
   );
-  const patternLocalHost = /(http:\/\/|https:\/\/)?(localhost:)[0-9]{4}/g
-  content = content.replace(
-    patternLocalHost,
-    ` <a href= "$2" target="_blank">$1</a>`
-  );
-  console.log(content, "link")
+
   const patternYoutube =
     /((?:http|https):\/\/(?:www.)?(?:youtube.com\/watch\?v\=|youtu.be\/)(([a-zA-Z0-9\_\-])+)\&?(.*?)(?:\s+|\n+|\\n))/g;
   content = content.replace(
     patternYoutube,
-    ` <a href= "#"> 
+    `<a href= "#"> 
     <iframe src="https://www.youtube.com/embed/$3" width="420" height="315"></iframe>
     </a>`
   );
   return content;
 }
 
-// function handleXSS(content, descEL) {
-//   content = content.trim();
-//   var position = content.indexOf("<a");
-//   while (position !== -1) {
-//     var contentSlice = content.slice(0, position);
-//     if (contentSlice) {
-//       const textNode = document.createTextNode(contentSlice);
-//       content = content.slice(position);
-//       descEL.append(textNode);
-//     }
-//     position = content.indexOf("</a>");
-//     var html = content.slice(0, position + 4);
-//     descEL.insertAdjacentHTML("beforeend", html);
-//     content = content.slice(position + 4);
-//     position = content.indexOf("<a");
-//   }
-//   if (content) {
-//     const textNode = document.createTextNode(content);
-//     descEL.append(textNode);
-//   }
-// }
+function handleXSS(content, descEL) {
+  content = content.trim();
+  var position = content.indexOf("<a");
+  while (position !== -1) {
+    var contentSlice = content.slice(0, position);
+    if (contentSlice) {
+      const textNode = document.createTextNode(contentSlice);
+      content = content.slice(position);
+      descEL.append(textNode);
+    }
+    position = content.indexOf("</a>");
+    var html = content.slice(0, position + 4);
+    descEL.insertAdjacentHTML("beforeend", html);
+    content = content.slice(position + 4);
+    position = content.indexOf("<a");
+  }
+  if (content) {
+    const textNode = document.createTextNode(content);
+    descEL.append(textNode);
+  }
+}
 
 async function getBlogs(blogsEL) {
   loadingEL.classList.remove("is-hidden");
@@ -460,16 +454,16 @@ async function getBlogs(blogsEL) {
                  
                       <div class="blog-user">
                           <div class="avatar">${charFirst[
-        charFirst.length - 1
-      ].charAt(0)}</div>
+                            charFirst.length - 1
+                          ].charAt(0)}</div>
                           <span class="name">${blog?.userId?.name}</span>
                       </div>
                   
                 `;
     var htmlDate = ` <div class= "date-time">
                            <span class="time">${handleTime(
-      blog.createdAt
-    )}</span>
+                             blog.createdAt
+                           )}</span>
                             <span >${formatDate(blog.createdAt)}</span>
                           </div>`;
     const blogItems = document.createElement("div");
@@ -484,11 +478,8 @@ async function getBlogs(blogsEL) {
     const descEL = document.createElement("p");
     descEL.className = "desc";
     h2El.textContent = blog.title;
-    console.log(blog.content);
     var content = handleStringRegex(blog.content);
-    console.log(content);
-    // handleXSS(content, descEL);
-    descEL.innerHTML = content;
+    handleXSS(content, descEL);
     contentEl.append(h2El);
     contentEl.append(descEL);
     var htmlEl = ` <button class="btn btn-tag">
@@ -577,11 +568,13 @@ async function handleNewBlog(
 export function createToast(message, status, time = 1600) {
   var html = `<div class="toast">
         <div class="toast-inner">
-            <i class="fa-solid icon-toast ${status === 1 ? "fa-check" : "fa-xmark"
-    }"></i>
+            <i class="fa-solid icon-toast ${
+              status === 1 ? "fa-check" : "fa-xmark"
+            }"></i>
             <div class="toast-content">
-                <span class="status ${status === 1 ? "success" : "error"}">${status === 1 ? "success" : "error"
-    }</span>
+                <span class="status ${status === 1 ? "success" : "error"}">${
+    status === 1 ? "success" : "error"
+  }</span>
                 <p class="desc">${message}</p>
             </div>
         </div>
@@ -608,8 +601,8 @@ async function getUser() {
   var charFirst = user?.name?.split(/\s+/) || [""];
   var html = `<div class="blog-user">
                     <div class="avatar">${charFirst[
-      charFirst.length - 1
-    ].charAt(0)}</div>
+                      charFirst.length - 1
+                    ].charAt(0)}</div>
                     <span class="name">${user?.name}</span>
                 </div>
                 <form class="form-blogs" autocomplete="false">

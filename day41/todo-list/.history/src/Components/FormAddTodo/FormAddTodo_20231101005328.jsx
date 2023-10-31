@@ -35,10 +35,7 @@ export default function FormAddTodo({ handleAddTodo, getList }) {
                action=""
                className='form-todos'
                onSubmit={(e) => {
-                    handleAddTodo(e);
-                    if (isSearch) {
-                         setIsSearch(false);
-                    }
+                    handleAddTodo(e, handleClick)
                }}
           >
                <div

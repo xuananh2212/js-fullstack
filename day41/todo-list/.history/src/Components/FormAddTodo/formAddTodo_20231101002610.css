@@ -10,11 +10,3 @@
 .form-todos .form-group {
      max-width: 750px;
 }
-
-.btn-search {
-     background-color: orange;
-}
-
-.btn-search.isSearching {
-     background-color: green;
-}

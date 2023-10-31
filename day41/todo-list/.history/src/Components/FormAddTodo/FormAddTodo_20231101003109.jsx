@@ -22,10 +22,7 @@ export default function FormAddTodo({ handleAddTodo, getList }) {
           }
      }
      const handleClick = () => {
-          var checkIsSearch = !isSearch;
-          setIsSearch(checkIsSearch);
-          toast.success(`${checkIsSearch ? "đang bật chế độ tìm kiếm" : "đã tắt chế độ tìm kiếm"}`)
-
+          setIsSearch(!isSearch);
 
 
      }
@@ -41,7 +38,7 @@ export default function FormAddTodo({ handleAddTodo, getList }) {
                >
                     <input
                          type="text"
-                         placeholder={isSearch ? "nhập tên công việc muốn tìm" : "thêm một việc làm mới"}
+                         placeholder='Thêm một việc làm mới'
                          id="text-new-todo"
                          onChange={handleSearch}
                     />

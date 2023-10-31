@@ -41,7 +41,7 @@ export default function App() {
      }
      const handleDeleteTodo = (id) => {
           var newTodos = todos.filter(todo => todo._id !== id);
-          apiDeleteTodo(id, newTodos, handleStateUpdateTodos, handleStateUpdateLoading);
+          apiDeleteTodo(id, newTodos);
 
      }
      const handleUpdateTodo = (isEditing, id, isCompleted, value) => {
@@ -55,12 +55,7 @@ export default function App() {
                     todoFind.todo = value;
                     todoFind.isCompleted = isCompleted;
                     console.log(todoFind);
-                    apiUpdateTodo(id,
-                         { todo: todoFind.todo, isCompleted: todoFind.isCompleted },
-                         listTodos,
-                         handleStateUpdateLoading,
-                         handleStateUpdateTodos,
-                         handleStateUpdateEditTodo);
+                    apiUpdateTodo(id, { todo: todoFind.todo, isCompleted: todoFind.isCompleted }, listTodos);
 
                } else {
 
@@ -73,15 +68,15 @@ export default function App() {
      }
 
 
-     const getList = async (apiKey, url = "/todos") => {
+     const getList = async (apiKey) => {
           handleStateUpdateLoading(true);
-          const { data } = await client.get(url, null, apiKey);
+          const { data } = await client.get("/todos", null, apiKey);
           if (data.code === 200) {
                const { listTodo } = data.data;
                handleStateUpdateTodos(listTodo);
                handleStateUpdateLoading(false);
           } else {
-               getApiKey(handleStateUpdateLoading, getList);
+               getApiKey(handleStateUpdateLoading);
           }
           return data;
      }
@@ -96,7 +91,7 @@ export default function App() {
                     }
                })
           } else {
-               getApiKey(handleStateUpdateLoading, getList);
+               getApiKey(handleStateUpdateLoading);
           }
 
      }
@@ -105,8 +100,13 @@ export default function App() {
      }, []);
      // handles update state
 
-     const handleStateUpdateTodos = (listTodo) => {
-          setTodos(listTodo);
+     const handleStateUpdateTodos = (listTodo, todo) => {
+          if (todo) {
+               setTodos([todo, ...todos])
+          } else {
+               setTodos(listTodo);
+          }
+
      }
      const handleStateUpdateLoading = (value) => {
           setIsLoading(value)
@@ -118,9 +118,7 @@ export default function App() {
           <div className='container'>
                <h2 className='heading-lv2'>Welcome to Todo App</h2>
                <FormAddTodo
-                    handleAddTodo={handleAddTodo}
-                    getList={getList}
-               />
+                    handleAddTodo={handleAddTodo} />
                <TodoList
                     todos={todos}
                     handleDeleteTodo={handleDeleteTodo}

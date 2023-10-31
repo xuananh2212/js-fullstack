@@ -105,8 +105,13 @@ export default function App() {
      }, []);
      // handles update state
 
-     const handleStateUpdateTodos = (listTodo) => {
-          setTodos(listTodo);
+     const handleStateUpdateTodos = (listTodo, todo) => {
+          if (todo) {
+               setTodos([todo, ...todos])
+          } else {
+               setTodos(listTodo);
+          }
+
      }
      const handleStateUpdateLoading = (value) => {
           setIsLoading(value)
@@ -118,9 +123,7 @@ export default function App() {
           <div className='container'>
                <h2 className='heading-lv2'>Welcome to Todo App</h2>
                <FormAddTodo
-                    handleAddTodo={handleAddTodo}
-                    getList={getList}
-               />
+                    handleAddTodo={handleAddTodo} />
                <TodoList
                     todos={todos}
                     handleDeleteTodo={handleDeleteTodo}

@@ -93,6 +93,10 @@ input::placeholder {
      font-size: 1.2rem;
 }
 
+li .desc {
+     font-size: 1.2rem;
+
+}
 
 .btn-group {
      margin-top: 10px;

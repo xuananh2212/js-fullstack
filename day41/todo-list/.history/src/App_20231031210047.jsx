@@ -11,18 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // }
 import { useState, useEffect } from "react";
-const getApiKeyCookie = () => {
-     const str = document.cookie + ";";
-     const pattern = /apiKey=([^;]*)/
-     const strSub = str.match(pattern);
-     return strSub ? strSub[1] : null;
-}
-const getEmailCookie = () => {
-     const str = document.cookie + ";";
-     const pattern = /email=([^;]*)/
-     const strSub = str.match(pattern);
-     return strSub ? strSub[1] : null;
-}
 
 export default function App() {
      const [todos, setTodos] = useState([]);
@@ -33,7 +21,7 @@ export default function App() {
           const todoEl = document.querySelector("#text-new-todo");
           var nameTodo = todoEl.value;
           if (/.{2,}/.test(nameTodo)) {
-               apiAddTodo(nameTodo, handleStateUpdateLoading, handleStateUpdateTodos);
+               apiAddTodo(nameTodo);
           } else {
                toast.warning("phải có ít nhất 2 kí tự trở lên!")
           }
@@ -41,7 +29,7 @@ export default function App() {
      }
      const handleDeleteTodo = (id) => {
           var newTodos = todos.filter(todo => todo._id !== id);
-          apiDeleteTodo(id, newTodos, handleStateUpdateTodos, handleStateUpdateLoading);
+          apiDeleteTodo(id, newTodos);
 
      }
      const handleUpdateTodo = (isEditing, id, isCompleted, value) => {
@@ -55,12 +43,7 @@ export default function App() {
                     todoFind.todo = value;
                     todoFind.isCompleted = isCompleted;
                     console.log(todoFind);
-                    apiUpdateTodo(id,
-                         { todo: todoFind.todo, isCompleted: todoFind.isCompleted },
-                         listTodos,
-                         handleStateUpdateLoading,
-                         handleStateUpdateTodos,
-                         handleStateUpdateEditTodo);
+                    apiUpdateTodo(id, { todo: todoFind.todo, isCompleted: todoFind.isCompleted }, listTodos);
 
                } else {
 
@@ -71,17 +54,28 @@ export default function App() {
      const handleExitEditTodo = () => {
           handleStateUpdateEditTodo(null);
      }
+     export const getApiKeyCookie = () => {
+          const str = document.cookie + ";";
+          const pattern = /apiKey=([^;]*)/
+          const strSub = str.match(pattern);
+          return strSub ? strSub[1] : null;
+     }
+     const getEmailCookie = () => {
+          const str = document.cookie + ";";
+          const pattern = /email=([^;]*)/
+          const strSub = str.match(pattern);
+          return strSub ? strSub[1] : null;
+     }
 
-
-     const getList = async (apiKey, url = "/todos") => {
+     const getList = async (apiKey) => {
           handleStateUpdateLoading(true);
-          const { data } = await client.get(url, null, apiKey);
+          const { data } = await client.get("/todos", null, apiKey);
           if (data.code === 200) {
                const { listTodo } = data.data;
                handleStateUpdateTodos(listTodo);
                handleStateUpdateLoading(false);
           } else {
-               getApiKey(handleStateUpdateLoading, getList);
+               getApiKey();
           }
           return data;
      }
@@ -96,7 +90,7 @@ export default function App() {
                     }
                })
           } else {
-               getApiKey(handleStateUpdateLoading, getList);
+               getApiKey();
           }
 
      }
@@ -105,8 +99,13 @@ export default function App() {
      }, []);
      // handles update state
 
-     const handleStateUpdateTodos = (listTodo) => {
-          setTodos(listTodo);
+     const handleStateUpdateTodos = (listTodo, todo) => {
+          if (todo) {
+               setTodos([todo, ...todos])
+          } else {
+               setTodos(listTodo);
+          }
+
      }
      const handleStateUpdateLoading = (value) => {
           setIsLoading(value)
@@ -118,9 +117,7 @@ export default function App() {
           <div className='container'>
                <h2 className='heading-lv2'>Welcome to Todo App</h2>
                <FormAddTodo
-                    handleAddTodo={handleAddTodo}
-                    getList={getList}
-               />
+                    handleAddTodo={handleAddTodo} />
                <TodoList
                     todos={todos}
                     handleDeleteTodo={handleDeleteTodo}
@@ -153,5 +150,3 @@ export default function App() {
           </div>
      )
 }
-
-export { getApiKeyCookie, getEmailCookie }

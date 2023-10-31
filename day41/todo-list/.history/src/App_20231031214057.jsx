@@ -105,8 +105,13 @@ export default function App() {
      }, []);
      // handles update state
 
-     const handleStateUpdateTodos = (listTodo) => {
-          setTodos(listTodo);
+     const handleStateUpdateTodos = (listTodo, todo) => {
+          if (todo) {
+               setTodos([todo, ...todos])
+          } else {
+               setTodos(listTodo);
+          }
+
      }
      const handleStateUpdateLoading = (value) => {
           setIsLoading(value)

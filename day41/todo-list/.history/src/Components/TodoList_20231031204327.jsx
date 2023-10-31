@@ -1,5 +1,5 @@
-import EditTodo from './EditTodo';
-import Todo from './Todo';
+import EditTodo from './EditTodo/EditTodo';
+import Todo from './Todo/Todo';
 export default function TodoList({ todos, handleDeleteTodo, handleUpdateTodo, handleExitEditTodo, editTodo }) {
      return (
           <ul className='list-todos'>

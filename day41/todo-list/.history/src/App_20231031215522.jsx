@@ -106,7 +106,10 @@ export default function App() {
      // handles update state
 
      const handleStateUpdateTodos = (listTodo) => {
+
           setTodos(listTodo);
+
+
      }
      const handleStateUpdateLoading = (value) => {
           setIsLoading(value)

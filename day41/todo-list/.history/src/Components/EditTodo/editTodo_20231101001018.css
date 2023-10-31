@@ -38,11 +38,4 @@
 
 .form-group-content__inner {
      display: flex;
-     gap: 5px;
-     justify-content: flex-start;
-}
-
-.form-group-content__inner input {
-     max-width: 14px;
-     height: 20px;
 }

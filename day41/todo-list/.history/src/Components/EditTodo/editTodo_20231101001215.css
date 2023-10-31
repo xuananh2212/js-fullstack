@@ -38,7 +38,6 @@
 
 .form-group-content__inner {
      display: flex;
-     gap: 5px;
      justify-content: flex-start;
 }
 

@@ -41,11 +41,7 @@ export const apiDeleteTodo = async (
      }
      handleStateUpdateLoading(false);
 }
-export const apiAddTodo = async (
-     todo,
-     handleStateUpdateLoading,
-     handleStateUpdateTodos,
-     getList) => {
+export const apiAddTodo = async (todo, handleStateUpdateLoading, handleStateUpdateTodos, getList) => {
      const apiKey = getApiKeyCookie();
      if (apiKey) {
           handleStateUpdateLoading(true);

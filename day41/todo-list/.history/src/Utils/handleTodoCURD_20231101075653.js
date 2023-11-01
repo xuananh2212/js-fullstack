@@ -2,14 +2,7 @@ import { toast } from 'react-toastify';
 import { getApiKeyCookie } from '../App';
 import { client } from './client';
 
-export const apiUpdateTodo = async (
-     id,
-     newTodo,
-     listTodos,
-     handleStateUpdateLoading,
-     handleStateUpdateTodos,
-     handleStateUpdateEditTodo,
-     getList) => {
+export const apiUpdateTodo = async (id, newTodo, listTodos, handleStateUpdateLoading, handleStateUpdateTodos, handleStateUpdateEditTodo) => {
      var url = `/todos/${id}`;
      handleStateUpdateLoading(true);
      const { data } = await client.patch(url, newTodo, getApiKeyCookie());
@@ -19,7 +12,7 @@ export const apiUpdateTodo = async (
           handleStateUpdateEditTodo(null);
      } else {
           toast.error("Lỗi cập nhật thất bại!")
-          getApiKey(handleStateUpdateLoading, getList);
+          getApiKey();
      }
      handleStateUpdateLoading(false);
 }
@@ -41,11 +34,7 @@ export const apiDeleteTodo = async (
      }
      handleStateUpdateLoading(false);
 }
-export const apiAddTodo = async (
-     todo,
-     handleStateUpdateLoading,
-     handleStateUpdateTodos,
-     getList) => {
+export const apiAddTodo = async (todo, handleStateUpdateLoading, handleStateUpdateTodos, getList) => {
      const apiKey = getApiKeyCookie();
      if (apiKey) {
           handleStateUpdateLoading(true);

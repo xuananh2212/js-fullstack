@@ -33,11 +33,7 @@ export default function App() {
           const todoEl = document.querySelector("#text-new-todo");
           var nameTodo = todoEl.value;
           if (/.{2,}/.test(nameTodo)) {
-               apiAddTodo(
-                    nameTodo,
-                    handleStateUpdateLoading,
-                    handleStateUpdateTodos,
-                    getList);
+               apiAddTodo(nameTodo, handleStateUpdateLoading, handleStateUpdateTodos);
           } else {
                toast.warning("phải có ít nhất 2 kí tự trở lên!")
           }

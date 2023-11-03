@@ -1,0 +1,11 @@
+.heading-lv1 {
+     color: #fff;
+     text-align: center;
+     font-size: 2.5rem;
+}
+
+.list-product {
+     display: grid;
+     flex-wrap: wrap;
+     gap: 10px;
+}

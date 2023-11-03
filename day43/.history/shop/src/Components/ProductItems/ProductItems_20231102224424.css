@@ -1,0 +1,25 @@
+.product-item {
+     padding: 20px 10px;
+     background-color: #fff;
+     border-radius: 5px;
+}
+
+.img-wrap img {
+     width: 100%;
+     height: 300px;
+     object-fit: cover;
+}
+
+.heading-lv2 {
+     font-size: 2.0rem;
+     margin-top: 18px;
+}
+
+.btn-wrap {
+     margin-top: 18px;
+}
+
+.btn {
+     padding: 10px;
+
+}

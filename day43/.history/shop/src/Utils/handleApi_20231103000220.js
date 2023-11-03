@@ -1,0 +1,34 @@
+import { useContext } from 'react';
+import { client } from './client.js'
+import { toast } from 'react-toastify';
+
+export const getApiKeyCookie = () => {
+     const str = document.cookie + ";";
+     const pattern = /apiKey=([^;]*)/
+     const strSub = str.match(pattern);
+     return strSub ? strSub[1] : null;
+}
+export const getEmailCookie = () => {
+     const str = document.cookie + ";";
+     const pattern = /email=([^;]*)/
+     const strSub = str.match(pattern);
+     return strSub ? strSub[1] : null;
+}
+export async function handleGetProducts(query) {
+     let url = new URLSearchParams(query);
+     const { data } = await client.get(`/products?${url}`);
+     console.log(data.data);
+     return data.data || [];
+}
+
+export async function getEmailApi(query) {
+     let url = new URLSearchParams(query);
+     let email = prompt('Enter your email address', 'xuantuananh2212@gmail.com');
+     var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/
+     if (email) {
+          const { data } = await client.get(`/api-key?${url}`)
+     } else {
+
+     }
+
+}

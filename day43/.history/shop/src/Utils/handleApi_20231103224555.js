@@ -86,7 +86,7 @@ export async function handlePostOderAPI(array, setCarts, setLoading) {
           setTimeout(() => {
                let email = prompt('Enter your email address', 'xuantuananh2212@gmail.com');
                getEmailApi(email, setLoading)
-          }, 1000)
+          })
 
      }
      setLoading(false)

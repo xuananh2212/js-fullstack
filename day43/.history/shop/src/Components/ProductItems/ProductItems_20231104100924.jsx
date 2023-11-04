@@ -25,7 +25,7 @@ export default function ProductItems(
                setCarts([...carts, { productId, name, quantity: 1, price }]);
 
           }
-          toast.success(`thêm sản phẩm: ${name} vào giỏ hàng`)
+          toast.success(`đã thêm sản phẩm: ${name} vào giỏ hàng`)
      }
      return (
           <li className='product-item'>

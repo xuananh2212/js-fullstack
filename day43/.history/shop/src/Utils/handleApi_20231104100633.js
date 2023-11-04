@@ -80,7 +80,7 @@ export async function handlePostOderAPI(array, setCarts, setLoading) {
           setCarts([]);
 
      } else {
-          toast.error("Thanh Toán thất bại");
+          toast.error("thành công thất bại");
           setTimeout(() => {
                let email = prompt('Enter your email address', 'xuantuananh2212@gmail.com');
                getEmailApi(email, setLoading).then(data => {

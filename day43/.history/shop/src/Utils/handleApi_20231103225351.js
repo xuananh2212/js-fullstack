@@ -36,8 +36,11 @@ export async function getEmailApi(email, setLoading) {
                getName(apiKey)
           } else {
                toast.error("Email không tồn tại trong hệ thống!");
+               setTimeout(() => {
+                    let email = prompt('Enter your email address', 'xuantuananh2212@gmail.com');
+                    getEmailApi(email);
+               }, 1000)
           }
-          setLoading(false)
           return data;
      } else {
           toast.error("vui lòng nhập email!")
@@ -80,12 +83,15 @@ export async function handlePostOderAPI(array, setCarts, setLoading) {
           setCarts([]);
 
      } else {
-          toast.error("Thanh Toán thất bại");
+          toast.error("thành công thất bại");
           setTimeout(() => {
                let email = prompt('Enter your email address', 'xuantuananh2212@gmail.com');
                getEmailApi(email, setLoading).then(data => {
                     if (data?.code === 200) {
-                         handlePostOderAPI(array, setCarts, setLoading);
+                         handleCheckApi(array, setCarts, setLoading);
+
+                    } else {
+                         toast.error("email không tồn tại!")
                     }
                })
           }, 1000)

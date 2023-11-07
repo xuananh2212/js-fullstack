@@ -1,0 +1,77 @@
+.log-out {
+     display: flex;
+     gap: 20px;
+     margin: 18px auto;
+     padding: 10px 20px;
+}
+
+.img-inner {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+}
+
+.infor-user {
+     max-width: 500px;
+     padding: 20px;
+     border: 1px solid #ccc;
+     border-radius: 12px;
+}
+
+.infor-content {
+     display: flex;
+     align-items: center;
+}
+
+
+.img-inner img {
+     width: 100%;
+     border-radius: 50%;
+}
+
+ul {
+     list-style: none;
+}
+
+ul li span {
+     font-size: 1.2rem;
+     font-weight: 600;
+}
+
+.btn-logout {
+     background-color: red;
+     border-radius: 12px;
+     outline: none;
+     border: none;
+}
+
+.send {
+     padding: 20px;
+
+}
+
+input,
+textarea {
+     box-sizing: border-box;
+     padding: 20px;
+     width: 100%;
+     margin-top: 18px;
+     display: block;
+     outline: none;
+}
+
+.form-sendEmail {
+     flex: 1;
+     padding: 10px;
+     border-radius: 12px;
+     border: 1px solid #ccc;
+}
+
+.btn-send {
+     background-color: green;
+     border-radius: 12px;
+}
+
+.form-group {
+     margin-top: 18px;
+}

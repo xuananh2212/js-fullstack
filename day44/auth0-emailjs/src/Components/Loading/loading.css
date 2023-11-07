@@ -1,0 +1,12 @@
+.loading {
+     position: fixed;
+     inset: 0;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     background-color: #33333375;
+}
+
+.loading.is-hidden {
+     display: none;
+}

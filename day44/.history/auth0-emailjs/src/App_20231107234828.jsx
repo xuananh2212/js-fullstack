@@ -1,4 +1,4 @@
-
+import { useState } from 'react'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './Components/Login/Login'
@@ -12,11 +12,11 @@ function App() {
   return (
     <div>
       {error && toast.error("ApthenTication Error")}
+      {!error && isLoading && }
       {!error && !isLoading &&
         <><Login />
           <Logout /></>}
       <ToastContainer />
-      <Loading loading={isLoading} />
     </div>
 
 

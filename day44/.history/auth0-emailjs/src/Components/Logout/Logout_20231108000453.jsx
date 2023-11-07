@@ -21,9 +21,9 @@ export default function Logout() {
           setMessages({ ...messages, content: e.target.value })
      }
      const handleSubmit = (e) => {
-          e.preventDefault();
           if (messages.content) {
                <Loading loading={true} />
+               e.preventDefault();
                const serviceId = 'service_lpb5dl2';
                const templateId = 'template_mx5wl3p';
                const publicKey = 'PU4YyGOSuGoncsYTt';

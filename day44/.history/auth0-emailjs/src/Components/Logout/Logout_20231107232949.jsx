@@ -2,10 +2,9 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import { useRef, useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { toast } from 'react-toastify';
+
 import "./Logout.css"
 import Profile from '../Profile/Profile';
-import Loading from '../Loading/Loading';
 export default function Logout() {
      const { logout, isAuthenticated } = useAuth0();
      const [messages, setMessages] = useState({
@@ -22,26 +21,22 @@ export default function Logout() {
      }
      const handleSubmit = (e) => {
           e.preventDefault();
-          if (messages.content) {
-               <Loading loading={true} />
-               const serviceId = 'service_lpb5dl2';
-               const templateId = 'template_mx5wl3p';
-               const publicKey = 'PU4YyGOSuGoncsYTt';
-               emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-                    .then(() => {
-                         setMessages({
-                              ...messages,
-                              content: "",
-                         })
-                         toast.success("gửi email thành công!");
-                         <Loading loading={false} />
-                    }, (error) => {
-                         toast.error("gửi email thất bại!", error.text);
-                         <Loading loading={false} />
-                    });
-          } else {
-               toast.warning("vui lòng không để trống");
-          }
+          const serviceId = 'service_lpb5dl2';
+          const templateId = 'template_mx5wl3p';
+          const publicKey = 'PU4YyGOSuGoncsYTt';
+          console.log(messages);
+          emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+               .then((result) => {
+                    console.log(result.text);
+                    setMessages({
+                         email: "",
+                         content: "",
+                         fullName: "",
+                    })
+               }, (error) => {
+                    console.log(error.text);
+               });
+
 
      }
      return (

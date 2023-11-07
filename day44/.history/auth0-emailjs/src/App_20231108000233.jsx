@@ -12,11 +12,12 @@ function App() {
   return (
     <div>
       {error && toast.error("ApthenTication Error")}
+      {!error && isLoading && />}
       {!error && !isLoading &&
         <><Login />
           <Logout /></>}
       <ToastContainer />
-      <Loading loading={isLoading} />
+      <Loading loading={isLoading}
     </div>
 
 

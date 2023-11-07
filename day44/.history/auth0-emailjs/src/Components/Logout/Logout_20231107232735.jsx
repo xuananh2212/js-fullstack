@@ -1,11 +1,10 @@
 
 import { useAuth0 } from '@auth0/auth0-react'
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { toast } from 'react-toastify';
+
 import "./Logout.css"
 import Profile from '../Profile/Profile';
-import Loading from '../Loading/Loading';
 export default function Logout() {
      const { logout, isAuthenticated } = useAuth0();
      const [messages, setMessages] = useState({
@@ -13,7 +12,6 @@ export default function Logout() {
           content: "",
           fullName: "",
      });
-     const form = useRef();
      const handleChangeInput = (e) => {
           setMessages({ ...messages, email: e.target.value })
      }
@@ -22,34 +20,30 @@ export default function Logout() {
      }
      const handleSubmit = (e) => {
           e.preventDefault();
-          if (messages.content) {
-               <Loading loading={true} />
-               const serviceId = 'service_lpb5dl2';
-               const templateId = 'template_mx5wl3p';
-               const publicKey = 'PU4YyGOSuGoncsYTt';
-               emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-                    .then(() => {
-                         setMessages({
-                              ...messages,
-                              content: "",
-                         })
-                         toast.success("gửi email thành công!");
-                         <Loading loading={false} />
-                    }, (error) => {
-                         toast.error("gửi email thất bại!", error.text);
-                         <Loading loading={false} />
-                    });
-          } else {
-               toast.warning("vui lòng không để trống");
-          }
+          const serviceId = 'service_lpb5dl2';
+          const templateId = 'template_mx5wl3p';
+          const publicKey = 'PU4YyGOSuGoncsYTt';
+          console.log(messages);
+          emailjs.sendForm(serviceId, templateId, messages, publicKey)
+               .then((result) => {
+                    console.log(result.text);
+                    setMessages({
+                         email: "",
+                         content: "",
+                         fullName: "",
+                    })
+               }, (error) => {
+                    console.log(error.text);
+               });
+
 
      }
      return (
           isAuthenticated && (
                <div style={{ padding: 10, border: "1px solid #333", borderRadius: 12 }}>
                     <div className='log-out'>
-                         <Profile messages={messages} setMessages={setMessages} />
-                         <form ref={form} className='form-sendEmail' onSubmit={handleSubmit}>
+                         <Profile message={messages} setMessages={setMessages} />
+                         <form className='form-sendEmail' onSubmit={handleSubmit}>
                               <div className="form-group">
                                    <label htmlFor="email">Email:</label>
                                    <input

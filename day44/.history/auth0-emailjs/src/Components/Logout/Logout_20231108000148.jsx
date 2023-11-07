@@ -21,27 +21,23 @@ export default function Logout() {
           setMessages({ ...messages, content: e.target.value })
      }
      const handleSubmit = (e) => {
+          <Loading loading={true} />
           e.preventDefault();
-          if (messages.content) {
-               <Loading loading={true} />
-               const serviceId = 'service_lpb5dl2';
-               const templateId = 'template_mx5wl3p';
-               const publicKey = 'PU4YyGOSuGoncsYTt';
-               emailjs.sendForm(serviceId, templateId, form.current, publicKey)
-                    .then(() => {
-                         setMessages({
-                              ...messages,
-                              content: "",
-                         })
-                         toast.success("gửi email thành công!");
-                         <Loading loading={false} />
-                    }, (error) => {
-                         toast.error("gửi email thất bại!", error.text);
-                         <Loading loading={false} />
-                    });
-          } else {
-               toast.warning("vui lòng không để trống");
-          }
+          const serviceId = 'service_lpb5dl2';
+          const templateId = 'template_mx5wl3p';
+          const publicKey = 'PU4YyGOSuGoncsYTt';
+          emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+               .then(() => {
+                    setMessages({
+                         ...messages,
+                         content: "",
+                    })
+                    toast.success("gửi email thành công!");
+                    <Loading loading={false} />
+               }, (error) => {
+                    toast.error("gửi email thất bại!", error.text);
+                    <Loading loading={false} />
+               });
 
      }
      return (

@@ -3,6 +3,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 
 export default function Profile({ messages, setMessages }) {
      const { user, isAuthenticated } = useAuth0();
+     console.log(user)
      useEffect(() => {
           setMessages({ ...messages, email: user?.email || "example@email.com", fullName: user?.nickname || "example" })
      }, [])

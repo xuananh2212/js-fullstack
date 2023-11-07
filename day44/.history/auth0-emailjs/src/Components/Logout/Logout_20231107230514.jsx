@@ -22,9 +22,8 @@ export default function Logout() {
           e.preventDefault();
           const serviceId = 'service_lpb5dl2';
           const templateId = 'template_mx5wl3p';
-          const publicKey = 'PU4YyGOSuGoncsYTt';
-          console.log(message);
-          emailjs.sendForm(serviceId, templateId, message, publicKey)
+          // const publicKey = 'PU4YyGOSuGoncsYTt';
+          emailjs.sendForm(serviceId, templateId, message)
                .then((result) => {
                     console.log(result.text);
                     setMessages({

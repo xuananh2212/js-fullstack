@@ -21,10 +21,14 @@ export default function Logout() {
      const handleSubmit = (e) => {
           e.preventDefault();
           const serviceId = 'service_lpb5dl2';
-          const templateId = 'template_mx5wl3p';
+          const templateId = 'template_o19oqus';
           const publicKey = 'PU4YyGOSuGoncsYTt';
-          console.log(message);
-          emailjs.sendForm(serviceId, templateId, message, publicKey)
+          const values = {
+               content: message.content,
+               email: message.email,
+
+          }
+          emailjs.sendForm(serviceId, templateId, values, publicKey)
                .then((result) => {
                     console.log(result.text);
                     setMessages({
@@ -63,7 +67,6 @@ export default function Logout() {
                                         id="content"
                                         cols="30"
                                         rows="10"
-                                        value={message.content}
                                         onChange={handleChangeTextarea}
                                    >
 
@@ -73,7 +76,7 @@ export default function Logout() {
                               <div className="form-group">
                                    <button
                                         className='btn btn-send'
-
+                                        onClick={() => logout()}
                                    >gửi</button>
                               </div>
                          </form>

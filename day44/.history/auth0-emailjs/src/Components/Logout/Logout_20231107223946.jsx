@@ -21,10 +21,15 @@ export default function Logout() {
      const handleSubmit = (e) => {
           e.preventDefault();
           const serviceId = 'service_lpb5dl2';
-          const templateId = 'template_mx5wl3p';
+          const templateId = 'template_o19oqus';
           const publicKey = 'PU4YyGOSuGoncsYTt';
-          console.log(message);
-          emailjs.sendForm(serviceId, templateId, message, publicKey)
+          var values = {
+               content: message.content,
+               fullName: message.fullName,
+
+          }
+          console.log(values);
+          emailjs.sendForm(serviceId, templateId, values, publicKey)
                .then((result) => {
                     console.log(result.text);
                     setMessages({

@@ -1,11 +1,10 @@
 import { useEffect } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
-export default function Profile({ message, setMessages }) {
+export default function Profile({ message, setMessages, fullName }) {
      const { user, isAuthenticated } = useAuth0();
-     console.log(user)
      useEffect(() => {
-          setMessages({ ...message, email: user?.email || "example@email.com", fullName: user?.nickname || "example" })
+          setMessages({ ...message, email: user?.email || "example@email.com" })
      }, [])
      return (
           isAuthenticated && (

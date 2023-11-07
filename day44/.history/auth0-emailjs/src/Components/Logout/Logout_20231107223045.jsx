@@ -1,7 +1,7 @@
 
 import { useAuth0 } from '@auth0/auth0-react'
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
+import emailjs from '@emailjs/browser'
 
 import "./Logout.css"
 import Profile from '../Profile/Profile';
@@ -21,17 +21,16 @@ export default function Logout() {
      const handleSubmit = (e) => {
           e.preventDefault();
           const serviceId = 'service_lpb5dl2';
-          const templateId = 'template_mx5wl3p';
+          const templateId = 'template_o19oqus';
           const publicKey = 'PU4YyGOSuGoncsYTt';
-          console.log(message);
-          emailjs.sendForm(serviceId, templateId, message, publicKey)
+          const values = {
+               content: message.content,
+               email: message.email,
+
+          }
+          emailjs.sendForm(serviceId, templateId, values, publicKey)
                .then((result) => {
                     console.log(result.text);
-                    setMessages({
-                         email: "",
-                         content: "",
-                         fullName: "",
-                    })
                }, (error) => {
                     console.log(error.text);
                });
@@ -42,7 +41,7 @@ export default function Logout() {
           isAuthenticated && (
                <div style={{ padding: 10, border: "1px solid #333", borderRadius: 12 }}>
                     <div className='log-out'>
-                         <Profile message={message} setMessages={setMessages} />
+                         <Profile message={message} setMessages={setMessages} fullName={fullName} />
                          <form className='form-sendEmail' onSubmit={handleSubmit}>
                               <div className="form-group">
                                    <label htmlFor="email">Email:</label>
@@ -63,7 +62,6 @@ export default function Logout() {
                                         id="content"
                                         cols="30"
                                         rows="10"
-                                        value={message.content}
                                         onChange={handleChangeTextarea}
                                    >
 
@@ -73,7 +71,7 @@ export default function Logout() {
                               <div className="form-group">
                                    <button
                                         className='btn btn-send'
-
+                                        onClick={() => logout()}
                                    >gửi</button>
                               </div>
                          </form>

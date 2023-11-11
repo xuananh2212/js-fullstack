@@ -1,0 +1,11 @@
+.theme {
+     outline: none;
+     border: none;
+     background-color: transparent;
+
+     .dark,
+     .light {
+          width: 25px;
+          height: 25px;
+     }
+}

@@ -1,0 +1,23 @@
+.list-plays {
+     position: relative;
+     padding: 0;
+     width: 100%;
+     list-style: none;
+     display: flex;
+     overflow: auto;
+}
+
+.icon-wrap {
+     position: absolute;
+     left: 5px;
+     bottom: 5px;
+     display: flex;
+     width: 25px;
+     height: 25px;
+     border-radius: 12px;
+     background-color: red;
+
+     .icon-remve {
+          color: #fff;
+     }
+}

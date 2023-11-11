@@ -1,0 +1,11 @@
+* {
+     box-sizing: border-box;
+}
+
+.list-plays {
+     padding: 0;
+     width: 100%;
+     list-style: none;
+     display: flex;
+     overflow: auto;
+}

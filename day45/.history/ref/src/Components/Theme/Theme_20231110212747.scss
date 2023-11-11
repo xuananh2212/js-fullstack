@@ -1,0 +1,15 @@
+.theme {
+     outline: none;
+     border: none;
+     background-color: transparent;
+     position: fixed;
+     cursor: pointer;
+     top: 25px;
+     right: 15px;
+
+     .dark,
+     .light {
+          width: 25px;
+          height: 25px;
+     }
+}

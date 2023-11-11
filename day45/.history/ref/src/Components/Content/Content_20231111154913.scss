@@ -1,0 +1,23 @@
+.title,
+.desc {
+     text-align: center;
+}
+
+.title {
+     font-size: 2.5rem;
+     font-weight: 700;
+}
+
+.desc {
+     font-size: 1.5rem;
+}
+
+.remaining {
+     display: block;
+     text-align: center;
+     font-size: 2.5rem;
+
+     .number {
+          background-color: rgb(141, 141, 42);
+     }
+}

@@ -1,0 +1,31 @@
+.list-plays {
+     padding: 0;
+     width: 100%;
+     list-style: none;
+     display: flex;
+     overflow: auto;
+}
+
+.list-plays-wrap {
+     position: relative;
+}
+
+.icon-wrap {
+     outline: none;
+     border: none;
+     cursor: pointer;
+     position: absolute;
+     left: 10px;
+     bottom: 25px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 40px;
+     height: 40px;
+     border-radius: 6px;
+     background-color: red;
+
+     .icon-remve {
+          color: #fff;
+     }
+}

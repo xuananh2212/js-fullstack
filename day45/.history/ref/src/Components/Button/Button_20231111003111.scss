@@ -1,0 +1,19 @@
+.btn {
+     display: block;
+     min-width: 150px;
+     padding: 14px 10px;
+     background-color: green;
+     color: #fff;
+     margin: 18px auto 0 auto;
+     outline: none;
+     border: 1px solid #ccc;
+     border-radius: 12px;
+}
+
+.btn-again {
+     display: none;
+}
+
+.btn-again.is-show {
+     display: block;
+}

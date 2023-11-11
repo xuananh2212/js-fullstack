@@ -1,0 +1,43 @@
+* {
+     box-sizing: border-box;
+}
+
+.form-number {
+
+     label,
+     input {
+          padding: 14px 10px;
+          width: 100%;
+          display: block;
+     }
+
+     label {
+          font-size: 1.5rem;
+
+     }
+
+     input {
+          margin-top: 18px;
+          border: 1px solid #ccc;
+          outline: none;
+          border-radius: 4px;
+     }
+
+     input:focus {
+          outline: 3px solid blue;
+     }
+
+     input::-webkit-outer-spin-button,
+     input::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+     }
+
+     input[type=number] {
+          -moz-appearance: textfield;
+     }
+}
+
+.form-number.hidden {
+     display: none;
+}

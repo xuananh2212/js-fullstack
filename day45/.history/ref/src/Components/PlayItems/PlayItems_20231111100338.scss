@@ -1,0 +1,28 @@
+.playItems {
+     flex: 1 0 100%;
+
+     table {
+          width: 100%;
+
+          thead {
+               td {
+                    text-align: center;
+                    font-size: 1.5rem;
+                    font-weight: 600;
+               }
+          }
+
+          tbody {
+               td {
+                    width: 50%;
+                    text-align: center;
+               }
+          }
+
+          tr {
+               display: flex;
+               padding: 10px;
+               border-bottom: 1px solid #ccc;
+          }
+     }
+}

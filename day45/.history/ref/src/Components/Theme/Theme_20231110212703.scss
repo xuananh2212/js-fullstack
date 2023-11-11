@@ -1,0 +1,12 @@
+.theme {
+     outline: none;
+     border: none;
+     background-color: transparent;
+     position: fixed;
+
+     .dark,
+     .light {
+          width: 25px;
+          height: 25px;
+     }
+}

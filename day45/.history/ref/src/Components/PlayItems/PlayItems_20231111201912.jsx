@@ -34,7 +34,7 @@ export default function PlayItems({ playItems, numberPlay, sumNumberPlay }) {
                                    <span>Số lần Nhập tối đa: {MAX_TIME}</span>
                                    <span className="percent">
                                         Tỷ lệ đúng: {correct.current === -1 ? `0%` :
-                                             `${((MAX_TIME - correct.current) * 100 / MAX_TIME).toFixed(2)}%`}
+                                             `${((MAX_TIME - (correct.current)) * 100 / MAX_TIME).toFixed(2)}%`}
                                    </span>
                               </div>
                          </>

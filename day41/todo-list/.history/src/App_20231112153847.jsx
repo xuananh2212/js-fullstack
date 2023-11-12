@@ -11,13 +11,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // }
 import { useState, useEffect } from "react";
-const getApiKeyCookie = () => {
+export const getApiKeyCookie = () => {
      const str = document.cookie + ";";
      const pattern = /apiKey=([^;]*)/
      const strSub = str.match(pattern);
      return strSub ? strSub[1] : null;
 }
-const getEmailCookie = () => {
+export const getEmailCookie = () => {
      const str = document.cookie + ";";
      const pattern = /email=([^;]*)/
      const strSub = str.match(pattern);

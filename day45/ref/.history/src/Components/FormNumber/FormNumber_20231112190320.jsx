@@ -79,6 +79,9 @@ export default function FromNumber() {
                if ([1, 2, 3, 4, 5, 6, 7, 8, 9].includes(+e.key) || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                     input.current.focus();
                }
+               if () {
+                    input.current.focus();
+               }
           }
           window.addEventListener("keydown", handleFocus);
           return () => {

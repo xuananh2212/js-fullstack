@@ -11,17 +11,10 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // }
 import { useState, useEffect } from "react";
-const getApiKeyCookie = () => {
-     const str = document.cookie + ";";
-     const pattern = /apiKey=([^;]*)/
-     const strSub = str.match(pattern);
-     return strSub ? strSub[1] : null;
+function getApiKeyCookie() {
 }
-const getEmailCookie = () => {
-     const str = document.cookie + ";";
-     const pattern = /email=([^;]*)/
-     const strSub = str.match(pattern);
-     return strSub ? strSub[1] : null;
+function getEmailCookie() {
+
 }
 export default function App() {
      const [todos, setTodos] = useState([]);

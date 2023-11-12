@@ -7,22 +7,10 @@ import ScaleLoader from "react-spinners/ScaleLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import { apiAddTodo, apiDeleteTodo, apiUpdateTodo, getApiKey } from "./Utils/handleTodoCURD";
 import 'react-toastify/dist/ReactToastify.css';
-// export class App extends Component {
 
-// }
 import { useState, useEffect } from "react";
-const getApiKeyCookie = () => {
-     const str = document.cookie + ";";
-     const pattern = /apiKey=([^;]*)/
-     const strSub = str.match(pattern);
-     return strSub ? strSub[1] : null;
-}
-const getEmailCookie = () => {
-     const str = document.cookie + ";";
-     const pattern = /email=([^;]*)/
-     const strSub = str.match(pattern);
-     return strSub ? strSub[1] : null;
-}
+
+
 export default function App() {
      const [todos, setTodos] = useState([]);
      const [isLoading, setIsLoading] = useState(false);
@@ -164,4 +152,3 @@ export default function App() {
      )
 }
 
-export { getApiKeyCookie, getEmailCookie }

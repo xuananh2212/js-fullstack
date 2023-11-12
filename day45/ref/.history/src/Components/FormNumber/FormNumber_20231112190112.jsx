@@ -14,7 +14,9 @@ export default function FromNumber() {
      }
      const handleKeyDown = (e) => {
           ["e", "E", "+", "-"].includes(e.key) && e.preventDefault()
-
+          if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+               input.current.focus();
+          }
      }
      const handleResetArrayItem = () => {
           console.log(arrayItem.current);
@@ -76,7 +78,7 @@ export default function FromNumber() {
 
      useEffect(() => {
           const handleFocus = (e) => {
-               if ([1, 2, 3, 4, 5, 6, 7, 8, 9].includes(+e.key) || e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+               if ([1, 2, 3, 4, 5, 6, 7, 8, 9].includes(+e.key)) {
                     input.current.focus();
                }
           }

@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 import styles from './ProductItem.module.scss'
 import { BsCartPlus } from "react-icons/bs";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify';
 export default function ProductItem({ product }) {
@@ -22,13 +22,13 @@ export default function ProductItem({ product }) {
                     <img src={image} alt={name} />
                </div>
                <div className={clsx(styles.content)}>
-                    <h3
-                         onClick={() => {
-                              navigate(`/product-detail/${_id}`);
-                         }}
-                         className={clsx(styles.nameProduct)}>
-                         {name}
-                    </h3>
+                    <NavLink to={`/product-detail/${_id}`}>
+                         <h3
+
+                              className={clsx(styles.nameProduct)}>
+                              {name}
+                         </h3>
+                    </NavLink>
                     <div className={clsx(styles.contentBottom)}>
                          <span className={styles.price}>$ {price.toLocaleString()}</span>
                          <button

@@ -28,6 +28,7 @@ const rootReducer = (state = initalState, action) => {
                     return _id === action.payLoad._id
                });
                cartNew.splice(index, 1)
+
                return { ...state, carts: cartNew }
           }
           case 'carts/decrease': {

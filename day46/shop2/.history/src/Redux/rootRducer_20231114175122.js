@@ -27,8 +27,7 @@ const rootReducer = (state = initalState, action) => {
                const index = cartNew.findIndex(({ _id }) => {
                     return _id === action.payLoad._id
                });
-               cartNew.splice(index, 1)
-               return { ...state, carts: cartNew }
+               return { ...state, carts: [...cartNew.splice(index, 1)] }
           }
           case 'carts/decrease': {
                const cartNew = JSON.parse(JSON.stringify(state.carts));
@@ -39,7 +38,7 @@ const rootReducer = (state = initalState, action) => {
                cartFind.quantity = cartFind.quantity - 1;
                cartFind.amount = cartFind.amount + 1;
                localStorage.setItem('carts', JSON.stringify(cartNew));
-               return { ...state, carts: cartNew }
+               return { ...state, carts: [...cartNew] }
           }
           case 'carts/checkOut': {
                localStorage.removeItem('carts');

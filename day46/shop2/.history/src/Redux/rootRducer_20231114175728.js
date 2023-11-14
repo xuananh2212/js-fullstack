@@ -27,8 +27,9 @@ const rootReducer = (state = initalState, action) => {
                const index = cartNew.findIndex(({ _id }) => {
                     return _id === action.payLoad._id
                });
-               cartNew.splice(index, 1)
-               return { ...state, carts: cartNew }
+               console.log(index, cartNew.splice(index, 1));
+
+               return { ...state, carts: [...cartNew.splice(index, 1)] }
           }
           case 'carts/decrease': {
                const cartNew = JSON.parse(JSON.stringify(state.carts));

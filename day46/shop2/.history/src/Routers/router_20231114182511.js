@@ -8,6 +8,7 @@ const routes = [
      { path: '/carts', Component: CartsPage },
      { path: '/:id', Component: ProductDetail },
      { path: '*', Component: NotFoundPage }
+
 ]
 export default routes;
 

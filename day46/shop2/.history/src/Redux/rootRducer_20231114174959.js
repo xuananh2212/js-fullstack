@@ -24,11 +24,10 @@ const rootReducer = (state = initalState, action) => {
           }
           case 'carts/removeCart': {
                const cartNew = JSON.parse(JSON.stringify(state.carts));
-               const index = cartNew.findIndex(({ _id }) => {
+               const cartFind = cartNew.find(({ _id }) => {
+                    console.log(_id, action.payLoad._id)
                     return _id === action.payLoad._id
                });
-               cartNew.splice(index, 1)
-               return { ...state, carts: cartNew }
           }
           case 'carts/decrease': {
                const cartNew = JSON.parse(JSON.stringify(state.carts));
@@ -39,7 +38,7 @@ const rootReducer = (state = initalState, action) => {
                cartFind.quantity = cartFind.quantity - 1;
                cartFind.amount = cartFind.amount + 1;
                localStorage.setItem('carts', JSON.stringify(cartNew));
-               return { ...state, carts: cartNew }
+               return { ...state, carts: [...cartNew] }
           }
           case 'carts/checkOut': {
                localStorage.removeItem('carts');

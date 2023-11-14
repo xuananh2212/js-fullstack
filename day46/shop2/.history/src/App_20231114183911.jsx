@@ -1,11 +1,16 @@
 import { useState } from 'react'
 import routes from './Routers/router.js'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Redirect } from "react-router-dom";
+
 function App() {
+
   return (
     <div className='App'>
       <BrowserRouter>
         <Routes>
+          <Route path="/">
+            <Redirect to="/products" />
+          </Route>
           {
             routes.map(({ path, Component }, index) => {
               return (

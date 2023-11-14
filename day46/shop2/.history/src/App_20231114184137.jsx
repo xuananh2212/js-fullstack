@@ -1,11 +1,15 @@
 import { useState } from 'react'
 import routes from './Routers/router.js'
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 function App() {
+
   return (
     <div className='App'>
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes>
+          <Route exact path="/">
+            <Redirect to="/products" />
+          </Route>
           {
             routes.map(({ path, Component }, index) => {
               return (
@@ -18,7 +22,16 @@ function App() {
           }
         </Routes>
 
-      </BrowserRouter>
+      </BrowserRouter> */}
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/products" />
+          </Route>
+          <Route path="/products" component={Products} />
+          {/* Other routes */}
+        </Switch>
+      </Router>
 
     </div>
   )

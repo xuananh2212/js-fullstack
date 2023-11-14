@@ -14,7 +14,7 @@ export default function Cart({ product: { _id, image, amount, name, price, quant
                type: 'carts/add',
                payLoad: { _id, image, amount, name, price, quantity }
           })
-          toast.success(`Tăng Số lượng sản phẩm `);
+          toast.success(`Tăng Số lượng sản phẩm `)
 
      }
      const handleDecrease = () => {
@@ -22,7 +22,7 @@ export default function Cart({ product: { _id, image, amount, name, price, quant
                type: 'carts/decrease',
                payLoad: { _id }
           })
-          toast.success(`Giảm Số lượng sản phẩm`);
+          toast.success(`Giảm Số lượng sản phẩm`)
      }
      const handleRemoveCart = () => {
           dispatch({

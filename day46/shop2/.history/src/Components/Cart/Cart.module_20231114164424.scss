@@ -1,0 +1,11 @@
+.cart {
+     padding: 20px;
+     margin-bottom: 18px;
+     border: 1px solid #ccc;
+     border-radius: 12px;
+
+     .cartWrapTop {
+          display: flex;
+          gap: 20px;
+     }
+}

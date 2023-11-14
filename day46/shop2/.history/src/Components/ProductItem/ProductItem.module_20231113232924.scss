@@ -1,0 +1,11 @@
+.ProductItem {
+     flex: 1 0 calc(100% / 4 - 20px);
+     cursor: pointer;
+     padding: 20px 10px;
+
+     .imgWrap {
+          img {
+               max-width: 100%;
+          }
+     }
+}

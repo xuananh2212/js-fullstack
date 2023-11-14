@@ -1,0 +1,25 @@
+.productDetail {
+     padding-top: 150px;
+
+     .btnAddCart {
+          min-width: 120px;
+          padding: 10px 5px;
+          display: flex;
+          gap: 10px;
+          align-items: center;
+          justify-content: center;
+          background-color: #fa5030;
+          color: #fff;
+          border-radius: 12px;
+     }
+
+     .productDetailWrap {
+          display: flex;
+
+     }
+
+     .productDetailItem {
+          flex: 1 0 calc(100% / 2 - 20px)
+     }
+
+}

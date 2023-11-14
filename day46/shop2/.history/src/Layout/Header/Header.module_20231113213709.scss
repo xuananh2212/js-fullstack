@@ -1,0 +1,25 @@
+.header {
+     height: 250px;
+     background-color: #fa5030;
+
+     .logoWrap {
+          text-decoration: none;
+          color: #fff;
+
+          .logo {
+               max-width: 50px;
+
+               img {
+                    max-width: 100%;
+               }
+
+          }
+
+     }
+
+}
+
+.container {
+     max-width: 1135px;
+     margin: 0 auto;
+}

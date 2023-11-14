@@ -1,0 +1,21 @@
+import React from 'react';
+import styles from './Cart.module.scss';
+import Header from '../../Layout/Header/Header';
+import clsx from 'clsx';
+import { useSelector } from 'react-redux';
+export default function Cart() {
+     const carts = useSelector((state) => state.carts);
+     console.log(carts);
+     return (
+          <>
+               <Header />
+               <div className={styles.carts}>
+                    <div className='container'>
+                         <h2 className={ }></h2>
+
+                    </div>
+
+               </div>
+          </>
+     )
+}

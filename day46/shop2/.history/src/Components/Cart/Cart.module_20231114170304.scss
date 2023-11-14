@@ -1,0 +1,109 @@
+.cart {
+     position: relative;
+     padding: 20px;
+     margin-bottom: 18px;
+     border: 1px solid #ccc;
+     border-radius: 12px;
+
+     .cartWrapTop {
+          display: flex;
+          gap: 20px;
+
+          .imgWrap {
+               max-width: 250px;
+
+               img {
+                    max-width: 100%;
+                    width: 200px;
+                    border-radius: 12px;
+                    height: 150px;
+
+               }
+          }
+
+          .cartRight {
+               padding-top: 15px;
+
+               .headingLv3 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+               }
+
+               span {
+                    margin-top: 20px;
+                    display: block;
+               }
+
+               .price {
+                    font-size: 1.5rem;
+                    font-weight: 600;
+               }
+
+               .amount {
+                    font-size: 1.4rem;
+               }
+
+          }
+     }
+
+     .cartWrapBottom {
+          margin-top: 30px;
+          display: flex;
+          justify-content: space-between;
+
+          .btnGroup {
+               display: flex;
+               align-items: center;
+
+               .increase,
+               .decrease {
+                    min-width: 60px;
+                    font-size: 1.5rem;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    color: #fff;
+               }
+
+               .increase {
+                    background-color: green;
+
+               }
+
+               .decrease {
+                    background-color: red;
+               }
+
+
+               .quantity {
+                    display: block;
+                    padding: 10px 20px;
+                    border-top: 1px solid #ccc;
+                    border-bottom: 1px solid #ccc;
+                    font-size: 1.5rem;
+
+               }
+
+          }
+
+          .intoMoney {
+               font-size: 1.8rem;
+          }
+     }
+
+     .removeCart {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          width: 50px;
+          height: 50px;
+          background-color: red;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .iconRemove {
+               color: #fff;
+          }
+     }
+}

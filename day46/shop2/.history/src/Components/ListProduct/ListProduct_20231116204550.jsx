@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { client } from '../../Utils/client';
 import { toast } from 'react-toastify';
 import ProductItem from '../ProductItem/ProductItem';
@@ -13,6 +13,7 @@ export default function ListProduct() {
      const param = useParams();
      const [listProduct, setLiProduct] = useState([]);
      const [numberPage, setNumberPage] = useState(param.page);
+     console.log(numberPage, 'numberPage');
      const isLoading = useRef(true);
      const totalPages = useRef(1);
      const handlePageClick = (e) => {
@@ -36,9 +37,8 @@ export default function ListProduct() {
                if (data.code === 200) {
                     totalPages.current = data.data.totalPage;
                     if (numberPage > totalPages.current) {
-                         setNumberPage(1);
                          navigate('/product/1');
-
+                         numberPage = 1;
                     }
                     console.log(data.data.listProduct)
                     setLiProduct(data.data.listProduct);
@@ -48,13 +48,8 @@ export default function ListProduct() {
           }
      }, [numberPage]);
 
-     useEffect(() => {
+     useLayoutEffect(() => {
           handleGetApiProducts();
-          if (numberPage < 0 || /\D+/.test(numberPage)) {
-               setNumberPage(1);
-               navigate('/product/1');
-
-          }
      }, [numberPage])
      console.log(isLoading);
      console.log(numberPage, "numberPage");

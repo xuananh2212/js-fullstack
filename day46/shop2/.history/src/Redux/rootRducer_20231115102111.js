@@ -8,6 +8,7 @@ const rootReducer = (state = initalState, action) => {
                if (state.carts.length > 0) {
                     const cartNew = JSON.parse(JSON.stringify(state.carts));
                     const cartFind = cartNew.find(({ _id }) => {
+                         console.log(_id, action.payLoad._id)
                          return _id === action.payLoad._id
                     });
                     if (cartFind) {
@@ -32,6 +33,7 @@ const rootReducer = (state = initalState, action) => {
           case 'carts/decrease': {
                const cartNew = JSON.parse(JSON.stringify(state.carts));
                const cartFind = cartNew.find(({ _id }) => {
+
                     return _id === action.payLoad._id
                });
                cartFind.quantity = cartFind.quantity - 1;

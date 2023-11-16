@@ -13,6 +13,7 @@ export default function ListProduct() {
      const param = useParams();
      const [listProduct, setLiProduct] = useState([]);
      const [numberPage, setNumberPage] = useState(param.page);
+     console.log(numberPage, 'numberPage');
      const isLoading = useRef(true);
      const totalPages = useRef(1);
      const handlePageClick = (e) => {
@@ -50,11 +51,6 @@ export default function ListProduct() {
 
      useEffect(() => {
           handleGetApiProducts();
-          if (numberPage < 0 || /\D+/.test(numberPage)) {
-               setNumberPage(1);
-               navigate('/product/1');
-
-          }
      }, [numberPage])
      console.log(isLoading);
      console.log(numberPage, "numberPage");

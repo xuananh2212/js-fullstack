@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 export default function Home() {
      const navigate = useNavigate();
      useEffect(() => {
-          navigate('/product/1');
+          navigator('/product/1');
 
      }, [])
      return (

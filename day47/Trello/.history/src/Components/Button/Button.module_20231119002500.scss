@@ -1,0 +1,13 @@
+.btnAdd {
+     min-height: 80px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+}
+
+.btnAddColumn,
+.btnAddTasks {
+     display: block;
+     width: 100%;
+
+}

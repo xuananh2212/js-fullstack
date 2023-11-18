@@ -15,15 +15,16 @@ export default function TrelloListColumn() {
                          listColumn.map((itemColumn) => (
                               <div
                                    key={itemColumn._id}
-                                   className={styles.itemColumnWrap}
+                                   className={styles.itemColumnWra}
                               >
                                    <TrelloColumn
+
                                         itemColumn={itemColumn} />
                                    <Button type="task" />
                               </div>
                          ))
                     }
                </div>
-          </div>
+          </div >
      )
 }

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import TrelloColumn from '../TrelloColumn/TrelloColumn';
 import styles from './TrelloListColumn.module.scss';
 import clsx from 'clsx';
-import Button from '../Button/Button';
+
 
 export default function TrelloListColumn() {
      const listColumn = useSelector((state) => state.list.listColumn);
@@ -13,14 +13,12 @@ export default function TrelloListColumn() {
                     {
                          listColumn.length &&
                          listColumn.map((itemColumn) => (
-                              <div
-                                   key={itemColumn._id}
-                                   className={styles.itemColumnWrap}
-                              >
+                              <>
                                    <TrelloColumn
+                                        key={itemColumn._id}
                                         itemColumn={itemColumn} />
-                                   <Button type="task" />
-                              </div>
+
+                              </>
                          ))
                     }
                </div>

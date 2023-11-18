@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { useState } from "react";
 import styles from './TrelloColumn.module.scss';
 import TrelloTask from '../TrelloTask/TrelloTask';
+import Button from '../Button/Button'
 export default function TrelloColumn({ itemColumn }) {
      const { _id, tasks, columnName, column } = itemColumn;
      const [isEditContent, setIsEditContent] = useState(false);
@@ -25,6 +26,7 @@ export default function TrelloColumn({ itemColumn }) {
                          <TrelloTask key={task._id} task={task} />
                     ))
                }
+               <Button type="task" />
 
           </div>
      )

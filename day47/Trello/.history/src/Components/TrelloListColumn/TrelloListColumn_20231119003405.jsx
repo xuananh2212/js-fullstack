@@ -14,16 +14,17 @@ export default function TrelloListColumn() {
                          listColumn.length &&
                          listColumn.map((itemColumn) => (
                               <div
-                                   key={itemColumn._id}
-                                   className={styles.itemColumnWrap}
-                              >
-                                   <TrelloColumn
-                                        itemColumn={itemColumn} />
-                                   <Button type="task" />
-                              </div>
-                         ))
-                    }
+                                   className={styles.itemColumnWrap
+                                        key={itemColumn._id}
+                                   }>
+                    <TrelloColumn
+
+                         itemColumn={itemColumn} />
+                    <Button type="task" />
                </div>
+               ))
+                    }
           </div>
+          </div >
      )
 }

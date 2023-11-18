@@ -1,0 +1,20 @@
+.btnAddColumn,
+.btnAddTasks {
+
+     display: block;
+     width: 100%;
+     min-height: 80px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+
+}
+
+.btnAddTasks {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     translate: 0 -100%;
+     background-color: #fff;
+}

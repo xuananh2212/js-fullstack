@@ -3,9 +3,9 @@ import clsx from 'clsx';
 import styles from './TrelloTask.module.scss'
 
 export default function TrelloTask({ task }) {
-     const { content } = task;
+     console.log(task);
      return (
-          <div className={styles.task}>{content}</div>
+          <div className={styles.task}></div>
 
      )
 }

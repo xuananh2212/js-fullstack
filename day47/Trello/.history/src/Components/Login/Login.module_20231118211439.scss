@@ -1,0 +1,28 @@
+.container {
+     width: 100vw;
+     min-height: 100vh;
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     justify-content: center;
+     background-color: rgb(66, 66, 160);
+
+     .headingLv2 {
+          font-size: 1.8rem;
+          color: #fff;
+          text-align: center;
+     }
+
+     .formEmail {
+          margin-top: 18px;
+          display: block;
+
+          input {
+               display: block;
+               padding: 20px 10px;
+               outline: none;
+               background-color: #fff;
+               max-width: 500px;
+          }
+     }
+}

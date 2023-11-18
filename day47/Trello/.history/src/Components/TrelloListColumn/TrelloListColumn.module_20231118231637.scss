@@ -1,0 +1,11 @@
+.listColumn {
+     display: flex;
+     gap: 20px;
+     align-items: center;
+}
+
+.container {
+     min-width: 100vw;
+     min-height: 100vh;
+     background-color: rgb(52, 52, 136);
+}

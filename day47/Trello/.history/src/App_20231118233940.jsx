@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { fetchApiEmail } from './Redux/middlewares/api';
+import { fetchApiEmail } from './Redux/Middlewares/api';
 import Login from "./Components/Login/Login";
 import { useLayoutEffect } from "react";
 import TrelloListColumn from "./Components/TrelloListColumn/TrelloListColumn";

@@ -1,0 +1,17 @@
+.listColumn {
+     display: flex;
+     gap: 20px;
+     padding: 20px;
+     height: 100vh;
+
+     .itemColumnWrap {
+          position: relative;
+     }
+}
+
+.container {
+     min-width: 100vw;
+     min-height: 100vh;
+     background-color: #0093E9;
+     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+}

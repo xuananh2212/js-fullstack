@@ -11,7 +11,7 @@ export default function TrelloListColumn() {
      const listColumn = useSelector((state) => state.list.listColumn);
      const dispatch = useDispatch();
      const handOnDragEnd = (result) => {
-          const { destination, source, draggableId, type } = result;
+          const { destination, source, draggableId } = result;
           if (!destination) {
                return;
           }
@@ -22,8 +22,7 @@ export default function TrelloListColumn() {
                     droppableIdEnd: destination.droppableId,
                     droppableIndexStart: source.index,
                     droppableIndexEnd: destination.index,
-                    draggableId: draggableId,
-                    type,
+                    draggableId: draggableId
 
                }
           })
@@ -43,15 +42,13 @@ export default function TrelloListColumn() {
                                         className={clsx(styles.listColumn)}>
                                         {
                                              listColumn.length &&
-                                             listColumn.map((itemColumn, index) => (
+                                             listColumn.map((itemColumn) => (
                                                   <div
                                                        key={itemColumn._id}
                                                        className={styles.itemColumnWrap}
                                                   >
                                                        <TrelloColumn
-                                                            itemColumn={itemColumn}
-                                                            index={index}
-                                                       />
+                                                            itemColumn={itemColumn} />
                                                        <Button
                                                             itemColumn={itemColumn}
                                                             type="task" />

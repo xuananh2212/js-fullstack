@@ -14,16 +14,14 @@ export default function TrelloColumn({ itemColumn, index }) {
                     provided => (
                          <div
                               ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
+                              {...provided.droppableProps}
                               className={clsx(styles.container)}>
                               <Droppable droppableId={_id}>
                                    {
                                         provided =>
                                         (
                                              <div
-                                                  ref={provided.innerRef}
-                                                  {...provided.droppableProps}
+
                                                   className={clsx(styles.column)}
                                              >
                                                   {/* {console.log(provided.innerRef, { ...provided.droppableProps })} */}

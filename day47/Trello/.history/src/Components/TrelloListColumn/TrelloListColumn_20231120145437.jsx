@@ -11,7 +11,7 @@ export default function TrelloListColumn() {
      const listColumn = useSelector((state) => state.list.listColumn);
      const dispatch = useDispatch();
      const handOnDragEnd = (result) => {
-          const { destination, source, draggableId, type } = result;
+          const { destination, source, draggableId } = result;
           if (!destination) {
                return;
           }
@@ -22,8 +22,7 @@ export default function TrelloListColumn() {
                     droppableIdEnd: destination.droppableId,
                     droppableIndexStart: source.index,
                     droppableIndexEnd: destination.index,
-                    draggableId: draggableId,
-                    type,
+                    draggableId: draggableId
 
                }
           })

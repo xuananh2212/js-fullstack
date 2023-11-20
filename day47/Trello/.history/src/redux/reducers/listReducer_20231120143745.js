@@ -20,26 +20,14 @@ export default function trelloList(state = initalState, action) {
                     droppableIdEnd,
                     droppableIndexStart,
                     droppableIndexEnd,
-                    draggableId, type } = action.payload;
-               const newListColumn = [...state.listColumn];
-               if (type === "list") {
-                    const list = newListColumn.splice(droppableIndexStart, 1);
-                    newListColumn.splice(droppableIndexEnd, 0, ...list);
-                    return { ...state, listColumn: newListColumn };
-               }
+                    draggableId } = action.payload;
+               const newState = [...state.listColumn];
                if (droppableIdStart === droppableIdEnd) {
                     const listFind = state.listColumn.find(list => list._id === droppableIdStart);
                     const tasks = listFind.tasks.splice(droppableIndexStart, 1);
                     listFind.tasks.splice(droppableIndexEnd, 0, ...tasks);
                }
-               if (droppableIdStart !== droppableIdEnd) {
-                    const listStart = state.listColumn.find(list => droppableIdStart === list._id);
-                    const tasks = listStart.tasks.splice(droppableIndexStart, 1);
-                    const listEnd = state.listColumn.find(list => droppableIdEnd === list._id);
-                    listEnd.tasks.splice(droppableIndexEnd, 0, ...tasks);
-               }
-
-               return { ...state, listColumn: newListColumn };
+               return { ...state, listColumn: newState };
           }
           default: {
                return state;

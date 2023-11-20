@@ -20,13 +20,8 @@ export default function trelloList(state = initalState, action) {
                     droppableIdEnd,
                     droppableIndexStart,
                     droppableIndexEnd,
-                    draggableId, type } = action.payload;
-               const newListColumn = [...state.listColumn];
-               if (type === "list") {
-                    const list = newListColumn.splice(droppableIndexStart, 1);
-                    newListColumn.splice(droppableIndexEnd, 0, ...list);
-                    return { ...state, listColumn: newListColumn };
-               }
+                    draggableId } = action.payload;
+               const newState = [...state.listColumn];
                if (droppableIdStart === droppableIdEnd) {
                     const listFind = state.listColumn.find(list => list._id === droppableIdStart);
                     const tasks = listFind.tasks.splice(droppableIndexStart, 1);
@@ -39,7 +34,7 @@ export default function trelloList(state = initalState, action) {
                     listEnd.tasks.splice(droppableIndexEnd, 0, ...tasks);
                }
 
-               return { ...state, listColumn: newListColumn };
+               return { ...state, listColumn: newState };
           }
           default: {
                return state;

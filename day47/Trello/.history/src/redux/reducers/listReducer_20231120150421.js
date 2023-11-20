@@ -23,9 +23,7 @@ export default function trelloList(state = initalState, action) {
                     draggableId, type } = action.payload;
                const newListColumn = [...state.listColumn];
                if (type === "list") {
-                    const list = newListColumn.splice(droppableIndexStart, 1);
-                    newListColumn.splice(droppableIndexEnd, 0, ...list);
-                    return { ...state, listColumn: newListColumn };
+                    const list = new
                }
                if (droppableIdStart === droppableIdEnd) {
                     const listFind = state.listColumn.find(list => list._id === droppableIdStart);

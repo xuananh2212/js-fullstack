@@ -23,7 +23,7 @@ export default function TrelloListColumn() {
                     droppableIndexStart: source.index,
                     droppableIndexEnd: destination.index,
                     draggableId: draggableId,
-                    type,
+                    type: type
 
                }
           })

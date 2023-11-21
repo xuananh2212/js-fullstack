@@ -13,3 +13,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   // </React.StrictMode>,
 )
 
+fetchPostTasks(localStorage.getItem("apiKey"), [
+  { column: "3668", content: "Task 3", columnName: "Column 2" }
+  ,
+  { column: "3668", content: "Task 2", columnName: "Column 2" }])

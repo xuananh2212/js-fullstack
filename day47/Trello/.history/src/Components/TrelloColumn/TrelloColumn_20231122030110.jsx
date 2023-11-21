@@ -23,7 +23,10 @@ export default function TrelloColumn({ itemColumn, index }) {
                const { column, content } = task;
                return { column, content, columnName: itemsColumn?.columnName };
           })
-          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks));
+          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks), "remove");
+
+
+          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newListTasks))
 
      }
      return (

@@ -25,13 +25,14 @@ export default function Button({ type, itemColumn = {} }) {
                     columnName
 
                }
+
                dispatch(fetchPostTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask], "add"));
           }
           , [listTasks]);
      const handleAddColumn = useCallback(() => {
           dispatch({
                type: "list/addColumn",
-               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: `${listColumn.length > 0 ? String(+listColumn[listColumn.length - 1]?.column + 1) : 1}`, tasks: [] }
+               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: String(+listColumn[listColumn.length - 1].column + 1), tasks: [] }
           })
      }, [listColumn]);
      return (

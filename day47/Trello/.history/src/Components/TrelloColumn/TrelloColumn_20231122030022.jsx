@@ -13,17 +13,19 @@ export default function TrelloColumn({ itemColumn, index }) {
      const dispatch = useDispatch();
      const [isEditContent, setIsEditContent] = useState(false);
      const listTasks = useSelector(state => state.totalTasks.tasks);
-     const listColumn = useSelector(state => state.list.listColumn);
      const handleRemoveColumn = () => {
           const newListTasks = listTasks.filter(task => {
                return !tasks.find(({ _id }) => _id === task._id)
           })
-          const newTotalTasks = newListTasks.map((task) => {
+          const newTotalTasks = newListTask.map((task) => {
                const itemsColumn = listColumn.find(itemColumn => itemColumn?.column === task?.column);
                const { column, content } = task;
                return { column, content, columnName: itemsColumn?.columnName };
           })
-          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks));
+          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks), "remove");
+
+
+          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newListTasks))
 
      }
      return (

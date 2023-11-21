@@ -5,27 +5,9 @@ import styles from './TrelloColumn.module.scss';
 import TrelloTask from '../TrelloTask/TrelloTask';
 import { Droppable, Draggable } from "react-beautiful-dnd";
 import Button from "../Button/Button";
-import { FaTrashCan } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
-import { fetchPostTasks } from "../../Redux/middlewares/api";
 export default function TrelloColumn({ itemColumn, index }) {
      const { _id, tasks, columnName, column } = itemColumn;
-     const dispatch = useDispatch();
      const [isEditContent, setIsEditContent] = useState(false);
-     const listTasks = useSelector(state => state.totalTasks.tasks);
-     const listColumn = useSelector(state => state.list.listColumn);
-     const handleRemoveColumn = () => {
-          const newListTasks = listTasks.filter(task => {
-               return !tasks.find(({ _id }) => _id === task._id)
-          })
-          const newTotalTasks = newListTasks.map((task) => {
-               const itemsColumn = listColumn.find(itemColumn => itemColumn?.column === task?.column);
-               const { column, content } = task;
-               return { column, content, columnName: itemsColumn?.columnName };
-          })
-          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks));
-
-     }
      return (
           <Draggable draggableId={_id} index={index}>
                {
@@ -79,14 +61,13 @@ export default function TrelloColumn({ itemColumn, index }) {
                                                   <Button
                                                        itemColumn={itemColumn}
                                                        type="task" />
+                                                  {provided.placeholder}
                                                   <div
-                                                       className={styles.removeColumn}
-                                                       onClick={handleRemoveColumn}
+                                                       onClick={handleRemoveTask}
+                                                       className={styles.removeTask}
                                                   >
                                                        <FaTrashCan className={styles.icon} />
                                                   </div>
-                                                  {provided.placeholder}
-
                                              </div>
                                         )
                                    }

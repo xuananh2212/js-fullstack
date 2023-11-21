@@ -12,28 +12,28 @@ export default function Button({ type, itemColumn = {} }) {
      const { column, columnName } = itemColumn;
      const handleAddTask = useCallback(
           () => {
-               console.log(listTasks);
                const newTotalTasks = listTasks.map((task) => {
                     const itemsColumn = listColumn.find(itemColumn => itemColumn.column === task.column
                     );
                     const { column, content } = task;
+                    console.log(itemColumn.columnName)
                     return { column, content, columnName: itemsColumn?.columnName };
                })
                const newTask = {
                     column,
-                    content: `Task ${listTasks.length + 1}`,
-                    columnName
-
+                    columnName,
+                    content: `Task ${listTasks.length}`,
                }
                dispatch(fetchPostTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask], "add"));
           }
-          , [listTasks]);
+          , []);
      const handleAddColumn = useCallback(() => {
+          console.log(uuidv4());
           dispatch({
                type: "list/addColumn",
-               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: `${listColumn.length > 0 ? String(+listColumn[listColumn.length - 1]?.column + 1) : 1}`, tasks: [] }
+               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: String(+listColumn[listColumn.length - 1].column + 1), tasks: [] }
           })
-     }, [listColumn]);
+     }, []);
      return (
           <>
                {

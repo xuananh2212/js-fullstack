@@ -42,10 +42,30 @@ export default function trelloList(state = initalState, action) {
                })
                return { ...state, listColumn: listNew };
           } case "list/addColumn": {
-               const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
-               console.log(newListColumn, action.payload)
-               newListColumn.push(action.payload)
-               return { ...state, listColumn: newListColumn };
+               let taskEditId = null;
+               console.log(action.payload.feature);
+               if (action.payload.feature === "add") {
+                    taskEditId = action.payload.data.tasks[action.payload.data.tasks.length - 1]._id;
+                    console.log(taskEditId);
+               } else if (action.payload.feature === "edit") {
+                    taskEditId = action.payload.data.tasks[action.payload.index]._id;
+
+               }
+               const listNew = action.payload.data.columns.map((item) => {
+                    item.tasks = [];
+                    action.payload.data.tasks.forEach((task) => {
+                         let isEdit = false;
+                         if (task.column === item.column) {
+                              if (taskEditId === task._id) {
+                                   isEdit = true;
+                              }
+                              const { _id, content, column } = task;
+                              item.tasks.push({ _id, content, column, isEdit });
+                         }
+                    })
+                    return item;
+               })
+               return { ...state, listColumn: listNew };
           }
           case "list/dragHanppened": {
                const { droppableIdStart,

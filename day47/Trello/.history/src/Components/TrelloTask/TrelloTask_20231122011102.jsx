@@ -21,7 +21,7 @@ export default function TrelloTask({ task, index, column, columnName }) {
           }
           timeOutRef.current = setTimeout(() => {
                const newListTasks = JSON.parse(JSON.stringify(listTasks));
-               const index = listTasks.findIndex(task => task._id === _id);
+               const index = listTasks.findIndex(task => task._id !== _id);
                const newTask = {
                     column,
                     columnName,
@@ -34,7 +34,7 @@ export default function TrelloTask({ task, index, column, columnName }) {
                     return { column, content, columnName: itemsColumn?.columnName };
                })
 
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "edit", index));
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), "edit"));
           }, 800)
      }, []);
      const handleRemoveTask = () => {

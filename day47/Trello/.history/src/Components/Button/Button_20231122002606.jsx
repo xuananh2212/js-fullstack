@@ -15,6 +15,7 @@ export default function Button({ type, itemColumn = {} }) {
                const newTotalTasks = listTasks.map((task) => {
                     const itemsColumn = listColumn.find(itemColumn => itemColumn.column === task.column
                     );
+                    console.log(itemsColumn);
                     const { column, content } = task;
                     return { column, content, columnName: itemsColumn.columnName };
                })
@@ -23,16 +24,10 @@ export default function Button({ type, itemColumn = {} }) {
                     columnName,
                     content: `Task ${listTasks.length}`,
                }
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask], "add"));
+               dispatch(fetchAddTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask], "add"));
+
           }
           , []);
-     const handleAddColumn = useCallback(() => {
-          console.log(uuidv4());
-          dispatch({
-               type: "list/addColumn",
-               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: listColumn[listColumn.length - 1].column + 1, tasks: [] }
-          })
-     }, []);
      return (
           <>
                {
@@ -47,7 +42,6 @@ export default function Button({ type, itemColumn = {} }) {
                          )
                          :
                          (<button
-                              onClick={handleAddColumn}
                               className={clsx(styles.btnAddColumn)}
                          >
                               <IoIosAddCircleOutline />

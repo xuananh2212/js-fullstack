@@ -5,6 +5,8 @@ import { Draggable } from 'react-beautiful-dnd';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPostTasks } from '../../Redux/middlewares/api';
 import { FaTrashCan } from "react-icons/fa6";
+import { v4 as uuidv4 } from 'uuid';
+
 export default function TrelloTask({ task, index, column, columnName }) {
      const { _id, content, isEdit } = task;
      const dispatch = useDispatch();
@@ -20,21 +22,18 @@ export default function TrelloTask({ task, index, column, columnName }) {
                clearTimeout(timeOutRef.current);
           }
           timeOutRef.current = setTimeout(() => {
-               const newListTasks = JSON.parse(JSON.stringify(listTasks));
-               const index = listTasks.findIndex(task => task._id === _id);
+               const newListTask = listTasks.filter(task => task._id !== _id);
+               const newTotalTasks = newListTask?.map((task) => {
+                    const itemsColumn = listColumn?.find(itemColumn => itemColumn?.column === task?.column);
+                    const { column, content } = task;
+                    return { column, content, columnName: itemsColumn?.columnName };
+               })
                const newTask = {
                     column,
                     columnName,
                     content: value,
                }
-               newListTasks.splice(index, 1, newTask);
-               const newTotalTasks = newListTasks?.map((task) => {
-                    const itemsColumn = listColumn?.find(itemColumn => itemColumn?.column === task?.column);
-                    const { column, content } = task;
-                    return { column, content, columnName: itemsColumn?.columnName };
-               })
-
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "edit", index));
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask]))
           }, 800)
      }, []);
      const handleRemoveTask = () => {
@@ -73,8 +72,8 @@ export default function TrelloTask({ task, index, column, columnName }) {
                                    }}
                                    className={clsx(styles.formTask)}>
                                    <textarea
-                                        autoFocus
                                         onBlur={handleBlur}
+                                        autoFocus
                                         onChange={handleChange}
                                         name="content-task"
                                         id="content-task"

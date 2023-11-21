@@ -42,8 +42,8 @@ export default function trelloList(state = initalState, action) {
                })
                return { ...state, listColumn: listNew };
           } case "list/addColumn": {
-               const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
                console.log(newListColumn, action.payload)
+               const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
                newListColumn.push(action.payload)
                return { ...state, listColumn: newListColumn };
           }

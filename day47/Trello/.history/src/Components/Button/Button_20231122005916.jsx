@@ -4,7 +4,6 @@ import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { fetchPostTasks } from '../../Redux/middlewares/api';
-import { v4 as uuidv4 } from 'uuid';
 export default function Button({ type, itemColumn = {} }) {
      const dispatch = useDispatch();
      const listTasks = useSelector((state) => state.totalTasks.tasks);
@@ -23,16 +22,9 @@ export default function Button({ type, itemColumn = {} }) {
                     columnName,
                     content: `Task ${listTasks.length}`,
                }
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask], "add"));
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), [...newTotalTasks, newTask]), "add");
           }
           , []);
-     const handleAddColumn = useCallback(() => {
-          console.log(uuidv4());
-          dispatch({
-               type: "list/addColumn",
-               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: listColumn[listColumn.length - 1].column + 1, tasks: [] }
-          })
-     }, []);
      return (
           <>
                {
@@ -47,7 +39,6 @@ export default function Button({ type, itemColumn = {} }) {
                          )
                          :
                          (<button
-                              onClick={handleAddColumn}
                               className={clsx(styles.btnAddColumn)}
                          >
                               <IoIosAddCircleOutline />

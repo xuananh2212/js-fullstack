@@ -30,7 +30,7 @@ export default function Button({ type, itemColumn = {} }) {
           console.log(uuidv4());
           dispatch({
                type: "list/addColumn",
-               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: listColumn[listColumn.length - 1].column + 1, tasks: [] }
+               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: listColumn.column + 1 }
           })
      }, []);
      return (

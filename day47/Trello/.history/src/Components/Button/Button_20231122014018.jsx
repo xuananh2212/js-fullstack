@@ -27,10 +27,9 @@ export default function Button({ type, itemColumn = {} }) {
           }
           , []);
      const handleAddColumn = useCallback(() => {
-          console.log(uuidv4());
           dispatch({
                type: "list/addColumn",
-               payload: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: listColumn[listColumn.length - 1].column + 1, tasks: [] }
+               playLoad: { _id: uuidv4(), columnName: `column ${listColumn.length + 1}`, column: listColumn.column + 1 }
           })
      }, []);
      return (

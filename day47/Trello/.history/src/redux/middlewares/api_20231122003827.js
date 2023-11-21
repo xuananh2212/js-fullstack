@@ -45,17 +45,18 @@ export const fetchGetTasks = (apiKey) => {
           }
      }
 }
-export const fetchPostTasks = (apiKey, body, feature, index = null) => {
+export const fetchAddTasks = (apiKey, body, newTask, columnId) => {
+     console.log(newTask);
      return async (dispatch) => {
           const { data } = await client.post(`/tasks`, body, apiKey);
           if (data.code === 200) {
                dispatch({
-                    type: 'list/postTasks',
-                    payload: { data: data.data, feature, index }
+                    type: 'list/addTasks',
+                    payload: { newTask, columnId }
                })
                dispatch({
-                    type: 'tasks/getTasks',
-                    payload: data.data.tasks
+                    type: 'tasks/addTasks',
+                    payload: { newTask }
                })
           } else {
                dispatch({

@@ -1,0 +1,26 @@
+.btnAddColumn,
+.btnAddTasks {
+     display: block;
+     width: 100%;
+     min-height: 80px;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+
+     &:hover {
+          background-color: #dbd7d7;
+     }
+
+
+}
+
+.btnAddTasks {
+     background-color: #fff;
+}
+
+.btnAddColumn {
+     max-width: 300px;
+     background-color: #99999940;
+     border-radius: 12px;
+}

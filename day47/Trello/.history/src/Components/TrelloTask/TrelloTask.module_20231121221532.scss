@@ -1,0 +1,30 @@
+.formTask,
+.task {
+     padding: 10px;
+     min-height: 100px;
+     background-color: #cccccc79;
+     border-radius: 8px;
+     font-size: 1.3rem;
+     font-weight: 500;
+     cursor: pointer;
+}
+
+.formTask {
+     margin: 18px 0;
+
+
+     &:hover {
+          border: 1px solid green;
+     }
+
+     textarea {
+          resize: none;
+          width: 100%;
+          outline: none;
+          border: none;
+     }
+}
+
+.task+.task {
+     margin-top: 18px;
+}

@@ -1,0 +1,21 @@
+.column {
+     padding-top: 20px;
+     min-width: 300px;
+     background-color: #fff;
+     border-radius: 12px;
+
+     .headingLv3 {
+          font-size: 2.0rem;
+          font-weight: 700;
+          margin-bottom: 18px;
+     }
+
+     .listTasks {
+          height: 60vh;
+          overflow: auto;
+     }
+
+     .columnContent {
+          padding: 20px 14px;
+     }
+}

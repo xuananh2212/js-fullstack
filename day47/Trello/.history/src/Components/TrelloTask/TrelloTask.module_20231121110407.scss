@@ -1,0 +1,13 @@
+.task {
+     padding: 10px;
+     min-height: 100px;
+     background-color: #cccccc79;
+     border-radius: 8px;
+     font-size: 1.3rem;
+     font-weight: 500;
+     cursor: pointer;
+}
+
+.task+.task {
+     margin-top: 18px;
+}

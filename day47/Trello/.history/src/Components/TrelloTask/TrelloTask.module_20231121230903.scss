@@ -1,0 +1,45 @@
+.formTask,
+.task {
+     &:hover {
+          border: 1px solid green;
+     }
+
+     padding: 10px;
+     min-height: 100px;
+     background-color: #cccccc79;
+     border-radius: 8px;
+     font-size: 1.3rem;
+     font-weight: 500;
+     cursor: pointer;
+}
+
+.task {
+     position: relative;
+}
+
+.removeTask {
+     position: absolute;
+     top: 50%;
+     translate: 0 -50%;
+     right: 10px;
+
+     .icon {
+          color: #fff;
+     }
+}
+
+
+.formTask {
+     margin: 18px 0;
+
+     textarea {
+          resize: none;
+          width: 100%;
+          outline: none;
+          border: none;
+     }
+}
+
+.task+.task {
+     margin-top: 18px;
+}

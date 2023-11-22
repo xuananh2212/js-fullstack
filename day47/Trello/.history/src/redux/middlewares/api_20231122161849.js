@@ -46,7 +46,7 @@ export const fetchGetTasks = (apiKey) => {
           }
      }
 }
-export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") => {
+export const fetchPostTasks = (apiKey, body, feature, index = null) => {
      return async (dispatch) => {
           const { data } = await client.post(`/tasks`, body, apiKey);
           if (data.code === 200) {
@@ -58,11 +58,6 @@ export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") 
                     dispatch({
                          type: "list/removeColumn",
                          payload: index
-                    })
-               } else if (feature === "editContentColumn") {
-                    dispatch({
-                         type: "list/editContentColumn",
-                         payload: { _id: index, value }
                     })
                }
                dispatch({

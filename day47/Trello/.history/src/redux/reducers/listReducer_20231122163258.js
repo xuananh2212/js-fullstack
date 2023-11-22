@@ -56,6 +56,7 @@ export default function trelloList(state = initalState, action) {
                const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
                const columnFind = newListColumn.find(column => column._id === action.payload._id);
                columnFind.columnName = action.payload.value;
+
                return { ...state, listColumn: newListColumn };
           }
           case "list/removeColumn": {

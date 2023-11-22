@@ -50,18 +50,21 @@ export default function TrelloColumn({ itemColumn, index }) {
           }
           timeOutRef.current = setTimeout(() => {
                const newListTasks = JSON.parse(JSON.stringify(listTasks));
-               const newTasks = tasks.map(({ _id, content }) => ({ _id, column, columnName: value, content }));
-               console.log(newTasks, newListTasks);
-               const newTotalTasks = newListTasks.map(({ column, columnName, content, _id }) => {
-                    const taskFind = newTasks.find(newTask => newTask._id === _id);
-                    if (taskFind) {
-                         const { column, columnName, content } = taskFind;
-                         return { column, columnName, content }
-                    } else {
-                         return { column, columnName, content };
-                    }
-               })
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "editContentColumn", _id, value));
+               const newTasks = tasks.map(({ content }) => ({ column, columnName: value, content }));
+
+               // const newTask = {
+               //      column,
+               //      columnName: 
+               //      content: value,
+               // }
+               // newListTasks.splice(index, 1, newTask);
+               // const newTotalTasks = newListTasks?.map((task) => {
+               //      const itemsColumn = listColumn?.find(itemColumn => itemColumn?.column === task?.column);
+               //      const { column, content } = task;
+               //      return { column, content, columnName: itemsColumn?.columnName };
+               // })
+
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "editContentColumn", index));
           }, 800)
      }, []);
      return (
@@ -94,7 +97,6 @@ export default function TrelloColumn({ itemColumn, index }) {
                                                             : (
                                                                  <form className={styles.formColumnName}>
                                                                       <textarea
-                                                                           autoFocus
                                                                            onBlur={handleOnBlur}
                                                                            onChange={handleChange}
                                                                            name="name"

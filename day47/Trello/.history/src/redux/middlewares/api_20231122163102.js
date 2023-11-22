@@ -62,7 +62,7 @@ export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") 
                } else if (feature === "editContentColumn") {
                     dispatch({
                          type: "list/editContentColumn",
-                         payload: { _id: index, value }
+                         payload: index
                     })
                }
                dispatch({

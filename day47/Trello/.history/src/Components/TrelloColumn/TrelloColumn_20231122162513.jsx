@@ -51,9 +51,9 @@ export default function TrelloColumn({ itemColumn, index }) {
           timeOutRef.current = setTimeout(() => {
                const newListTasks = JSON.parse(JSON.stringify(listTasks));
                const newTasks = tasks.map(({ _id, content }) => ({ _id, column, columnName: value, content }));
-               console.log(newTasks, newListTasks);
+               console.log(newTasks);
                const newTotalTasks = newListTasks.map(({ column, columnName, content, _id }) => {
-                    const taskFind = newTasks.find(newTask => newTask._id === _id);
+                    const taskFind = newTasks.findIndex(newTask => newTask._id === _id);
                     if (taskFind) {
                          const { column, columnName, content } = taskFind;
                          return { column, columnName, content }
@@ -61,7 +61,7 @@ export default function TrelloColumn({ itemColumn, index }) {
                          return { column, columnName, content };
                     }
                })
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "editContentColumn", _id, value));
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "editContentColumn", index));
           }, 800)
      }, []);
      return (

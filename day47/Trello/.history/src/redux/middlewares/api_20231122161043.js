@@ -26,9 +26,10 @@ export const fetchGetTasks = (apiKey) => {
      return async (dispatch) => {
           const { data } = await client.get(`/tasks`, null, apiKey);
           if (data.code === 200) {
+               const totalTasks = data.data.tasks.map(({ _id, content, column }) => ({ _id, content, column }));
                dispatch({
                     type: 'tasks/getTasks',
-                    payload: data.data
+                    payload: totalTasks
                })
                dispatch({
                     type: 'list/getList',
@@ -46,7 +47,7 @@ export const fetchGetTasks = (apiKey) => {
           }
      }
 }
-export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") => {
+export const fetchPostTasks = (apiKey, body, feature, index = null) => {
      return async (dispatch) => {
           const { data } = await client.post(`/tasks`, body, apiKey);
           if (data.code === 200) {
@@ -58,11 +59,6 @@ export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") 
                     dispatch({
                          type: "list/removeColumn",
                          payload: index
-                    })
-               } else if (feature === "editContentColumn") {
-                    dispatch({
-                         type: "list/editContentColumn",
-                         payload: { _id: index, value }
                     })
                }
                dispatch({

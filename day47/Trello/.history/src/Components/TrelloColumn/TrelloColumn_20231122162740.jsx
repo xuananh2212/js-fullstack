@@ -61,7 +61,7 @@ export default function TrelloColumn({ itemColumn, index }) {
                          return { column, columnName, content };
                     }
                })
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "editContentColumn", _id, value));
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "editContentColumn", index));
           }, 800)
      }, []);
      return (

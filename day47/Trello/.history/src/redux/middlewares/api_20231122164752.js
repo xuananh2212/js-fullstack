@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { client } from '../../Utils/Configs/client';
+import { v4 as uuidv4 } from 'uuid';
 export const fetchApiEmail = (dataEmail) => {
      return async (dispatch) => {
           const queryString = new URLSearchParams({ email: dataEmail });
@@ -10,6 +11,7 @@ export const fetchApiEmail = (dataEmail) => {
                     type: 'api/getEmail',
                     payload: data.data.apiKey
                })
+               dispatch(fetchGetTasks(data.data.apiKey));
                toast.success("đăng nhập thành công ");
           } else {
                dispatch({

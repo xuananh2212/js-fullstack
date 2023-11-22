@@ -1,5 +1,6 @@
 import { toast } from 'react-toastify';
 import { client } from '../../Utils/Configs/client';
+import { v4 as uuidv4 } from 'uuid';
 export const fetchApiEmail = (dataEmail) => {
      return async (dispatch) => {
           const queryString = new URLSearchParams({ email: dataEmail });
@@ -10,6 +11,7 @@ export const fetchApiEmail = (dataEmail) => {
                     type: 'api/getEmail',
                     payload: data.data.apiKey
                })
+               dispatch(fetchGetTasks(data.data.apiKey));
                toast.success("đăng nhập thành công ");
           } else {
                dispatch({
@@ -50,6 +52,7 @@ export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") 
           const { data } = await client.post(`/tasks`, body, apiKey);
           if (data.code === 200) {
                if (feature === "addTask") {
+
                     toast.success("Thêm công việc mới Thành công");
                } else if (feature === "removeTask") {
                     toast.success("Xoá công việc mới Thành công");
@@ -64,14 +67,14 @@ export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") 
                          payload: { _id: index, value }
                     })
                }
-               dispatch({
-                    type: 'list/postTasks',
-                    payload: { data: data.data, feature, index }
-               })
-               dispatch({
-                    type: 'tasks/getTasks',
-                    payload: data.data
-               })
+               // dispatch({
+               //      type: 'list/postTasks',
+               //      payload: { data: data.data, feature, index }
+               // })
+               // dispatch({
+               //      type: 'tasks/getTasks',
+               //      payload: data.data
+               // })
           } else {
                dispatch({
                     type: 'api/resetApiKey',

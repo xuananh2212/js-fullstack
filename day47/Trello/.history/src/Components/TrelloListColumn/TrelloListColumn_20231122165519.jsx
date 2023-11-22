@@ -7,7 +7,6 @@ import Button from '../Button/Button';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useDispatch } from 'react-redux';
 import { getList, dragHanppened } from '../../Redux/action/listComlumnAction';
-import { fetchPostTasks } from '../../Redux/middlewares/api';
 
 export default function TrelloListColumn() {
      const listColumn = useSelector((state) => state.list.listColumn);
@@ -29,12 +28,7 @@ export default function TrelloListColumn() {
                })
           )
           if (source.droppableId !== destination.droppableId) {
-               const columnFind = listColumn.find(column => column._id === destination.droppableId);
-               const totalTasks = JSON.parse(JSON.stringify(listTasks));
-               const taskFind = totalTasks.find(task => task._id === draggableId);
-               taskFind.column = columnFind.column;
-               taskFind.columnName = columnFind.columnName;
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), totalTasks, "switchTask"));
+
 
           }
 

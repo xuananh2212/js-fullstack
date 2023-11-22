@@ -12,14 +12,7 @@ export default function trelloTasks(state = initalState, action) {
                return { ...state, tasks: newTotalTasks }
           }
           case 'tasks/addTask': {
-               const newTotalTasks = JSON.parse(JSON.stringify(state.tasks));
-               newTotalTasks.push(action.payload);
-               return { ...state, tasks: newTotalTasks }
-          }
-          case 'tasks/removeTask': {
-               const newTotalTasks = JSON.parse(JSON.stringify(state.tasks));
-               const index = newTotalTasks.findIndex(task => task.id === action.payload._id);
-               newTotalTasks.splice(index, 1);
+
                return { ...state, tasks: newTotalTasks }
           }
           default: {

@@ -1,5 +1,5 @@
 import { toast } from 'react-toastify';
-import { client } from '../../Utils/Configs/client';
+import { client } from '../../Utils/Configs/client'
 export const fetchApiEmail = (dataEmail) => {
      return async (dispatch) => {
           const queryString = new URLSearchParams({ email: dataEmail });
@@ -10,6 +10,7 @@ export const fetchApiEmail = (dataEmail) => {
                     type: 'api/getEmail',
                     payload: data.data.apiKey
                })
+               dispatch(fetchGetTasks(data.data.apiKey));
                toast.success("đăng nhập thành công ");
           } else {
                dispatch({
@@ -64,14 +65,14 @@ export const fetchPostTasks = (apiKey, body, feature, index = null, value = "") 
                          payload: { _id: index, value }
                     })
                }
-               dispatch({
-                    type: 'list/postTasks',
-                    payload: { data: data.data, feature, index }
-               })
-               dispatch({
-                    type: 'tasks/getTasks',
-                    payload: data.data
-               })
+               // dispatch({
+               //      type: 'list/postTasks',
+               //      payload: { data: data.data, feature, index }
+               // })
+               // dispatch({
+               //      type: 'tasks/getTasks',
+               //      payload: data.data
+               // })
           } else {
                dispatch({
                     type: 'api/resetApiKey',

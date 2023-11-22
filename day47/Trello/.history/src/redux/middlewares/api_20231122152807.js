@@ -51,7 +51,7 @@ export const fetchPostTasks = (apiKey, body, feature, index = null) => {
      return async (dispatch) => {
           const { data } = await client.post(`/tasks`, body, apiKey);
           if (data.code === 200) {
-               if (feature === "addTask") {
+               if (feature === "add") {
                     toast.success("Thêm công việc mới Thành công");
                } else if (feature === "removeTask") {
                     toast.success("Xoá công việc mới Thành công");

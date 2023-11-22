@@ -15,22 +15,15 @@ export default function TrelloColumn({ itemColumn, index }) {
      const listTasks = useSelector(state => state.totalTasks.tasks);
      const listColumn = useSelector(state => state.list.listColumn);
      const handleRemoveColumn = () => {
-          if (tasks.length > 0) {
-               const newListTasks = listTasks.filter(task => {
-                    return !tasks.find(({ _id }) => _id === task._id)
-               })
-               const newTotalTasks = newListTasks.map((task) => {
-                    const itemsColumn = listColumn.find(itemColumn => itemColumn?.column === task?.column);
-                    const { column, content } = task;
-                    return { column, content, columnName: itemsColumn?.columnName };
-               })
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "removeColumn", _id));
-          } else {
-               dispatch({
-                    type: "list/removeColumn",
-                    payload: _id
-               })
-          }
+          const newListTasks = listTasks.filter(task => {
+               return !tasks.find(({ _id }) => _id === task._id)
+          })
+          const newTotalTasks = newListTasks.map((task) => {
+               const itemsColumn = listColumn.find(itemColumn => itemColumn?.column === task?.column);
+               const { column, content } = task;
+               return { column, content, columnName: itemsColumn?.columnName };
+          })
+          dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "removeColumn"), _id);
 
      }
      return (

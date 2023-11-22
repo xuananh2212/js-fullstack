@@ -27,7 +27,7 @@ export default function trelloList(state = initalState, action) {
                if (action.payload.feature === "addTask") {
                     taskEditId = action.payload.data.tasks[action.payload.data.tasks.length - 1]._id;
                     console.log(taskEditId);
-               } else if (action.payload.feature === "editTask") {
+               } else if (action.payload.feature === "edit") {
                     taskEditId = action.payload.data.tasks[action.payload.index]._id;
 
                }

@@ -24,12 +24,7 @@ export default function TrelloColumn({ itemColumn, index }) {
                     const { column, content } = task;
                     return { column, content, columnName: itemsColumn?.columnName };
                })
-               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "removeColumn", _id));
-          } else {
-               dispatch({
-                    type: "list/removeColumn",
-                    payload: _id
-               })
+               dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks, "removeColumn"), _id);
           }
 
      }

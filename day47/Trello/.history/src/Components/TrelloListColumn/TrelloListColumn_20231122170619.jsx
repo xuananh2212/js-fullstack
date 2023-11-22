@@ -36,7 +36,11 @@ export default function TrelloListColumn() {
                taskFind.columnName = columnFind.columnName;
                const newTotalTask = totalTasks.map(({ column, columnName, content }) => ({ column, columnName, content }))
                dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTask, "switchTask"));
+
           }
+
+
+
      }
      return (
           <DragDropContext onDragEnd={handOnDragEnd}>

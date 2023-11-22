@@ -28,6 +28,7 @@ export default function TrelloColumn({ itemColumn, index }) {
                type: "list/removeColumn",
                payload: _id
           })
+
      }
      return (
           <Draggable draggableId={_id} index={index}>

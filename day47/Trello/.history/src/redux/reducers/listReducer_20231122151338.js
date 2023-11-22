@@ -46,16 +46,10 @@ export default function trelloList(state = initalState, action) {
                     return item;
                })
                return { ...state, listColumn: listNew };
-          }
-          case "list/addColumn": {
+          } case "list/addColumn": {
                const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
+               console.log(newListColumn, action.payload)
                newListColumn.push(action.payload)
-               return { ...state, listColumn: newListColumn };
-          }
-          case "list/removeColumn": {
-               const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
-               const index = newListColumn.findIndex(column => column._id === action.payload);
-               newListColumn.splice(index, 1);
                return { ...state, listColumn: newListColumn };
           }
           case "list/dragHanppened": {

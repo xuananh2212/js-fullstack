@@ -54,7 +54,7 @@ export const fetchPostTasks = (apiKey, body, feature, index = null) => {
                if (feature === "add") {
                     toast.success("Thêm công việc mới Thành công");
                } else if (feature === "remove") {
-                    toast.success("Xoá công việc mới Thành công");
+                    toast.success("Thêm công việc mới Thành công");
                }
                dispatch({
                     type: 'list/postTasks',

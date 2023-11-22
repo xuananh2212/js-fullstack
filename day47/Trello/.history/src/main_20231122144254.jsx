@@ -4,16 +4,13 @@ import App from './App.jsx'
 import './assets/css/reset.css'
 import { Provider } from 'react-redux'
 import { store } from './Redux/store.js'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <Provider
     store={store}>
     <App />
-    <ToastContainer
-      autoClose={1000}
-    />
+    <ToastContainer />
   </Provider>
   // </React.StrictMode>,
 )

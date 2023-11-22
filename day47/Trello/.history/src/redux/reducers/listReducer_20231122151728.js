@@ -56,6 +56,7 @@ export default function trelloList(state = initalState, action) {
                const newListColumn = JSON.parse(JSON.stringify(state.listColumn));
                const index = newListColumn.findIndex(column => column._id === action.payload);
                newListColumn.splice(index, 1);
+
                return { ...state, listColumn: newListColumn };
           }
           case "list/dragHanppened": {

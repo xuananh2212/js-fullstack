@@ -8,7 +8,7 @@ export default function trelloList(state = initalState, action) {
                return { ...state, isLogin: true, apiKey: action.payload }
 
           }
-          case 'api/restApiKey': {
+          case 'api/restApi': {
                return { ...state, isLogin: false, apiKey: "" }
 
           }

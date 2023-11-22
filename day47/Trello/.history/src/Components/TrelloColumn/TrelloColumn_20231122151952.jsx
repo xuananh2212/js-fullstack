@@ -25,9 +25,10 @@ export default function TrelloColumn({ itemColumn, index }) {
           })
           dispatch(fetchPostTasks(localStorage.getItem("apiKey"), newTotalTasks));
           dispatch({
-               type: "list/removeColumn",
+               type: "list/remove",
                payload: _id
           })
+
      }
      return (
           <Draggable draggableId={_id} index={index}>

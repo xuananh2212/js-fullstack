@@ -51,17 +51,17 @@ export default function Header() {
                settheme('dark');
                if (typeof window !== "undefined") {
                     localStorage?.setItem('theme', 'dark');
+                    document.documentElement.style.backgroundColor = 'black';
+                    document.documentElement.style.color = 'white';
                }
 
-               document.documentElement.style.backgroundColor = 'black';
-               document.documentElement.style.color = 'white';
           } else if (theme === 'dark') {
                settheme('light');
                if (typeof window !== "undefined") {
                     localStorage?.setItem('theme', 'light');
+                    document.documentElement.style.backgroundColor = '#fff';
+                    document.documentElement.style.color = 'black';
                }
-               document.documentElement.style.backgroundColor = '#fff';
-               document.documentElement.style.color = 'black';
           }
      }
      return (

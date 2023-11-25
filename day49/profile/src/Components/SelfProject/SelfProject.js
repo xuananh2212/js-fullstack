@@ -1,4 +1,3 @@
-'use client';
 import { useTranslation } from 'react-i18next';
 import keyWord from '../../../public/assets/keyword/keyword.json';
 import clsx from "clsx"

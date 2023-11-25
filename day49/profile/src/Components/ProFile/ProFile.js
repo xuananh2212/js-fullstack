@@ -1,4 +1,4 @@
-'use client';
+"use client"
 import i18n from 'i18next';
 import { useTranslation, initReactI18next } from 'react-i18next';
 import translationVie from '../../../public/assets/vi/translation.json';
@@ -7,17 +7,20 @@ import keyWord from '../../../public/assets/keyword/keyword.json';
 import { Image } from "@nextui-org/react";
 import clsx from "clsx"
 import styles from './ProFile.module.scss';
-import { Tooltip, Button } from "@nextui-org/react";
+import { Tooltip } from "@nextui-org/react";
 import SocialContact from '../SocialContact/SocialContact';
 import SelfProject from '../SelfProject/SelfProject';
 import Hobbies from '../Hobbies/Hobbies';
 const handleCheckLang = () => {
      const arrayLang = ['en', 'vi'];
-     if (!localStorage?.getItem('lang') || !arrayLang.includes(localStorage?.getItem('lang')?.toLowerCase())) {
-          return 'vi'
-     } else {
-          return localStorage?.getItem('lang').toLowerCase();
+     if (typeof window !== "undefined") {
+          if (!localStorage?.getItem('lang') || !arrayLang.includes(localStorage?.getItem('lang')?.toLowerCase())) {
+               return 'vi'
+          } else {
+               return localStorage?.getItem('lang').toLowerCase();
+          }
      }
+
 }
 i18n
      .use(initReactI18next)

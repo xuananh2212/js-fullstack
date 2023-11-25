@@ -1,0 +1,23 @@
+{
+  "fullName": "full_name",
+  "frontEnd": "front_end",
+  "tooltipTitle": "tooltip_title",
+  "skills": "skills",
+  "webDeveloper": "web_developer",
+  "otherSkills": "other_skills",
+  "otherSkillsDesc": "other_skills_desc",
+  "thcs": "thcs",
+  "thpt": "thpt",
+  "histories": "histories",
+  "socialContact": "social_contact",
+  "project": "project",
+  "nameProject": "name_project",
+  "timesProject": "times_project",
+  "usingProject": "using_project",
+  "month": "month",
+  "day": "day",
+  "hobbies": "hobbies",
+  "hobbies1": "hobbies1",
+  "hobbies2": "hobbies2",
+  "hobbies3": "hobbies3"
+}

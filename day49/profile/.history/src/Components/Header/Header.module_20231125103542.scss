@@ -1,0 +1,44 @@
+.header {
+     padding: 20px 0;
+
+     .headerWrap {
+          display: flex;
+          justify-content: space-between;
+
+          .headerLogo {
+               display: flex;
+               align-items: center;
+               text-decoration: none;
+               font-size: 2.5rem;
+               gap: 10px;
+               color: black;
+               font-weight: 700;
+          }
+
+          .headerRight {
+               display: flex;
+               gap: 10px;
+               align-items: center;
+
+          }
+
+          .listLanguage {
+               display: block;
+               padding: 10px;
+               border: 1px solid #333;
+
+               .language {
+                    span {
+                         display: block;
+                         padding: 14px 10px;
+                    }
+
+               }
+
+          }
+
+
+
+     }
+
+}

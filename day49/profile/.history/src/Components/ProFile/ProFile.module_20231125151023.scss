@@ -1,0 +1,22 @@
+.proFileWrap {
+     margin-top: 80px;
+     padding: 40px 20px;
+     border-radius: 12px;
+     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+     .headingLv1 {
+          text-align: center;
+          font-size: 2.5rem;
+          font-weight: 400;
+     }
+
+     .imgWrap {
+          width: 300px;
+
+          figcaption {
+               margin-top: 8px;
+               text-align: center;
+               font-size: 1.8rem;
+          }
+     }
+}

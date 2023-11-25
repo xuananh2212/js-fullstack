@@ -1,0 +1,13 @@
+.header {
+     padding: 20px 0;
+
+     .headerLogo {
+          display: flex;
+          align-items: center;
+          text-decoration: none;
+          font-size: 2.5rem;
+          gap: 10px;
+          color: black;
+          font-weight: 700;
+     }
+}

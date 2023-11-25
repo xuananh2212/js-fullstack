@@ -1,0 +1,14 @@
+.hobbies {
+     .headingLv2 {
+          font-size: 2.2rem;
+          text-align: center;
+          font-weight: 700;
+
+          ul {
+               li+li {
+                    margin-top: 18px;
+                    font-size: 1.6rem;
+               }
+          }
+     }
+}

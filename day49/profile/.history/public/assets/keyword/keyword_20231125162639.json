@@ -1,0 +1,13 @@
+{
+  "fullName": "full_name",
+  "frontEnd": "front_end",
+  "tooltipTitle": "tooltip_title",
+  "skills": "skills",
+  "webDeveloper": "web_developer",
+  "otherSkills": "other_skills",
+  "otherSkillsDesc": "other_skills_desc",
+  "thcs": "thcs",
+  "thpt": "thpt",
+  "histories": "histories",
+  "socialContact": "social_contact"
+}

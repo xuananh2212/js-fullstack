@@ -1,0 +1,129 @@
+.proFile {
+     margin-top: 80px;
+
+     .headingLv2 {
+          font-size: 2.2rem;
+          font-weight: 700;
+     }
+
+     .proFileWrap {
+          padding: 40px 20px;
+          border-radius: 12px;
+          box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+          .headingLv1 {
+               cursor: pointer;
+               text-align: center;
+               font-size: 2.5rem;
+               font-weight: 400;
+               margin-bottom: 18px;
+          }
+
+          .proFileInner {
+               display: flex;
+               gap: 20px;
+
+               .proFileLeft {
+                    max-width: 320px;
+                    flex: 1 0 calc(30% - 20px);
+                    padding: 10px 8px;
+
+                    .imgWrap {
+                         width: 300px;
+
+                         figcaption {
+                              margin-top: 8px;
+                              text-align: center;
+                              font-size: 1.8rem;
+                         }
+                    }
+
+                    .skills {
+                         margin-top: 24px;
+                    }
+
+                    .otherSkills,
+                    .skillWork {
+                         padding: 8px 0;
+                         margin-top: 18px;
+                         font-size: 1.6rem;
+                         line-height: 2.4rem;
+                         border-bottom: 1px solid #333;
+
+                         span {
+                              font-size: 1.8rem;
+                              font-weight: 600;
+                         }
+                    }
+
+                    .histories {
+                         li {
+                              padding: 8px 0;
+                              font-size: 1.6rem;
+
+                              span {
+                                   line-height: 2.4rem;
+                                   font-size: 1.8rem;
+                                   font-weight: 600;
+                              }
+                         }
+
+                         li+li {
+                              margin-top: 18px;
+                              border-bottom: 1px solid #333;
+
+                         }
+                    }
+
+               }
+
+               .proFileRight {
+                    padding: 20px 10px;
+                    flex: 1 0 70%;
+
+                    .headingLv2 {
+                         text-align: center;
+                    }
+
+                    .listSocial {
+                         margin-top: 18px;
+                         padding: 8px 0;
+                         border-bottom: 1px solid #333;
+
+                         li {
+
+                              a,
+                              span {
+                                   font-style: italic;
+                                   text-decoration: none;
+                                   font-size: 1.6rem;
+                              }
+
+                              a {
+                                   color: blue;
+                              }
+                         }
+
+                         li+li {
+                              margin-top: 18px;
+                         }
+                    }
+
+                    .project {
+                         margin-top: 24px;
+                         padding: 10px;
+                         border-radius: 12px;
+                         box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+                    }
+
+                    .nameProject,
+                    .timesProject,
+                    .usingProject {}
+
+               }
+          }
+
+
+     }
+}

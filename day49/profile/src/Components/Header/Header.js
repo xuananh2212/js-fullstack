@@ -14,36 +14,36 @@ import { MdNightlight, MdLightMode } from "react-icons/md";
 export default function Header() {
      const handleCheckTheme = useCallback(() => {
           const arrayTheme = ['dark', 'light'];
-          if (!localStorage.getItem('theme') || !arrayTheme.includes(localStorage.getItem("theme")?.toLowerCase())) {
+          if (!localStorage?.getItem('theme') || !arrayTheme.includes(localStorage?.getItem("theme")?.toLowerCase())) {
                return 'light';
           }
-          if (localStorage.getItem('theme').toLowerCase() === 'dark') {
+          if (localStorage?.getItem('theme').toLowerCase() === 'dark') {
                document.documentElement.style.backgroundColor = 'black';
                document.documentElement.style.color = 'white';
           }
-          return localStorage.getItem('theme').toLowerCase();
+          return localStorage?.getItem('theme').toLowerCase();
      }, []);
      const [theme, settheme] = useState(handleCheckTheme());
      const { t } = useTranslation();
      const handleTranslate = () => {
           if (i18n.language === 'en') {
                i18n.changeLanguage('vi');
-               localStorage.setItem('lang', 'vi');
+               localStorage?.setItem('lang', 'vi');
           } else if (i18n.language === 'vi') {
                i18n.changeLanguage('en');
-               localStorage.setItem('lang', 'en');
+               localStorage?.setItem('lang', 'en');
           }
 
      }
      const handleChangeTheme = () => {
           if (theme === 'light') {
                settheme('dark');
-               localStorage.setItem('theme', 'dark');
+               localStorage?.setItem('theme', 'dark');
                document.documentElement.style.backgroundColor = 'black';
                document.documentElement.style.color = 'white';
           } else if (theme === 'dark') {
                settheme('light');
-               localStorage.setItem('theme', 'light');
+               localStorage?.setItem('theme', 'light');
                document.documentElement.style.backgroundColor = '#fff';
                document.documentElement.style.color = 'black';
           }

@@ -2,7 +2,7 @@
 import clsx from "clsx";
 import styles from './Header.module.scss';
 import Link from "next/link";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Img from "next/image";
 import { Image } from "@nextui-org/react";
 import imgLogo from '../../../public/assets/imgs/logo.png';
@@ -15,33 +15,38 @@ export default function Header() {
      const handleCheckTheme = useCallback(() => {
           const arrayTheme = ['dark', 'light'];
           if (typeof window !== "undefined") {
-               if (!localStorage?.getItem('theme') || !arrayTheme.includes(localStorage?.getItem("theme")?.toLowerCase())) {
+               if (!window.localStorage?.getItem('theme') || !arrayTheme.includes(window.localStorage?.getItem("theme")?.toLowerCase())) {
                     return 'light';
                }
-               if (localStorage?.getItem('theme').toLowerCase() === 'dark') {
+               if (window.localStorage?.getItem('theme').toLowerCase() === 'dark') {
                     document.documentElement.style.backgroundColor = 'black';
                     document.documentElement.style.color = 'white';
                }
-               return localStorage?.getItem('theme').toLowerCase();
+               return window.localStorage?.getItem('theme').toLowerCase();
 
           }
           return 'light';
 
      }, []);
-     const [theme, settheme] = useState(handleCheckTheme());
+     const [theme, settheme] = useState();
+     useEffect(() => {
+          settheme(handleCheckTheme())
+     }, [])
      const { t } = useTranslation();
      const handleTranslate = () => {
           if (i18n.language === 'en') {
+               console.log(i18n);
+               console.log(t);
                i18n.changeLanguage('vi');
-               if (typeof window !== "undefined") {
-                    localStorage?.setItem('lang', 'vi');
-               }
+               // if (typeof window !== "undefined") {
+               window.localStorage?.setItem('lang', 'vi');
+               // }
 
           } else if (i18n.language === 'vi') {
                i18n.changeLanguage('en');
-               if (typeof window !== "undefined") {
-                    localStorage?.setItem('lang', 'en');
-               }
+               // if (typeof window !== "undefined") {
+               window.localStorage?.setItem('lang', 'en');
+               // }
 
           }
 
@@ -49,19 +54,20 @@ export default function Header() {
      const handleChangeTheme = () => {
           if (theme === 'light') {
                settheme('dark');
-               if (typeof window !== "undefined") {
-                    localStorage?.setItem('theme', 'dark');
-                    document.documentElement.style.backgroundColor = 'black';
-                    document.documentElement.style.color = 'white';
-               }
+               console.log(window);
+               // if (typeof window !== "undefined") {
+               window.localStorage?.setItem('theme', 'dark');
+               document.documentElement.style.backgroundColor = 'black';
+               document.documentElement.style.color = 'white';
+               // }
 
           } else if (theme === 'dark') {
                settheme('light');
-               if (typeof window !== "undefined") {
-                    localStorage?.setItem('theme', 'light');
-                    document.documentElement.style.backgroundColor = '#fff';
-                    document.documentElement.style.color = 'black';
-               }
+               // if (typeof window !== "undefined") {
+               window.localStorage?.setItem('theme', 'light');
+               document.documentElement.style.backgroundColor = '#fff';
+               document.documentElement.style.color = 'black';
+               // }
           }
      }
      return (

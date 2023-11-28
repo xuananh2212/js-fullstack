@@ -13,7 +13,6 @@ export default function Hobbies() {
                     <li>{t(keyWord.hobbies2)}</li>
                     <li>{t(keyWord.hobbies3)}</li>
                </ul>
-
           </div>
      )
 }

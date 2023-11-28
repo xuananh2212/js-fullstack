@@ -1,0 +1,26 @@
+.banner {
+     position: relative;
+
+     .video {
+          display: block;
+          width: 100vw;
+          height: 100vh;
+          object-fit: cover;
+     }
+
+     .content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          translate: -50% -50%;
+          color: #333;
+          z-index: 2;
+          color: #fff;
+
+          .headingLv3 {
+               font-size: 3.5rem;
+               font-weight: 600;
+
+          }
+     }
+}

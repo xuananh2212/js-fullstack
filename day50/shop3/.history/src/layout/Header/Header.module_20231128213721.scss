@@ -1,0 +1,26 @@
+.header {
+     background-color: #3333332a;
+     padding: 30px 60px;
+
+     .logo {
+          list-style: 2.0rem;
+          font-size: 2.5rem;
+          text-transform: uppercase;
+
+          span {
+               color: yellow;
+          }
+     }
+
+     .navLink {
+          display: flex;
+          color: inherit;
+
+          a {
+               font-size: 2.0rem;
+               color: #fff;
+               text-decoration: none;
+          }
+     }
+
+}

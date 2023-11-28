@@ -114,21 +114,14 @@ body {
      color: #000;
      background-color: #fff;
 
-     footer,
      header {
-          background-color: #ffffff69;
+          background-color: #ffffff1a;
      }
-
 }
 
 [data-theme="dark"] body {
      background-color: #000;
      color: #fff;
-
-     footer,
-     header {
-          background-color: rgba(41, 39, 39, 0.164);
-     }
 }
 
 ol,
@@ -156,14 +149,4 @@ table {
 
 html {
      font-size: 62.5%;
-}
-
-button {
-     outline: none;
-     border: none;
-     background-color: transparent;
-}
-
-.icon {
-     font-size: 2.5rem;
 }

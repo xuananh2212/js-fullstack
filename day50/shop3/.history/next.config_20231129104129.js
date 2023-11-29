@@ -5,4 +5,8 @@ const nextConfig = {
           domains: ['api-pages.vercel.app'],
      },
 }
+
 module.exports = nextConfig
+module.exports = {
+
+}

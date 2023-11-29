@@ -1,0 +1,17 @@
+.gallery {
+     padding: 60px 80px;
+
+     ul {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+
+
+          li {
+               flex: 1 0 calc(100% / 3 - 20px);
+               padding: 20px 15px;
+               border-radius: 12px;
+               background-color: #fff;
+          }
+     }
+}

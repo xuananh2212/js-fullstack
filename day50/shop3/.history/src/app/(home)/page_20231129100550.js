@@ -1,5 +1,5 @@
 import Banner from "@/Components/Banner/Banner";
-import Gallery from "@/Components/Gallery/Gallery";
+import Gallery from "./gallery";
 
 export default function page() {
   return (

@@ -1,0 +1,27 @@
+.gallery {
+     padding: 60px 80px;
+
+     ul {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+
+          img {
+               width: 100%;
+               object-fit: cover;
+          }
+
+          li {
+               box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+               flex: 1 0 calc(100% / 3 - 20px);
+               padding: 20px 15px;
+               border-radius: 12px;
+          }
+
+          h3,
+          span {
+               font-size: 2.5rem;
+               display: block;
+          }
+     }
+}

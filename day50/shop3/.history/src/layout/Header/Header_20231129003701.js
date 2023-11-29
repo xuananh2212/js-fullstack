@@ -26,7 +26,7 @@ export default function Header() {
                                         <Link href={"/"}>Trang Chủ</Link>
                                    </li>
                                    <li>
-                                        <Link href={"/pay"}>Thanh Toán</Link>
+                                        <Link href={"/"}>thanhtoan</Link>
                                    </li>
                                    <li>
                                         <Link href={"/library"}>Thư Viện</Link>

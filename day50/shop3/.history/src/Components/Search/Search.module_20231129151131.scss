@@ -1,0 +1,19 @@
+.search {
+
+     .formSearch {
+          position: fixed;
+          top: 100px;
+          left: 0;
+          right: 0;
+          height: 100px;
+     }
+
+     form {
+          input {
+               padding: 10px;
+               display: block;
+               width: 100%;
+               border-radius: 12px;
+          }
+     }
+}

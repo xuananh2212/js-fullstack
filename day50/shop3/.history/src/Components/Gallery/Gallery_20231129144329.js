@@ -11,7 +11,7 @@ export default async function Gallery({ id }) {
           <div className={clsx(styles.gallery)}>
                <ul>
                     {
-                         galleryBox?.length > 0
+                         galleryBox.length > 0
                          &&
                          galleryBox.map(({ id, src, span, h3 }) => {
                               return <li key={id}  >

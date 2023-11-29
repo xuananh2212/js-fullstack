@@ -7,7 +7,6 @@ import { FaSearch } from "react-icons/fa";
 import ThemeSwitcher from '@/app/ThemeSwitcher';
 import clsx from 'clsx';
 import Link from 'next/link';
-import Search from '@/Components/Search/Search';
 export default function Header() {
      return (
           <header className={clsx(styles.header)}>
@@ -42,7 +41,7 @@ export default function Header() {
                     <Col xl={5}>
                          <div className={styles.groupIcon}>
                               <ThemeSwitcher />
-                              <Search />
+                              <FaSearch className={styles.icon} />
                               <FaUser className={styles.icon} />
                          </div>
 

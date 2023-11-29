@@ -1,4 +1,4 @@
-export default function PayLayout({ chilren }) {
+export default function layout({ chilren }) {
      return (
           <>
                <header>

@@ -1,4 +1,6 @@
-export default function PayLayout({ chilren }) {
+import React from 'react'
+
+export default function layout() {
      return (
           <>
                <header>

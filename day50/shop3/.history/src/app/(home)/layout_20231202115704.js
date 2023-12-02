@@ -1,15 +1,14 @@
+import Header from '../layout/Header/Header'
+import Footer from '../layout/Footer/Footer'
+
 export default function layout({ children }) {
      return (
           <>
-               <header>
-                    header
-               </header>
+               <Header />
                <main>
                     {children}
                </main>
-               <footer>
-                    footer
-               </footer>
+               <Footer />
           </>
      )
 }
